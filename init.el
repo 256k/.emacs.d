@@ -41,6 +41,18 @@
 ;;  (load-theme 'plan9 t))
 ;;;;;;;;;;;;
 
+;; install autocomplete package: Ivy:
+(use-package ivy
+  :diminish
+  :config
+  (ivy-mode 1))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; install which-key:
+(use-package which-key
+  :config
+  (which-key-mode 1))
+;;;;;;;;;;;;;;;;;;;;;
 
 
 ;; some default stuff emacs adds to my init i dont know why:
@@ -49,8 +61,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-)
- (custom-set-faces
+ '(package-selected-packages '(which-key ivy zenburn-theme use-package plan9-theme)))
+ 
+(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
