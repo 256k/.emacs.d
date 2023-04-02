@@ -64,10 +64,10 @@
 ;;;;;;;;;;;;;;;;;;;;;
 
 ;; evil mode:
-(use-package evil
-  :config
-  (evil-mode t))
-;;;;;;;;;;;;;
+;; (use-package evil
+;;   :config
+;;   (evil-mode t))
+;; ;;;;;;;;;;;;;
 
 ;; LSP mode:
 (load "~/.emacs.d/lsp.el")
