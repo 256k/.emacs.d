@@ -21,6 +21,7 @@
 (scroll-bar-mode -1)
 (set-fringe-mode 16)
 (setq visible-bell 0)
+(tab-bar-mode 1)
 ;;;;;;;;;;;;;;;;;;
 
 
