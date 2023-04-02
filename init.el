@@ -43,9 +43,6 @@
 	doom-themes-enable-italic t)
   (load-theme 'doom-gruvbox t))
 
-;;(use-package plan9-theme
-;;  :config
-;;  (load-theme 'plan9 t))
 ;;;;;;;;;;;;
 
 ;; install autocomplete package: Ivy:
