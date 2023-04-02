@@ -22,6 +22,9 @@
 (set-fringe-mode 16)
 (setq visible-bell 0)
 (tab-bar-mode 1)
+(menu-bar--display-line-numbers-mode-absolute)
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(setq font-lock-maximum-decoration t)
 ;;;;;;;;;;;;;;;;;;
 
 
@@ -29,12 +32,16 @@
 (set-face-attribute 'default nil :height 127)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
 ;; set theme:
-(use-package zenburn-theme
-  :config
-  (load-theme 'zenburn t))
+;;(use-package zenburn-theme
+;;  :config
+;;  (load-theme 'zenburn t))
 
+(use-package doom-themes
+  :config
+  (setq doom-themes-enable-bold t
+	doom-themes-enable-italic t)
+  (load-theme 'doom-gruvbox t))
 
 ;;(use-package plan9-theme
 ;;  :config
@@ -50,7 +57,9 @@
 
 ;; install which-key:
 (use-package which-key
+  :diminish
   :config
+  (setq which-key-idle-delay 0.1)
   (which-key-mode 1))
 ;;;;;;;;;;;;;;;;;;;;;
 
@@ -61,7 +70,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(which-key ivy zenburn-theme use-package plan9-theme)))
+ '(package-selected-packages
+   '(doom-themes ivy-rich which-key ivy zenburn-theme use-package plan9-theme)))
  
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -69,3 +79,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; IMPORTS
+(load "~/.emacs.d/keymaps.el")
