@@ -63,6 +63,15 @@
   (which-key-mode 1))
 ;;;;;;;;;;;;;;;;;;;;;
 
+;; evil mode:
+(use-package evil
+  :config
+  (evil-mode t))
+;;;;;;;;;;;;;
+
+;; LSP mode:
+(load "~/.emacs.d/lsp.el")
+;;;;;;;;;;;;
 
 ;; some default stuff emacs adds to my init i dont know why:
 (custom-set-variables
@@ -70,8 +79,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ispell-dictionary nil)
  '(package-selected-packages
-   '(doom-themes ivy-rich which-key ivy zenburn-theme use-package plan9-theme)))
+   '(lsp-mode evil evil-mode doom-themes ivy-rich which-key ivy zenburn-theme use-package plan9-theme)))
  
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
