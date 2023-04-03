@@ -1,8 +1,6 @@
 ;; install and init use-package:
 (require 'package)
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa")
-			 ("gnu" . "https://elpa.gnu.org/packages")))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
@@ -29,7 +27,7 @@
 
 
  ;; sets the font-face size:
-(set-face-attribute 'default nil :height 127)
+(set-face-attribute 'default nil :height 210)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; set theme:
@@ -61,9 +59,9 @@
 ;;;;;;;;;;;;;;;;;;;;;
 
 ;; evil mode:
-;; (use-package evil
-;;   :config
-;;   (evil-mode t))
+(use-package evil
+  :config
+  (evil-mode t))
 ;; ;;;;;;;;;;;;;
 
 ;; LSP mode:
@@ -78,7 +76,7 @@
  ;; If there is more than one, they won't work right.
  '(ispell-dictionary nil)
  '(package-selected-packages
-   '(lsp-mode evil evil-mode doom-themes ivy-rich which-key ivy zenburn-theme use-package plan9-theme)))
+   '(evil lua-mode lsp-ivy rustic company lsp-ui lsp-mode evil-mode doom-themes ivy-rich which-key ivy zenburn-theme use-package plan9-theme)))
  
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
