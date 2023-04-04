@@ -1,3 +1,4 @@
+(toggle-frame-fullscreen)
 ;; install and init use-package:
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -67,6 +68,15 @@
 ;; LSP mode:
 (load "~/.emacs.d/lsp.el")
 ;;;;;;;;;;;;
+
+
+;; norns:
+(use-package norns
+  :config
+  (add-hook 'lua-mode-hook #'norns-mode-maybe-activate)
+  (add-hook 'sclang-mode-mode-hook #'norns-mode-maybe-activate))
+;;;;;;;;;
+
 
 ;; some default stuff emacs adds to my init i dont know why:
 (custom-set-variables
