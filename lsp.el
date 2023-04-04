@@ -8,6 +8,7 @@
          ;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
+(add-hook 'prog-mode-hook #'lsp)
 ;; optionally
 (use-package lsp-ui :commands lsp-ui-mode)
 ;; if you are helm user

@@ -1,4 +1,4 @@
-(toggle-frame-fullscreen)
+(toggle-frame-maximized)
 ;; install and init use-package:
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -86,7 +86,7 @@
  ;; If there is more than one, they won't work right.
  '(ispell-dictionary nil)
  '(package-selected-packages
-   '(evil lua-mode lsp-ivy rustic company lsp-ui lsp-mode evil-mode doom-themes ivy-rich which-key ivy zenburn-theme use-package plan9-theme)))
+   '(mustache-mode evil lua-mode lsp-ivy rustic company lsp-ui lsp-mode evil-mode doom-themes ivy-rich which-key ivy zenburn-theme use-package plan9-theme)))
  
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
