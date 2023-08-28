@@ -11,6 +11,7 @@
 - [[#graphical-user-interface-tweaks][GRAPHICAL USER INTERFACE TWEAKS]]
   - [[#disable-menubar-toolbars-and-scrollbars][Disable Menubar, Toolbars and Scrollbars]]
   - [[#display-line-numbers-and-truncated-lines][Display Line Numbers and Truncated Lines]]
+  - [[#all-the-icons][ALL THE ICONS]]
 - [[#org-mode][ORG MODE]]
   - [[#enabling-table-of-contents][Enabling Table of Contents]]
   - [[#enabling-org-bullets][Enabling Org Bullets]]
@@ -136,9 +137,10 @@
 
     (256k/leader-keys
       "f"   '(:ignore t :wk "terminal")
-      "f f" '((lambda () (interactive) (find-file "./")) :wk "open file browser"))
+      "f f" '((lambda () (interactive) (find-file "./")) :wk "open file browser")
       "f c" '((lambda () (interactive) (find-file "~/.emacs.d/config.org")) :wk "Edit emacs config")
-
+      "d"   '(dired-hide-details-mode :wk "toggle file details"))
+  
     (256k/leader-keys
       "e" '(:ignore t :wk "Evaluate")    
       "e b" '(eval-buffer :wk "Evaluate elisp in buffer")
@@ -185,6 +187,19 @@ Let's make GNU Emacs look a little better.
 (global-display-line-numbers-mode 1)
 (global-visual-line-mode t)
 #+end_src
+
+** ALL THE ICONS
+This is an icon set that can be used with dashboard, dired, ibuffer and other Emacs programs.
+  
+#+begin_src emacs-lisp
+(use-package all-the-icons
+  :ensure t
+  :if (display-graphic-p))
+
+(use-package all-the-icons-dired
+  :hook (dired-mode . (lambda () (all-the-icons-dired-mode t))))
+#+end_src
+
 
 * ORG MODE
 ** Enabling Table of Contents

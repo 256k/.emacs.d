@@ -88,7 +88,6 @@
 
   (256k/leader-keys
     "." '(find-file :wk "Find file")
-    "f c" '((lambda () (interactive) (find-file "~/.emacs.d/config.org")) :wk "Edit emacs config")
     "TAB TAB" '(comment-line :wk "Comment lines"))
 
   (256k/leader-keys
@@ -102,7 +101,9 @@
 
   (256k/leader-keys
     "f"   '(:ignore t :wk "terminal")
-    "f f" '((lambda () (interactive) (find-file "./")) :wk "open file browser"))
+    "f f" '((lambda () (interactive) (find-file "./")) :wk "open file browser")
+    "f c" '((lambda () (interactive) (find-file "~/.emacs.d/config.org")) :wk "Edit emacs config")
+    "d"   '(dired-hide-details-mode :wk "toggle file details"))
 
   (256k/leader-keys
     "e" '(:ignore t :wk "Evaluate")    
@@ -137,6 +138,13 @@
 
 (global-display-line-numbers-mode 1)
 (global-visual-line-mode t)
+
+(use-package all-the-icons
+  :ensure t
+  :if (display-graphic-p))
+
+(use-package all-the-icons-dired
+  :hook (dired-mode . (lambda () (all-the-icons-dired-mode t))))
 
 (use-package toc-org
     :commands toc-org-enable
