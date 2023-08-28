@@ -103,6 +103,7 @@
     "f"   '(:ignore t :wk "terminal")
     "f f" '((lambda () (interactive) (find-file "./")) :wk "open file browser")
     "f c" '((lambda () (interactive) (find-file "~/.emacs.d/config.org")) :wk "Edit emacs config")
+    "f r"   '(counsel-recentf :wk "toggle file details")
     "d"   '(dired-hide-details-mode :wk "toggle file details"))
 
   (256k/leader-keys
