@@ -116,7 +116,8 @@
     "t n" '(neotree-toggle :wk "Toggle neotree file viewer")
     "t r" '(rainbow-mode :wk "Toggle rainbow mode")
     "t t" '(visual-line-mode :wk "Toggle truncated lines")
-    "t v" '(vterm-toggle :wk "Toggle vterm"))
+    "t v" '(vterm-toggle :wk "Toggle vterm")
+    "t d" '(dashboard-open :wk "Toggle dashboard on"))
 
   (dt/leader-keys
     "w" '(:ignore t :wk "Windows")
