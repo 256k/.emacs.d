@@ -1,0 +1,1 @@
+("~/.emacs.d/" "~/" "~/code/personal/256klabs/" "~/code/external/configuring-emacs/")
