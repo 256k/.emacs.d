@@ -141,24 +141,31 @@
   (load-file user-init-file))
 
 ;; load custom themes folder
-   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-;; install doom themes   
-(use-package doom-themes
-  :ensure t
-  :config
-  ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-spacegrey t)
+         (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+      ;; install doom themes   
+      (use-package doom-themes
+        :ensure t
+        :config
+        ;; Global settings (defaults)
+        (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+              doom-themes-enable-italic t) ; if nil, italics is universally disabled
+        ;; (load-theme 'doom-spacegrey t)
 
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
-  ;; Enable custom neotree theme (all-the-icons must be installed!)
-  (doom-themes-neotree-config)
-  ;;(doom-themes-treemacs-config)
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config))
-  ;; (load-theme 'tfslight t)
+        ;; Enable flashing mode-line on errors
+        (doom-themes-visual-bell-config)
+        ;; Enable custom neotree theme (all-the-icons must be installed!)
+        (doom-themes-neotree-config)
+        ;;(doom-themes-treemacs-config)
+        ;; Corrects (and improves) org-mode's native fontification.
+        (doom-themes-org-config))
+
+
+      (use-package catppuccin-theme
+:ensure t
+:config
+;; 'frappe, 'latte, 'macchiato, or 'mocha
+      (setq catppuccin-flavor 'frappe)
+      (load-theme 'catppuccin t))
 
 (menu-bar-mode 1)
 (tool-bar-mode -1)
@@ -166,8 +173,6 @@
 
 (global-display-line-numbers-mode 1)
 (global-visual-line-mode t)
-
-(add-to-list 'default-frame-alist '(alpha-background . 100)) ; For all new frames henceforth
 
 (use-package all-the-icons
   :ensure t
@@ -286,7 +291,7 @@
   :ensure t
   :init (doom-modeline-mode 1)
   :config
-  (setq doom-modeline-height 35      ;; sets modeline height
+  (setq doom-modeline-height 20      ;; sets modeline height
         doom-modeline-bar-width 5    ;; sets right bar width
         doom-modeline-persp-name t   ;; adds perspective name to modeline
         doom-modeline-persp-icon t)) ;; adds folder icon next to persp name
@@ -335,6 +340,10 @@
                   ;;(dedicated . t) ;dedicated is supported in emacs27
                   (reusable-frames . visible)
                   (window-height . 0.4))))
+
+(use-package rust-mode
+  :ensure nil
+  :interpreter ("rust" . rust-mode))
 
 (use-package lua-mode
   :ensure nil

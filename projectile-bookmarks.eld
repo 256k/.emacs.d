@@ -1,1 +1,1 @@
-("~/.emacs.d/" "~/" "~/code/personal/256klabs/" "~/code/external/configuring-emacs/")
+("~/.emacs.d/" "~/code/personal/papercomputerjs/" "~/code/personal/rust_scratchpad_1/" "~/" "~/code/personal/256klabs/" "~/code/external/configuring-emacs/")
