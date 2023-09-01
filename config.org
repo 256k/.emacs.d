@@ -5,10 +5,12 @@
 
 * INDEX :toc:
 - [[#core-settings-and-installs][CORE SETTINGS AND INSTALLS]]
+  - [[#set-backups-directory][set backups directory]]
   - [[#elpaca][ELPACA]]
   - [[#load-evil-mode][Load Evil Mode]]
   - [[#general-keybindings][General Keybindings]]
 - [[#graphical-user-interface-tweaks][GRAPHICAL USER INTERFACE TWEAKS]]
+  - [[#theme][THEME]]
   - [[#disable-menubar-toolbars-and-scrollbars][Disable Menubar, Toolbars and Scrollbars]]
   - [[#display-line-numbers-and-truncated-lines][Display Line Numbers and Truncated Lines]]
   - [[#all-the-icons][ALL THE ICONS]]
@@ -16,6 +18,7 @@
   - [[#enabling-table-of-contents][Enabling Table of Contents]]
   - [[#enabling-org-bullets][Enabling Org Bullets]]
 - [[#packages][PACKAGES]]
+  - [[#rainbow-mode][RAINBOW MODE]]
   - [[#which-key][WHICH-KEY]]
   - [[#ivy-counsel][IVY (COUNSEL)]]
   - [[#company][COMPANY]]
@@ -24,6 +27,16 @@
   - [[#typescript][typescript]]
 
 * CORE SETTINGS AND INSTALLS
+** set backups directory
+#+begin_src emacs-lisp
+  (setq backup-directory-alist '(("" . "~/.emacs.d/backup/")))
+  (setq backup-by-copying t    ; Don't delink hardlinks
+      delete-old-versions t  ; Clean up the backups
+      version-control t      ; Use version numbers on backups,
+      kept-new-versions 5    ; keep some new versions
+      kept-old-versions 2)   ; and some old ones, too
+#+end_src
+      
 ** ELPACA
 #+begin_src emacs-lisp
 (defvar elpaca-installer-version 0.5)
@@ -176,6 +189,30 @@
 * GRAPHICAL USER INTERFACE TWEAKS
 Let's make GNU Emacs look a little better.
 
+** THEME
+#+begin_src emacs-lisp
+     ;; load custom themes folder
+     (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+  ;; install doom themes   
+  (use-package doom-themes
+    :ensure t
+    :config
+    ;; Global settings (defaults)
+    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+          doom-themes-enable-italic t) ; if nil, italics is universally disabled
+    (load-theme 'doom-nord-aurora t)
+
+    ;; Enable flashing mode-line on errors
+    (doom-themes-visual-bell-config)
+    ;; Enable custom neotree theme (all-the-icons must be installed!)
+    ;;(doom-themes-neotree-config)
+    ;;(doom-themes-treemacs-config)
+    ;; Corrects (and improves) org-mode's native fontification.
+    (doom-themes-org-config))
+    ;; (load-theme 'tfslight t) 
+
+#+end_src
+
 ** Disable Menubar, Toolbars and Scrollbars
 #+begin_src emacs-lisp
 (menu-bar-mode 1)
@@ -219,6 +256,16 @@ Org-bullets gives us attractive bullets rather than asterisks.
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 #+end_src
 * PACKAGES
+
+** RAINBOW MODE
+Display the actual color as a background for any hex color value (ex. #ffffff).  The code block below enables rainbow-mode in all programming modes (prog-mode) as well as org-mode, which is why rainbow works in this document.  
+
+#+begin_src emacs-lisp
+(use-package rainbow-mode
+  :diminish
+  :hook org-mode prog-mode)
+#+end_src
+
 ** WHICH-KEY
 #+begin_src emacs-lisp
   (use-package which-key
