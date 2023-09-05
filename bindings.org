@@ -2,7 +2,7 @@
 #+begin_src emacs-lisp
 (use-package general
   :config
-
+  (general-evil-setup)
   ;; setup some general bindings
   
   (general-define-key
