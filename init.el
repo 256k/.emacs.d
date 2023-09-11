@@ -10,3 +10,4 @@
  (expand-file-name
   "bindings.org"
   user-emacs-directory))
+(put 'narrow-to-region 'disabled nil)

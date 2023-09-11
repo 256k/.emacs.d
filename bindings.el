@@ -1,7 +1,10 @@
 (use-package general
   :config
   (general-evil-setup)
-  
+  ;; setup some general bindings  
+  (general-define-key
+    "C-`" 'vterm-toggle)
+
   ;; set up 'SPC' as the global leader key
   (general-create-definer 256k/leader-keys
     :states '(normal insert visual emacs)
