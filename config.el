@@ -201,7 +201,6 @@
 
 (use-package company
   :defer 2
-  :diminish
   :custom
   (company-begin-commands '(self-insert-command))
   (company-idle-delay .1)

@@ -24,6 +24,7 @@
   - [[#ivy-counsel][IVY (COUNSEL)]]
   - [[#company][COMPANY]]
   - [[#flycheck][FLYCHECK]]
+  - [[#modeline][MODELINE]]
   - [[#vterm][Vterm]]
   - [[#vterm-toggle][Vterm-Toggle]]
 - [[#language-modes][LANGUAGE MODES]]
@@ -297,7 +298,6 @@ Display the actual color as a background for any hex color value (ex. #ffffff). 
 #+begin_src emacs-lisp
 (use-package company
   :defer 2
-  :diminish
   :custom
   (company-begin-commands '(self-insert-command))
   (company-idle-delay .1)
@@ -353,20 +353,20 @@ Install =luacheck= from your Linux distro's repositories for flycheck to work co
 
 #+end_src
 
-# ** MODELINE
-# The modeline is the bottom status bar that appears in Emacs windows.  While you can create your own custom modeline, why go to the trouble when Doom Emacs already has a nice modeline package available.  For more information on what is available to configure in the Doom modeline, check out: [[https://github.com/seagle0128/doom-modeline][Doom Modeline]]
+** MODELINE
+The modeline is the bottom status bar that appears in Emacs windows.  While you can create your own custom modeline, why go to the trouble when Doom Emacs already has a nice modeline package available.  For more information on what is available to configure in the Doom modeline, check out: [[https://github.com/seagle0128/doom-modeline][Doom Modeline]]
 
-# #+begin_src emacs-lisp
-# (use-package doom-modeline
-#   :ensure t
-#   :init (doom-modeline-mode 1)
-#   :config
-#   (setq doom-modeline-height 20      ;; sets modeline height
-#         doom-modeline-bar-width 5    ;; sets right bar width
-#         doom-modeline-persp-name t   ;; adds perspective name to modeline
-#         doom-modeline-persp-icon t)) ;; adds folder icon next to persp name
+#+begin_src emacs-lisp
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :config
+  (setq doom-modeline-height 20      ;; sets modeline height
+        doom-modeline-bar-width 5    ;; sets right bar width
+        doom-modeline-persp-name t   ;; adds perspective name to modeline
+        doom-modeline-persp-icon t)) ;; adds folder icon next to persp name
 
-# #+end_src
+#+end_src
 
 # ** NEOTREE
 # Neotree is a file tree viewer.  When you open neotree, it jumps to the current file thanks to neo-smart-open.  The neo-window-fixed-size setting makes the neotree width be adjustable.  NeoTree provides following themes: classic, ascii, arrow, icons, and nerd.  Theme can be config'd by setting "two" themes for neo-theme: one for the GUI and one for the terminal.  I like to use 'SPC t' for 'toggle' keybindings, so I have used 'SPC t n' for toggle-neotree.
