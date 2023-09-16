@@ -86,30 +86,30 @@
 ;; load custom themes folder
                   ;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
                ;; install doom themes   
-       ;; (use-package doom-themes
-       ;; 	  :ensure t
-       ;; 	  :config
-       ;; 	  ;; Global settings (defaults)
-       ;; 	  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-       ;; 		doom-themes-enable-italic t) ; if nil, italics is universally disabled
-       ;; 	  ;; (load-theme 'doom-spacegrey t)
+       (use-package doom-themes
+          :ensure t
+          :config
+          ;; Global settings (defaults)
+          (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+                doom-themes-enable-italic t) ; if nil, italics is universally disabled
+          (load-theme 'doom-one t)
 
-       ;; 	  ;; Enable flashing mode-line on errors
-       ;; 	  (doom-themes-visual-bell-config)
-       ;; 	  ;; Enable custom neotree theme (all-the-icons must be installed!)
-       ;; 	  (doom-themes-neotree-config)
-       ;; 	  ;;(doom-themes-treemacs-config)
-       ;; 	  ;; Corrects (and improves) org-mode's native fontification.
-       ;; 	  (doom-themes-org-config))
+          ;; Enable flashing mode-line on errors
+          (doom-themes-visual-bell-config)
+          ;; Enable custom neotree theme (all-the-icons must be installed!)
+          (doom-themes-neotree-config)
+          ;;(doom-themes-treemacs-config)
+          ;; Corrects (and improves) org-mode's native fontification.
+          (doom-themes-org-config))
 
-(use-package catppuccin-theme
-  :ensure t
-  :config
-  ;; 'frappe, 'latte, 'macchiato, or 'mocha
-  (setq catppuccin-flavor 'frappe)
-  (load-theme 'catppuccin t))
+;; (use-package catppuccin-theme
+;;   :ensure t
+;;   :config
+;;   ;; 'frappe, 'latte, 'macchiato, or 'mocha
+;;   (setq catppuccin-flavor 'frappe)
+;;   (load-theme 'catppuccin t))
 
- ;; kaolin-dark - a dark jade variant inspired by Sierra.vim
+;;  ;; kaolin-dark - a dark jade variant inspired by Sierra.vim
  ;; kaolin-light - light variant of the original kaolin-dark.
  ;; kaolin-aurora - Kaolin meets polar lights.
  ;; kaolin-bubblegum - Kaolin colorful theme with dark blue background.
@@ -123,6 +123,10 @@
 ;; (use-package kaolin-themes
 ;;   :config
 ;;   (load-theme 'kaolin-dark t))
+;; (use-package atom-one-dark-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'atom-one-dark t))
 
 (menu-bar-mode 1)
 (tool-bar-mode -1)
@@ -220,6 +224,15 @@
   :diminish
   :init (global-flycheck-mode))
 
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :config
+  (setq doom-modeline-height 20      ;; sets modeline height
+        doom-modeline-bar-width 5    ;; sets right bar width
+        doom-modeline-persp-name t   ;; adds perspective name to modeline
+        doom-modeline-persp-icon t)) ;; adds folder icon next to persp name
+
 (use-package vterm
 :config
 (setq shell-file-name "/bin/sh"
@@ -257,3 +270,5 @@
 (use-package typescript-mode
   :ensure nil
   :interpreter ("ts" . typescript-mode))
+
+(use-package zig-mode)
