@@ -131,6 +131,7 @@
 (menu-bar-mode 1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(setq inhibit-startup-screen 1)
 
 (global-display-line-numbers-mode 1)
 (global-visual-line-mode t)
@@ -253,7 +254,7 @@
 (use-package spacious-padding
   :ensure t
   :config
-  (setq spacious-padding-widths '(:internal-border-width 80 :right-divider-width 30 :scroll-bar-width 8))
+  (setq spacious-padding-widths '(:internal-border-width 60 :right-divider-width 30 :scroll-bar-width 8))
         (spacious-padding-mode 1))
 
 (use-package rust-mode
