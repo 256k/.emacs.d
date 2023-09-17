@@ -1,8 +1,41 @@
-;; -*- emacs-lisp -*- <23/08/27 22:07:38 ~/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <23/09/17 17:20:40 ~/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; Run `M-x tramp-cleanup-all-connections' instead.
 
 (((tramp-file-name "cache" nil nil nil nil nil nil)
   ("tramp-version" "2.6.0.29.1"))
  ((tramp-file-name "ssh" "we" nil "norns.local" nil nil nil)
-  ("null-device" "/dev/null")))
+  ("null-device" "/dev/null")
+  ("uname" "Linux 5.10.92-18-g458e2253667a")
+  ("locale" "LC_ALL=en_US.utf8")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("pipe-buf" 4096)
+  ("remote-shell" "/bin/sh")
+  ("~" "/home/we")
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("file-exists" "test -e")
+  ("case-insensitive" nil)
+  ("readlink" "\\readlink")
+  ("stat" "env QUOTING_STYLE=locale \\stat")
+  ("id" "/bin/id")
+  ("uid-integer" 1000)
+  ("uid-string" "we")
+  ("gid-integer" 1000)
+  ("gid-string" "we")
+  ("groups-integer"
+   (1000 4 20 24 27 29 44 46 60 100 105 107 109 997 998 999))
+  ("groups-string"
+   ("we" "adm" "dialout" "cdrom" "sudo" "audio" "video" "plugdev" "games" "users" "input" "render" "netdev" "gpio" "i2c" "spi"))
+  ("ls" "/bin/ls --color=never")
+  ("ls--quoting-style=literal --show-control-chars" "--quoting-style=literal --show-control-chars")
+  ("ls--dired" "--dired")
+  ("df-blocksize" 1)
+  ("df" "\\df --block-size=1 --output=size,used,avail")
+  ("bzr" nil)
+  ("git" "\\git")
+  ("hg" nil)
+  ("ln" "\\ln")))

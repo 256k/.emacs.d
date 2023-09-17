@@ -27,6 +27,7 @@
   - [[#vterm][Vterm]]
   - [[#vterm-toggle][Vterm-Toggle]]
   - [[#spacious-padding][spacious-padding]]
+  - [[#norns][norns]]
 - [[#language-modes][LANGUAGE MODES]]
   - [[#rust][rust]]
   - [[#lua][lua]]
@@ -451,11 +452,30 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
 
 ** spacious-padding
 #+begin_src emacs-lisp
-        (use-package spacious-padding
-          :ensure t
-          :config
-          (setq spacious-padding-widths '(:internal-border-width 60 :right-divider-width 30 :scroll-bar-width 8))
-                (spacious-padding-mode 1))
+  (use-package spacious-padding
+    :ensure t
+    :config
+    (setq spacious-padding-widths
+          '(:internal-border-width 60 :right-divider-width 30 :scroll-bar-width 8))
+          (spacious-padding-mode 1))
+#+end_src
+
+** norns
+#+begin_src emacs-lisp
+  (use-package norns
+    :bind (
+           :map norns-mode-map
+           ("C-c e b" . norns-load-current-script)
+           ("C-c e r" . norns-send-selection)
+
+           :map norns-maiden-repl-mode-map
+           ("C-c e b" . norns-rerun)
+
+           :map norns-sc-repl-mode-map
+           ("C-." . norns-sc-stop))
+    :config
+    (add-hook 'lua-mode-hook #'norns-mode-maybe-activate)
+    (add-hook 'sclang-mode-mode-hook #'norns-mode-maybe-activate))
 #+end_src
 
 * LANGUAGE MODES
