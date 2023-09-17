@@ -253,24 +253,25 @@
 
 (use-package spacious-padding
   :ensure t
-  :bind (
-       :map norns-mode-map
-       ("C-c e b" . norns-load-current-script)
-       ("C-c e r" . norns-send-selection)
-
-       :map norns-maiden-repl-mode-map
-       ("C-c e b" . norns-rerun)
-
-       :map norns-sc-repl-mode-map
-       ("C-." . norns-sc-stop))
   :config
-  (setq spacious-padding-widths '(:internal-border-width 60 :right-divider-width 30 :scroll-bar-width 8))
+  (setq spacious-padding-widths
+        '(:internal-border-width 60 :right-divider-width 30 :scroll-bar-width 8))
         (spacious-padding-mode 1))
 
 (use-package norns
-:config
-(add-hook 'lua-mode-hook #'norns-mode-maybe-activate)
-(add-hook 'sclang-mode-mode-hook #'norns-mode-maybe-activate))
+  :bind (
+         :map norns-mode-map
+         ("C-c e b" . norns-load-current-script)
+         ("C-c e r" . norns-send-selection)
+
+         :map norns-maiden-repl-mode-map
+         ("C-c e b" . norns-rerun)
+
+         :map norns-sc-repl-mode-map
+         ("C-." . norns-sc-stop))
+  :config
+  (add-hook 'lua-mode-hook #'norns-mode-maybe-activate)
+  (add-hook 'sclang-mode-mode-hook #'norns-mode-maybe-activate))
 
 (use-package rust-mode
   :ensure nil
