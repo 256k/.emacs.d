@@ -135,6 +135,8 @@
 (global-display-line-numbers-mode 1)
 (global-visual-line-mode t)
 
+(add-hook 'dired-mode-hook 'dired-hide-details-mode)
+
 (use-package all-the-icons
   :ensure t
   :if (display-graphic-p))
@@ -224,15 +226,6 @@
   :diminish
   :init (global-flycheck-mode))
 
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1)
-  :config
-  (setq doom-modeline-height 20      ;; sets modeline height
-        doom-modeline-bar-width 5    ;; sets right bar width
-        doom-modeline-persp-name t   ;; adds perspective name to modeline
-        doom-modeline-persp-icon t)) ;; adds folder icon next to persp name
-
 (use-package vterm
 :config
 (setq shell-file-name "/bin/sh"
@@ -256,6 +249,12 @@
                   ;;(dedicated . t) ;dedicated is supported in emacs27
                   (reusable-frames . visible)
                   (window-height . 0.4))))
+
+(use-package spacious-padding
+  :ensure t
+  :config
+  (setq spacious-padding-widths '(:internal-border-width 80 :right-divider-width 30 :scroll-bar-width 8))
+        (spacious-padding-mode 1))
 
 (use-package rust-mode
   :ensure nil
