@@ -87,12 +87,12 @@
                   ;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
                ;; install doom themes   
        (use-package doom-themes
-          :ensure t
+
           :config
           ;; Global settings (defaults)
           (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
                 doom-themes-enable-italic t) ; if nil, italics is universally disabled
-          (load-theme 'doom-one t)
+          ;; (load-theme 'doom-one t)
 
           ;; Enable flashing mode-line on errors
           (doom-themes-visual-bell-config)
@@ -127,6 +127,9 @@
 ;;   :ensure t
 ;;   :config
 ;;   (load-theme 'atom-one-dark t))
+(use-package ef-themes
+  :config
+  (load-theme 'ef-spring t))
 
 (menu-bar-mode 1)
 (tool-bar-mode -1)
@@ -139,7 +142,7 @@
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
 (use-package all-the-icons
-  :ensure t
+  
   :if (display-graphic-p))
 
 (use-package all-the-icons-dired
@@ -153,9 +156,13 @@
 (use-package org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
+(use-package magit)
+
 (use-package rainbow-mode
   :diminish
   :hook org-mode prog-mode)
+
+(use-package consult)
 
 (use-package which-key
   :init
@@ -191,12 +198,12 @@
   (ivy-mode))
 
 (use-package all-the-icons-ivy-rich
-  :ensure t
+
   :init (all-the-icons-ivy-rich-mode 1))
 
 (use-package ivy-rich
   :after ivy
-  :ensure t
+
   :init (ivy-rich-mode 1) ;; this gets us descriptions in M-x.
   :custom
   (ivy-virtual-abbreviate 'full
@@ -222,7 +229,6 @@
   :hook (company-mode . company-box-mode))
 
 (use-package flycheck
-  :ensure t
   :defer t
   :diminish
   :init (global-flycheck-mode))
@@ -252,7 +258,6 @@
                   (window-height . 0.4))))
 
 (use-package spacious-padding
-  :ensure t
   :config
   (setq spacious-padding-widths
         '(:internal-border-width 60 :right-divider-width 30 :scroll-bar-width 8))
@@ -260,31 +265,28 @@
 
 (use-package norns
   :bind (
-         :map norns-mode-map
-         ("C-c e b" . norns-load-current-script)
-         ("C-c e r" . norns-send-selection)
+       :map norns-mode-map
+       ("C-c e b" . norns-load-current-script)
+       ("C-c e r" . norns-send-selection)
 
-         :map norns-maiden-repl-mode-map
-         ("C-c e b" . norns-rerun)
+       :map norns-maiden-repl-mode-map
+       ("C-c e b" . norns-rerun)
 
-         :map norns-sc-repl-mode-map
-         ("C-." . norns-sc-stop))
+       :map norns-sc-repl-mode-map
+       ("C-." . norns-sc-stop))
   :config
   (add-hook 'lua-mode-hook #'norns-mode-maybe-activate)
   (add-hook 'sclang-mode-mode-hook #'norns-mode-maybe-activate))
 
 (use-package rust-mode
-  :ensure nil
   :interpreter ("rust" . rust-mode))
 
 (use-package lua-mode
-  :ensure nil
   :interpreter ("lua" . lua-mode)
   :custom
   (lua-indent-level 2))
 
 (use-package typescript-mode
-  :ensure nil
   :interpreter ("ts" . typescript-mode))
 
 (use-package zig-mode)

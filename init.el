@@ -1,5 +1,5 @@
-(toggle-frame-maximized)
-
+;; (toggle-frame-maximized)
+(toggle-frame-fullscreen)
 
 (org-babel-load-file
  (expand-file-name
