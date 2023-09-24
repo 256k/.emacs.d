@@ -233,6 +233,11 @@
   :diminish
   :init (global-flycheck-mode))
 
+(use-package treesit-auto
+  :config
+  (setq treesit-auto-install 'prompt)
+  (global-treesit-auto-mode))
+
 (use-package vterm
 :config
 (setq shell-file-name "/bin/sh"
