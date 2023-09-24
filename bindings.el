@@ -4,7 +4,9 @@
     ;; setup some general bindings  
     (general-define-key
      "C-`" 'vterm-toggle
-     "C-." 'ef-themes-load-random)
+     "C-." 'ef-themes-load-random
+     "C-x c" 'quick-calc
+     "C-x C-r" 'recentf)
 
 
     (general-create-definer 256k/leader-keys
