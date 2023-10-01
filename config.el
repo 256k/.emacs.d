@@ -43,93 +43,96 @@
 (elpaca `(,@elpaca-order))
 
 ;; Install use-package support
-(elpaca elpaca-use-package
-  ;; Enable :elpaca use-package keyword.
-  (elpaca-use-package-mode)
-  ;; Assume :elpaca t unless otherwise specified.
-  (setq elpaca-use-package-by-default t))
+ (elpaca elpaca-use-package
+   ;; Enable :elpaca use-package keyword.
+   (elpaca-use-package-mode)
+   ;; Assume :elpaca t unless otherwise specified.
+   (setq elpaca-use-package-by-default t))
 
-;; Block until current queue processed.
-(elpaca-wait)
+ ;; Block until current queue processed.
+ (elpaca-wait)
 
-;;When installing a package which modifies a form used at the top-level
-;;(e.g. a package which adds a use-package key word),
-;;use `elpaca-wait' to block until that package has been installed/configured.
-;;For example:
-;;(use-package general :demand t)
-;;(elpaca-wait)
+ ;;When installing a package which modifies a form used at the top-level
+ ;;(e.g. a package which adds a use-package key word),
+ ;;use `elpaca-wait' to block until that package has been installed/configured.
+ ;;For example:
+ ;;(use-package general :demand t)
+ ;;(elpaca-wait)
 
-;; Expands to: (elpaca evil (use-package evil :demand t))
-;; (use-package evil
-;;     :init      ;; tweak evil's configuration before loading it
-;;     (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
-;;     (setq evil-want-keybinding nil)
-;;     (setq evil-vsplit-window-right t)
-;;     (setq evil-split-window-below t)
-;;     (evil-mode))
-;;   (use-package evil-collection
-;;     :after evil
-;;     :config
-;;     (setq evil-collection-mode-list '(dashboard dired ibuffer))
-;;     (evil-collection-init))
-;;   (use-package evil-tutor)
+ ;; Expands to: (elpaca evil (use-package evil :demand t))
 
-;; ;;Turns off elpaca-use-pa
-;;  ckage-mode current declartion
-;;Note this will cause the declaration to be interpreted immediately (not deferred).
-;;Useful for configuring built-in emacs features.
-(use-package emacs :elpaca nil :config (setq ring-bell-function #'ignore))
+ (use-package evil
+     :init      ;; tweak evil's configuration before loading it
+     (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+     (setq evil-want-keybinding nil)
+     (setq evil-vsplit-window-right t)
+     (setq evil-split-window-below t))
+(add-hook 'prog-mode-hook 'evil-mode)
 
-;; Don't install anything. Defer execution of BODY
-;; (elpaca nil (message "deferred"))
+;;  (use-package evil-collection
+ ;;     :after evil
+ ;;     :config
+ ;;     (setq evil-collection-mode-list '(dashboard dired ibuffer))
+ ;;     (evil-collection-init))
+ ;;   (use-package evil-tutor)
+
+ ;; ;;Turns off elpaca-use-pa
+ ;;  ckage-mode current declartion
+ ;;Note this will cause the declaration to be interpreted immediately (not deferred).
+ ;;Useful for configuring built-in emacs features.
+ (use-package emacs :elpaca nil :config (setq ring-bell-function #'ignore))
+
+ ;; Don't install anything. Defer execution of BODY
+ ;; (elpaca nil (message "deferred"))
 
 ;; load custom themes folder
-                  ;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-               ;; install doom themes   
-       (use-package doom-themes
+                    ;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+                 ;; install doom themes   
+         (use-package doom-themes
 
-          :config
-          ;; Global settings (defaults)
-          (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-                doom-themes-enable-italic t) ; if nil, italics is universally disabled
-          ;; (load-theme 'doom-one t)
+            :config
+            ;; Global settings (defaults)
+            (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+                  doom-themes-enable-italic t) ; if nil, italics is universally disabled
+            ;; (load-theme 'doom-one t)
 
-          ;; Enable flashing mode-line on errors
-          (doom-themes-visual-bell-config)
-          ;; Enable custom neotree theme (all-the-icons must be installed!)
-          (doom-themes-neotree-config)
-          ;;(doom-themes-treemacs-config)
-          ;; Corrects (and improves) org-mode's native fontification.
-          (doom-themes-org-config))
+            ;; Enable flashing mode-line on errors
+            (doom-themes-visual-bell-config)
+            ;; Enable custom neotree theme (all-the-icons must be installed!)
+            (doom-themes-neotree-config)
+            ;;(doom-themes-treemacs-config)
+            ;; Corrects (and improves) org-mode's native fontification.
+            (doom-themes-org-config))
 
-;; (use-package catppuccin-theme
-;;   :ensure t
-;;   :config
-;;   ;; 'frappe, 'latte, 'macchiato, or 'mocha
-;;   (setq catppuccin-flavor 'frappe)
-;;   (load-theme 'catppuccin t))
+  ;; (use-package catppuccin-theme
+  ;;   :ensure t
+  ;;   :config
+  ;;   ;; 'frappe, 'latte, 'macchiato, or 'mocha
+  ;;   (setq catppuccin-flavor 'frappe)
+  ;;   (load-theme 'catppuccin t))
 
-;;  ;; kaolin-dark - a dark jade variant inspired by Sierra.vim
- ;; kaolin-light - light variant of the original kaolin-dark.
- ;; kaolin-aurora - Kaolin meets polar lights.
- ;; kaolin-bubblegum - Kaolin colorful theme with dark blue background.
- ;; kaolin-eclipse - a dark purple variant
- ;; kaolin-galaxy - bright theme based on one of the Sebastian Andaur arts.
- ;; kaolin-ocean - a dark blue variant.
- ;; kaolin-temple - dark background with syntax highlighting focus on blue, green and pink shades
- ;; kaolin-valley-dark - colorful Kaolin theme with brown background.
- ;; kaolin-valley-light - light variant of kaolin-valley theme.
+  ;;  ;; kaolin-dark - a dark jade variant inspired by Sierra.vim
+   ;; kaolin-light - light variant of the original kaolin-dark.
+   ;; kaolin-aurora - Kaolin meets polar lights.
+   ;; kaolin-bubblegum - Kaolin colorful theme with dark blue background.
+   ;; kaolin-eclipse - a dark purple variant
+   ;; kaolin-galaxy - bright theme based on one of the Sebastian Andaur arts.
+   ;; kaolin-ocean - a dark blue variant.
+   ;; kaolin-temple - dark background with syntax highlighting focus on blue, green and pink shades
+   ;; kaolin-valley-dark - colorful Kaolin theme with brown background.
+   ;; kaolin-valley-light - light variant of kaolin-valley theme.
 
-;; (use-package kaolin-themes
-;;   :config
-;;   (load-theme 'kaolin-dark t))
-;; (use-package atom-one-dark-theme
-;;   :ensure t
-;;   :config
-;;   (load-theme 'atom-one-dark t))
+  ;; (use-package kaolin-themes
+  ;;   :config
+  ;;   (load-theme 'kaolin-dark t))
+;;    (use-package atom-one-dark-theme
+;;      :ensure t
+;;      :config
+;;     (load-theme 'atom-one-dark t))
+
 (use-package ef-themes
-  :config
-  (load-theme 'ef-spring t))
+    :config
+    (load-theme 'ef-spring t))
 
 (menu-bar-mode 1)
 (tool-bar-mode -1)
@@ -295,3 +298,5 @@
   :interpreter ("ts" . typescript-mode))
 
 (use-package zig-mode)
+
+(use-package go-mode)

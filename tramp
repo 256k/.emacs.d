@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <23/09/23 09:48:45 ~/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <23/09/30 22:06:11 ~/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; Run `M-x tramp-cleanup-all-connections' instead.
 
@@ -38,4 +38,5 @@
   ("bzr" nil)
   ("git" "\\git")
   ("hg" nil)
-  ("ln" "\\ln")))
+  ("ln" "\\ln")
+  ("dev-tty" t)))
