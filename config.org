@@ -22,7 +22,7 @@
 - [[#packages][PACKAGES]]
   - [[#magit][MAGIT]]
   - [[#rainbow-mode][RAINBOW MODE]]
-  - [[#consult-theme][consult-theme]]
+  - [[#consult][consult]]
   - [[#which-key][WHICH-KEY]]
   - [[#ivy-counsel][IVY (COUNSEL)]]
   - [[#company][COMPANY]]
@@ -183,14 +183,18 @@ Let's make GNU Emacs look a little better.
     ;; (use-package kaolin-themes
     ;;   :config
     ;;   (load-theme 'kaolin-dark t))
-  ;;    (use-package atom-one-dark-theme
   ;;      :ensure t
   ;;      :config
-  ;;     (load-theme 'atom-one-dark t))
 
-  (use-package ef-themes
-      :config
-      (load-theme 'ef-spring t))
+
+  (use-package ef-themes)
+      ;; :config
+      ;; (load-theme 'ef-spring t)
+      ;; (load-theme 'ef-deuteranopia-dark t))
+
+  (use-package atom-one-dark-theme
+    :config
+    (load-theme 'atom-one-dark t))
 
 #+end_src
 
@@ -254,12 +258,12 @@ Org-bullets gives us attractive bullets rather than asterisks.
 Display the actual color as a background for any hex color value (ex. #ffffff).  The code block below enables rainbow-mode in all programming modes (prog-mode) as well as org-mode, which is why rainbow works in this document.  
 
 #+begin_src emacs-lisp
-(use-package rainbow-mode
-  :diminish
-  :hook org-mode prog-mode)
+  ;; (use-package rainbow-mode
+  ;;   :diminish
+  ;;   :hook org-mode prog-mode)
 #+end_src
 
-** consult-theme
+** consult
 #+begin_src emacs-lisp
   (use-package consult)
 #+end_src
@@ -298,7 +302,7 @@ Display the actual color as a background for any hex color value (ex. #ffffff). 
     :bind
     ;; ivy-resume resumes the last Ivy-based completion.
     (("C-c C-r" . ivy-resume)
-     ("C-x B" . ivy-switch-buffer-other-window))
+     ("C-x C-b" . ivy-switch-buffer-other-window))
     :custom
     (setq ivy-use-virtual-buffers t)
     (setq ivy-count-format "(%d/%d) ")
@@ -438,6 +442,7 @@ Install =luacheck= from your Linux distro's repositories for flycheck to work co
 ** treesit auto
 automatically manage the treesitter languages
 #+begin_src emacs-lisp
+  (setq treesit-font-lock-level 4)
   (use-package treesit-auto
     :config
     (setq treesit-auto-install 'prompt)
@@ -488,20 +493,16 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
 
 ** norns
 #+begin_src emacs-lisp
-    (use-package norns
-      :bind (
-           :map norns-mode-map
-           ("C-c e b" . norns-load-current-script)
-           ("C-c e r" . norns-send-selection)
+  (use-package norns
+    :bind (
+         ("C-c e b" . norns-load-current-script)
+         ("C-c e s" . norns-send-selection)
+         ("C-c e r" . norns-rerun)
+         ("C-." . norns-sc-stop))
 
-           :map norns-maiden-repl-mode-map
-           ("C-c e b" . norns-rerun)
-
-           :map norns-sc-repl-mode-map
-           ("C-." . norns-sc-stop))
-      :config
-      (add-hook 'lua-mode-hook #'norns-mode-maybe-activate)
-      (add-hook 'sclang-mode-mode-hook #'norns-mode-maybe-activate))
+    :config
+    (add-hook 'lua-mode-hook #'norns-mode-maybe-activate)
+    (add-hook 'sclang-mode-mode-hook #'norns-mode-maybe-activate))
 #+end_src
 
 * LANGUAGE MODES

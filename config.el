@@ -61,15 +61,15 @@
 
  ;; Expands to: (elpaca evil (use-package evil :demand t))
 
- (use-package evil
-     :init      ;; tweak evil's configuration before loading it
-     (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
-     (setq evil-want-keybinding nil)
-     (setq evil-vsplit-window-right t)
-     (setq evil-split-window-below t))
-(add-hook 'prog-mode-hook 'evil-mode)
+;;  (use-package evil
+;;      :init      ;; tweak evil's configuration before loading it
+;;      (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+;;      (setq evil-want-keybinding nil)
+;;      (setq evil-vsplit-window-right t)
+;;      (setq evil-split-window-below t))
+;; (add-hook 'prog-mode-hook 'evil-mode)
 
-;;  (use-package evil-collection
+;; ;;  (use-package evil-collection
  ;;     :after evil
  ;;     :config
  ;;     (setq evil-collection-mode-list '(dashboard dired ibuffer))
@@ -125,14 +125,18 @@
   ;; (use-package kaolin-themes
   ;;   :config
   ;;   (load-theme 'kaolin-dark t))
-;;    (use-package atom-one-dark-theme
 ;;      :ensure t
 ;;      :config
-;;     (load-theme 'atom-one-dark t))
 
-(use-package ef-themes
-    :config
-    (load-theme 'ef-spring t))
+
+(use-package ef-themes)
+    ;; :config
+    ;; (load-theme 'ef-spring t)
+    ;; (load-theme 'ef-deuteranopia-dark t))
+
+(use-package atom-one-dark-theme
+  :config
+  (load-theme 'atom-one-dark t))
 
 (menu-bar-mode 1)
 (tool-bar-mode -1)
@@ -161,9 +165,9 @@
 
 (use-package magit)
 
-(use-package rainbow-mode
-  :diminish
-  :hook org-mode prog-mode)
+;; (use-package rainbow-mode
+;;   :diminish
+;;   :hook org-mode prog-mode)
 
 (use-package consult)
 
@@ -192,7 +196,7 @@
   :bind
   ;; ivy-resume resumes the last Ivy-based completion.
   (("C-c C-r" . ivy-resume)
-   ("C-x B" . ivy-switch-buffer-other-window))
+   ("C-x C-b" . ivy-switch-buffer-other-window))
   :custom
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) ")
@@ -236,6 +240,7 @@
   :diminish
   :init (global-flycheck-mode))
 
+(setq treesit-font-lock-level 4)
 (use-package treesit-auto
   :config
   (setq treesit-auto-install 'prompt)
@@ -273,15 +278,11 @@
 
 (use-package norns
   :bind (
-       :map norns-mode-map
        ("C-c e b" . norns-load-current-script)
-       ("C-c e r" . norns-send-selection)
-
-       :map norns-maiden-repl-mode-map
-       ("C-c e b" . norns-rerun)
-
-       :map norns-sc-repl-mode-map
+       ("C-c e s" . norns-send-selection)
+       ("C-c e r" . norns-rerun)
        ("C-." . norns-sc-stop))
+
   :config
   (add-hook 'lua-mode-hook #'norns-mode-maybe-activate)
   (add-hook 'sclang-mode-mode-hook #'norns-mode-maybe-activate))
