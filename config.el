@@ -5,7 +5,7 @@
     kept-new-versions 5    ; keep some new versions
     kept-old-versions 2)   ; and some old ones, too
 
-(defvar elpaca-installer-version 0.5)
+(defvar elpaca-installer-version 0.6)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
@@ -129,14 +129,14 @@
 ;;      :config
 
 
-(use-package ef-themes)
-    ;; :config
-    ;; (load-theme 'ef-spring t)
+(use-package ef-themes
+ :config
+(load-theme 'ef-spring t))
     ;; (load-theme 'ef-deuteranopia-dark t))
 
-(use-package atom-one-dark-theme
-  :config
-  (load-theme 'atom-one-dark t))
+;; (use-package atom-one-dark-theme
+;;   :config
+;;   (load-theme 'atom-one-dark t))
 
 (menu-bar-mode 1)
 (tool-bar-mode -1)
@@ -163,7 +163,9 @@
 (use-package org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-(use-package magit)
+;; (use-package transient)
+;;   (use-package magit
+;;     :after transient)
 
 ;; (use-package rainbow-mode
 ;;   :diminish

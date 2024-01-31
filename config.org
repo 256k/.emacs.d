@@ -52,7 +52,7 @@
       
 ** ELPACA
 #+begin_src emacs-lisp
-(defvar elpaca-installer-version 0.5)
+(defvar elpaca-installer-version 0.6)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
@@ -139,7 +139,6 @@
 
 
 * GRAPHICAL USER INTERFACE TWEAKS
-Let's make GNU Emacs look a little better.
 
 ** THEME
 #+begin_src emacs-lisp
@@ -187,14 +186,14 @@ Let's make GNU Emacs look a little better.
   ;;      :config
 
 
-  (use-package ef-themes)
-      ;; :config
-      ;; (load-theme 'ef-spring t)
+  (use-package ef-themes
+   :config
+  (load-theme 'ef-spring t))
       ;; (load-theme 'ef-deuteranopia-dark t))
 
-  (use-package atom-one-dark-theme
-    :config
-    (load-theme 'atom-one-dark t))
+  ;; (use-package atom-one-dark-theme
+  ;;   :config
+  ;;   (load-theme 'atom-one-dark t))
 
 #+end_src
 
@@ -251,7 +250,9 @@ Org-bullets gives us attractive bullets rather than asterisks.
 
 ** MAGIT
 #+begin_src emacs-lisp
-  (use-package magit)
+  ;; (use-package transient)
+  ;;   (use-package magit
+  ;;     :after transient)
 #+end_src
 
 ** RAINBOW MODE
