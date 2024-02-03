@@ -1,3 +1,10 @@
+(keymap-global-set "C-x C-r" 'recentf-open)
+
+(defun 256k/edit-config ()
+  (interactive)
+  (find-file "~/.emacs.d/config.org"))
+(keymap-global-set "C-x C-/" '256k/edit-config)
+
 (defun 256k/split-recent ()
   "split window and open recent files"
   (interactive)
@@ -11,11 +18,7 @@
   (general-define-key
    "C-`" 'vterm-toggle
    "C-." 'ef-themes-load-random
-   "C-x c" 'quick-calc
-   "C-x C-r" (lambda ()
-               (interactive)
-               (split-window-right)
-               (recentf-open-files)))
+   "C-x c" 'quick-calc)
 
   (general-define-key
    :prefix "C-c"

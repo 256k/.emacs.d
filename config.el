@@ -61,7 +61,7 @@
 
  ;; Expands to: (elpaca evil (use-package evil :demand t))
 
-;;  (use-package evil
+ ;; (use-package evil
 ;;      :init      ;; tweak evil's configuration before loading it
 ;;      (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
 ;;      (setq evil-want-keybinding nil)
@@ -85,58 +85,9 @@
  ;; Don't install anything. Defer execution of BODY
  ;; (elpaca nil (message "deferred"))
 
-;; load custom themes folder
-                    ;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-                 ;; install doom themes   
-         (use-package doom-themes
-
-            :config
-            ;; Global settings (defaults)
-            (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-                  doom-themes-enable-italic t) ; if nil, italics is universally disabled
-            ;; (load-theme 'doom-one t)
-
-            ;; Enable flashing mode-line on errors
-            (doom-themes-visual-bell-config)
-            ;; Enable custom neotree theme (all-the-icons must be installed!)
-            (doom-themes-neotree-config)
-            ;;(doom-themes-treemacs-config)
-            ;; Corrects (and improves) org-mode's native fontification.
-            (doom-themes-org-config))
-
-  ;; (use-package catppuccin-theme
-  ;;   :ensure t
-  ;;   :config
-  ;;   ;; 'frappe, 'latte, 'macchiato, or 'mocha
-  ;;   (setq catppuccin-flavor 'frappe)
-  ;;   (load-theme 'catppuccin t))
-
-  ;;  ;; kaolin-dark - a dark jade variant inspired by Sierra.vim
-   ;; kaolin-light - light variant of the original kaolin-dark.
-   ;; kaolin-aurora - Kaolin meets polar lights.
-   ;; kaolin-bubblegum - Kaolin colorful theme with dark blue background.
-   ;; kaolin-eclipse - a dark purple variant
-   ;; kaolin-galaxy - bright theme based on one of the Sebastian Andaur arts.
-   ;; kaolin-ocean - a dark blue variant.
-   ;; kaolin-temple - dark background with syntax highlighting focus on blue, green and pink shades
-   ;; kaolin-valley-dark - colorful Kaolin theme with brown background.
-   ;; kaolin-valley-light - light variant of kaolin-valley theme.
-
-  ;; (use-package kaolin-themes
-  ;;   :config
-  ;;   (load-theme 'kaolin-dark t))
-;;      :ensure t
-;;      :config
-
-
 (use-package ef-themes
- :config
-(load-theme 'ef-spring t))
-    ;; (load-theme 'ef-deuteranopia-dark t))
-
-;; (use-package atom-one-dark-theme
-;;   :config
-;;   (load-theme 'atom-one-dark t))
+  :config
+  (load-theme 'ef-cyprus t))
 
 (menu-bar-mode 1)
 (tool-bar-mode -1)
@@ -144,7 +95,7 @@
 (setq inhibit-startup-screen 1)
 
 (global-display-line-numbers-mode 1)
-(global-visual-line-mode t)
+(global-visual-line-mode t) ;; wraps the text in a buffer
 
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
@@ -223,19 +174,19 @@
                                'ivy-rich-switch-buffer-transformer))
 
 (use-package company
-  :defer 2
-  :custom
-  (company-begin-commands '(self-insert-command))
-  (company-idle-delay .1)
-  (company-minimum-prefix-length 2)
-  (company-show-numbers t)
-  (company-tooltip-align-annotations 't)
-  (global-company-mode t))
 
-(use-package company-box
-  :after company
-  :diminish
-  :hook (company-mode . company-box-mode))
+   :custom
+;    (company-begin-commands '(self-insert-command))
+;    (company-idle-delay .1)
+;    (company-minimum-prefix-length 2)
+;    (company-show-numbers t)
+;    (company-tooltip-align-annotations 't)
+    (global-company-mode t))
+
+ (use-package company-box
+   :after company
+   :diminish
+   :hook (company-mode . company-box-mode))
 
 (use-package flycheck
   :defer t
@@ -294,6 +245,8 @@
 
 (use-package lua-mode
   :interpreter ("lua" . lua-mode)
+:hook ((lua-mode . eglot-ensure)
+         (lua-mode . company-mode))
   :custom
   (lua-indent-level 2))
 
@@ -302,4 +255,9 @@
 
 (use-package zig-mode)
 
-(use-package go-mode)
+(use-package go-mode
+  :ensure t
+
+  :config
+  (add-to-list 'exec-path "/Users/fayekhelmi/go/bin")
+  (setenv "PATH" (concat (getenv "PATH") ":/Users/fayekhelmi/go/bin")))

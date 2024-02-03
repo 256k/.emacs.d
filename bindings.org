@@ -1,3 +1,18 @@
+* Keymaps
+#+begin_src emacs-lisp
+
+  (keymap-global-set "C-x C-r" 'recentf-open)
+
+#+end_src
+
+* Custom functions
+#+begin_src emacs-lisp
+  (defun 256k/edit-config ()
+    (interactive)
+    (find-file "~/.emacs.d/config.org"))
+  (keymap-global-set "C-x C-/" '256k/edit-config)
+#+end_src
+
 * GENERAL KEYBINDINGS
 #+begin_src emacs-lisp
   (defun 256k/split-recent ()
@@ -13,11 +28,7 @@
     (general-define-key
      "C-`" 'vterm-toggle
      "C-." 'ef-themes-load-random
-     "C-x c" 'quick-calc
-     "C-x C-r" (lambda ()
-                 (interactive)
-                 (split-window-right)
-                 (recentf-open-files)))
+     "C-x c" 'quick-calc)
 
     (general-define-key
      :prefix "C-c"
