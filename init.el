@@ -10,35 +10,30 @@
  (expand-file-name
   "bindings.org"
   user-emacs-directory))
-(put 'narrow-to-region 'disabled nil)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("b9c804f672050817981dcc58a04e236d685417c3318554088d5552c819243281" "5b338bbf32cb7c1d6d1f95687eb680ab62b8ebbb1f8a9602aeecb93ca4d02012" "b4b3c720a4ef5baa8e01645085920aceaf17bac9122da24069821a21704a8917" "355c156b6dbeacadfab0d79b64e116c0b1b7cf1a7405268120de0563f18e8641" "4fe4a418bb02cda8df3fe5dad1c1d177fd517c1ea20871a2e8fce329edd3952d" "a9a204fb5fd1184bd43f6a71916f81e5c2bf3ec7f52accb83cd87a9096586016" "d8108c42f381118ab5989a5e7be5fd205b05256eafb6772d39d33c2a699317e4" "994ab6148e816ebfceacef0639e73e81a3069acb95d4dfdbc0e740d091cccdf3" "1d94f9c5e45717b575656c1f8f2105d5f20b2ddc0945ded78251461ee2728571" "aec7b55f2a13307a55517fdf08438863d694550565dee23181d2ebd973ebd6b8" "499fa10f9cbc4f70627bb52d7d8741ffe653d3a3d502fb082b2bcb4601348c7e" "02f57ef0a20b7f61adce51445b68b2a7e832648ce2e7efb19d217b6454c1b644" "0c860c4fe9df8cff6484c54d2ae263f19d935e4ff57019999edbda9c7eda50b8" "a446c13f86bf810f669c345e0c17e7c3d7ce7a43c3172b6f6c5932e430df1949" "949dced57bf1176a3c18382e45e5340eb95a42fa2bf7278939e7c5b963388344" "e0d330b59b97872ded5ef2aeb1dd842a4f90152b76d4edff4b7f1107d2d0eb46" "06ed754b259cb54c30c658502f843937ff19f8b53597ac28577ec33bb084fa52" "5a00018936fa1df1cd9d54bee02c8a64eafac941453ab48394e2ec2c498b834a" "11cc65061e0a5410d6489af42f1d0f0478dbd181a9660f81a692ddc5f948bf34" "9cd57dd6d61cdf4f6aef3102c4cc2cfc04f5884d4f40b2c90a866c9b6267f2b3" "788121c96b7a9b99a6f35e53b7c154991f4880bb0046a80330bb904c1a85e275" "6128465c3d56c2630732d98a3d1c2438c76a2f296f3c795ebda534d62bb8a0e3" "d516f1e3e5504c26b1123caa311476dc66d26d379539d12f9f4ed51f10629df3" "3c7a784b90f7abebb213869a21e84da462c26a1fda7e5bd0ffebf6ba12dbd041" "f5e666fba0ded6ae9be004314ecf5f7feb605cdb84711b5c5ffd81acfb831183" "4ff1c4d05adad3de88da16bd2e857f8374f26f9063b2d77d38d14686e3868d8d" default))
- '(global-display-line-numbers-mode t)
- '(package-selected-packages
-   '(monomelight-theme eglot doom-modeline flycheck dashboard ivy-rich all-the-icons-ivy-rich all-the-icons catppuccin-theme doom-themes))
- '(tool-bar-mode nil))
+   '("a0997c8cd72b848c675e66531265b68845cfdb222b32762ac8773c1dc957d10a" "f5661fd54b1e60a4ae373850447efc4158c23b1c7c9d65aa1295a606278da0f8" "0af489efe6c0d33b6e9b02c6690eb66ab12998e2649ea85ab7cfedfb39dd4ac9" "ed3b4cacc4e8f7fc8846f5d13813c13862af94dc3391bbaa92d95099a9a24885" "553a6676b68142a652c034cfe2179a2271240bc1e33611c2de3a7207ce7608ca" "54dfd03eab9edebfb8c5e66b1912dad789ed2a9a0ce43e8ac11ee6cc45731e66" default)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "DejaVu Sans Mono for Powerline" :foundry "nil" :slant normal :weight regular :height 160 :width normal))))
- '(fringe ((t :background "#f6fff9")))
- '(header-line ((t :box (:line-width 4 :color "#e8f0f0" :style nil))))
- '(header-line-highlight ((t :box (:color "#34494a"))))
+ '(fringe ((t :background "whitesmoke")))
+ '(header-line ((t :box (:line-width 4 :color "grey90" :style nil))))
+ '(header-line-highlight ((t :box (:color "black"))))
  '(keycast-key ((t)))
- '(line-number ((t :background "#f6fff9")))
- '(mode-line ((t :box (:line-width 4 :color "#90e8b0" :style nil))))
- '(mode-line-active ((t :box (:line-width 4 :color "#90e8b0" :style nil))))
- '(mode-line-highlight ((t :box (:color "#34494a"))))
- '(mode-line-inactive ((t :box (:line-width 4 :color "#e0e6e3" :style nil))))
- '(tab-bar-tab ((t :box (:line-width 4 :color "#f6fff9" :style nil))))
- '(tab-bar-tab-inactive ((t :box (:line-width 4 :color "#c0c6c3" :style nil))))
- '(window-divider ((t :background "#f6fff9" :foreground "#f6fff9")))
- '(window-divider-first-pixel ((t :background "#f6fff9" :foreground "#f6fff9")))
- '(window-divider-last-pixel ((t :background "#f6fff9" :foreground "#f6fff9"))))
+ '(line-number ((t :background "whitesmoke")))
+ '(mode-line ((t :box (:line-width 4 :color "gray75" :style nil))))
+ '(mode-line-active ((t :box (:line-width 4 :color "gray75" :style nil))))
+ '(mode-line-highlight ((t :box (:color "black"))))
+ '(mode-line-inactive ((t :box (:line-width 4 :color "gray40" :style nil))))
+ '(tab-bar-tab ((t :box (:line-width 4 :color "grey85" :style nil))))
+ '(tab-bar-tab-inactive ((t :box (:line-width 4 :color "grey75" :style nil))))
+ '(window-divider ((t :background "whitesmoke" :foreground "whitesmoke")))
+ '(window-divider-first-pixel ((t :background "whitesmoke" :foreground "whitesmoke")))
+ '(window-divider-last-pixel ((t :background "whitesmoke" :foreground "whitesmoke"))))

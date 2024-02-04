@@ -141,9 +141,9 @@
 
 ** THEME
 #+begin_src emacs-lisp
-  (use-package ef-themes
-    :config
-    (load-theme 'ef-cyprus t))
+    (use-package ef-themes
+      :config
+      (load-theme 'ef-light t))
 #+end_src
 
 ** Disable Menubar, Toolbars and Scrollbars
@@ -229,7 +229,7 @@ Org-bullets gives us attractive bullets rather than asterisks.
 	  which-key-side-window-slot -10
 	  which-key-side-window-max-height 0.25
 	  which-key-idle-delay 0.2
-	  which-key-max-description-length 25
+	  Which-key-max-description-length 25
 	  which-key-allow-imprecise-window-fit t
 	  which-key-separator " → " ))
 #+end_src
@@ -277,20 +277,20 @@ Org-bullets gives us attractive bullets rather than asterisks.
 [[https://company-mode.github.io/][Company]] is a text completion framework for Emacs. The name stands for "complete anything".  Completion will start automatically after you type a few letters. Use M-n and M-p to select, <return> to complete or <tab> to complete the common part.
 
 #+begin_src emacs-lisp
-    (use-package company
+   (use-package company
 
-     :custom
-  ;    (company-begin-commands '(self-insert-command))
-  ;    (company-idle-delay .1)
-  ;    (company-minimum-prefix-length 2)
-  ;    (company-show-numbers t)
-  ;    (company-tooltip-align-annotations 't)
-      (global-company-mode t))
-
-   (use-package company-box
-     :after company
-     :diminish
-     :hook (company-mode . company-box-mode))
+    :custom
+    (company-begin-commands '(self-insert-command))
+    (company-idle-delay .1)
+    (company-minimum-prefix-length 2)
+    (company-show-numbers t)
+    (company-tooltip-align-annotations 't)
+     (global-company-mode t))
+  
+  (use-package company-box
+    :after company
+    :diminish
+    :hook (company-mode . company-box-mode))
 #+end_src
 
 # ** DASHBOARD
@@ -463,8 +463,6 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
 #+begin_src emacs-lisp
   (use-package lua-mode
     :interpreter ("lua" . lua-mode)
-  :hook ((lua-mode . eglot-ensure)
-           (lua-mode . company-mode))
     :custom
     (lua-indent-level 2))
 #+end_src

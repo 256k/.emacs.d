@@ -87,7 +87,7 @@
 
 (use-package ef-themes
   :config
-  (load-theme 'ef-cyprus t))
+  (load-theme 'ef-light t))
 
 (menu-bar-mode 1)
 (tool-bar-mode -1)
@@ -118,11 +118,12 @@
 ;;   (use-package magit
 ;;     :after transient)
 
-;; (use-package rainbow-mode
-;;   :diminish
-;;   :hook org-mode prog-mode)
-
 (use-package consult)
+;; consult is kindof like telescope. it is able to list various
+;; types of things like buffers or files or search words
+;; using fuzzy finding
+;; this would be really helpful for better navigation around
+;; must map a bunch of its functions to commands
 
 (use-package which-key
   :init
@@ -137,7 +138,7 @@
 	which-key-side-window-slot -10
 	which-key-side-window-max-height 0.25
 	which-key-idle-delay 0.2
-	which-key-max-description-length 25
+	Which-key-max-description-length 25
 	which-key-allow-imprecise-window-fit t
 	which-key-separator " → " ))
 
@@ -175,18 +176,18 @@
 
 (use-package company
 
-   :custom
-;    (company-begin-commands '(self-insert-command))
-;    (company-idle-delay .1)
-;    (company-minimum-prefix-length 2)
-;    (company-show-numbers t)
-;    (company-tooltip-align-annotations 't)
-    (global-company-mode t))
+  :custom
+  (company-begin-commands '(self-insert-command))
+  (company-idle-delay .1)
+  (company-minimum-prefix-length 2)
+  (company-show-numbers t)
+  (company-tooltip-align-annotations 't)
+   (global-company-mode t))
 
- (use-package company-box
-   :after company
-   :diminish
-   :hook (company-mode . company-box-mode))
+(use-package company-box
+  :after company
+  :diminish
+  :hook (company-mode . company-box-mode))
 
 (use-package flycheck
   :defer t
@@ -245,8 +246,6 @@
 
 (use-package lua-mode
   :interpreter ("lua" . lua-mode)
-:hook ((lua-mode . eglot-ensure)
-         (lua-mode . company-mode))
   :custom
   (lua-indent-level 2))
 
