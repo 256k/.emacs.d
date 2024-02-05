@@ -42,48 +42,49 @@
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
 
+
 ;; Install use-package support
- (elpaca elpaca-use-package
-   ;; Enable :elpaca use-package keyword.
-   (elpaca-use-package-mode)
-   ;; Assume :elpaca t unless otherwise specified.
-   (setq elpaca-use-package-by-default t))
+(elpaca elpaca-use-package
+  ;; Enable :elpaca use-package keyword.
+  (elpaca-use-package-mode)
+  ;; Assume :elpaca t unless otherwise specified.
+  (setq elpaca-use-package-by-default t))
 
- ;; Block until current queue processed.
- (elpaca-wait)
+;; Block until current queue processed.
+(elpaca-wait)
 
- ;;When installing a package which modifies a form used at the top-level
- ;;(e.g. a package which adds a use-package key word),
- ;;use `elpaca-wait' to block until that package has been installed/configured.
- ;;For example:
- ;;(use-package general :demand t)
- ;;(elpaca-wait)
+;;When installing a package which modifies a form used at the top-level
+   ;;(e.g. a package which adds a use-package key word),
+   ;;use `elpaca-wait' to block until that package has been installed/configured.
+   ;;For example:
+   ;;(use-package general :demand t)
+   ;;(elpaca-wait)
 
- ;; Expands to: (elpaca evil (use-package evil :demand t))
+   ;; Expands to: (elpaca evil (use-package evil :demand t))
 
- ;; (use-package evil
-;;      :init      ;; tweak evil's configuration before loading it
-;;      (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
-;;      (setq evil-want-keybinding nil)
-;;      (setq evil-vsplit-window-right t)
-;;      (setq evil-split-window-below t))
-;; (add-hook 'prog-mode-hook 'evil-mode)
+   ;; (use-package evil
+  ;;      :init      ;; tweak evil's configuration before loading it
+  ;;      (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+  ;;      (setq evil-want-keybinding nil)
+  ;;      (setq evil-vsplit-window-right t)
+  ;;      (setq evil-split-window-below t))
+  ;; (add-hook 'prog-mode-hook 'evil-mode)
 
 ;; ;;  (use-package evil-collection
- ;;     :after evil
- ;;     :config
- ;;     (setq evil-collection-mode-list '(dashboard dired ibuffer))
- ;;     (evil-collection-init))
- ;;   (use-package evil-tutor)
+   ;;     :after evil
+   ;;     :config
+   ;;     (setq evil-collection-mode-list '(dashboard dired ibuffer))
+   ;;     (evil-collection-init))
+   ;;   (use-package evil-tutor)
 
- ;; ;;Turns off elpaca-use-pa
- ;;  ckage-mode current declartion
- ;;Note this will cause the declaration to be interpreted immediately (not deferred).
- ;;Useful for configuring built-in emacs features.
- (use-package emacs :elpaca nil :config (setq ring-bell-function #'ignore))
+   ;; ;;Turns off elpaca-use-pa
+   ;;  ckage-mode current declartion
+   ;;Note this will cause the declaration to be interpreted immediately (not deferred).
+   ;;Useful for configuring built-in emacs features.
+   (use-package emacs :elpaca nil :config (setq ring-bell-function #'ignore))
 
- ;; Don't install anything. Defer execution of BODY
- ;; (elpaca nil (message "deferred"))
+   ;; Don't install anything. Defer execution of BODY
+   ;; (elpaca nil (message "deferred"))
 
 (use-package ef-themes
   :config
@@ -114,9 +115,9 @@
 (use-package org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-;; (use-package transient)
-;;   (use-package magit
-;;     :after transient)
+(use-package transient)
+  (use-package magit
+    :after transient)
 
 (use-package consult)
 ;; consult is kindof like telescope. it is able to list various
@@ -179,7 +180,7 @@
   :custom
   (company-begin-commands '(self-insert-command))
   (company-idle-delay .1)
-  (company-minimum-prefix-length 2)
+  (company-minimum-prefix-length 1)
   (company-show-numbers t)
   (company-tooltip-align-annotations 't)
    (global-company-mode t))
