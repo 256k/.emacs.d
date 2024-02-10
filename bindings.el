@@ -1,40 +1,47 @@
 (keymap-global-set "C-x C-r" 'recentf-open)
 
+;; change window positions
+(keymap-global-set "C-x C-]" 'window-swap-states)
+
 (defun 256k/edit-config ()
+  "edit config files"
   (interactive)
   (find-file "~/.emacs.d/config.org"))
-(keymap-global-set "C-x C-/" '256k/edit-config)
+
 
 (defun 256k/split-recent ()
   "split window and open recent files"
   (interactive)
   (split-window-horizontally))
 
-(use-package general
-  :config
-  (general-evil-setup)
-  ;; setup some general bindings
+(keymap-global-set "C-x C-/" '256k/edit-config)
+(keymap-global-set "C-`" 'vterm-toggle)
 
-  (general-define-key
-   "C-`" 'vterm-toggle
-   "C-." 'ef-themes-load-random
-   "C-x c" 'quick-calc)
+;; (use-package general
+;;   :config
+;;   (general-evil-setup)
+;;   ;; setup some general bindings
 
-  (general-define-key
-   :prefix "C-c"
-   :keymaps 'norns-mode-map
-   "e b" 'norns-load-current-script
-   "e r" 'norns-send-selection)
+;;   (general-define-key
+;;    "C-`" 'vterm-toggle
+;;    "C-." 'ef-themes-load-random
+;;    "C-x c" 'quick-calc)
 
-  (general-define-key
-   :prefix "C-c"
-   :keymaps 'norns-maiden-repl-mode-map
-   "e b" 'norns-rerun)
+;;   (general-define-key
+;;    :prefix "C-c"
+;;    :keymaps 'norns-mode-map
+;;    "e b" 'norns-load-current-script
+;;    "e r" 'norns-send-selection)
 
-  (general-define-key
-   :prefix "C-c"
-   :keymaps 'norns-maiden-repl-mode-map
-   ". s" 'norns-sc-stop)
+;;   (general-define-key
+;;    :prefix "C-c"
+;;    :keymaps 'norns-maiden-repl-mode-map
+;;    "e b" 'norns-rerun)
+
+;;   (general-define-key
+;;    :prefix "C-c"
+;;    :keymaps 'norns-maiden-repl-mode-map
+;;    ". s" 'norns-sc-stop)
 
 
 
@@ -176,4 +183,4 @@
   ;;   "w K" '(buf-move-up :wk "Buffer move up")
   ;;   "w L" '(buf-move-right :wk "Buffer move right"))
 
-  )
+  ;;    )
