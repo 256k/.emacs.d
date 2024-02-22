@@ -1,4 +1,4 @@
-
+[[file:bindings.org][Bindings]] 
 
 #+TITLE: 256k emacs 29.1 config (see no evil)
 #+AUTHOR: 256k
@@ -19,6 +19,7 @@
 - [[#org-mode][ORG MODE]]
   - [[#enabling-table-of-contents][Enabling Table of Contents]]
   - [[#enabling-org-bullets][Enabling Org Bullets]]
+  - [[#enabling-shorthand-block-generation][Enabling shorthand block generation]]
 - [[#packages][PACKAGES]]
   - [[#magit][MAGIT]]
   - [[#consult][consult]]
@@ -32,6 +33,7 @@
   - [[#spacious-padding][spacious-padding]]
   - [[#norns][norns]]
 - [[#language-modes][LANGUAGE MODES]]
+  - [[#uxntal][UXNTAL]]
   - [[#rust][rust]]
   - [[#lua][lua]]
   - [[#typescript][typescript]]
@@ -144,9 +146,9 @@
 
 ** THEME
 #+begin_src emacs-lisp
-  (use-package ef-themes
-    :config
-    (load-theme 'ef-light t))
+        (use-package ef-themes
+          :config
+          (load-theme 'ef-light t))
 #+end_src
 
 ** Disable Menubar, Toolbars and Scrollbars
@@ -198,6 +200,11 @@ Org-bullets gives us attractive bullets rather than asterisks.
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 #+end_src
 
+** Enabling shorthand block generation
+#+begin_src emacs-lisp
+  (require 'org-tempo)
+  ;; allows the ability to generate #+begin blocks using `<s or q or e...etc
+#+end_src
 * PACKAGES
 
 ** MAGIT
@@ -455,6 +462,11 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
 #+end_src
 
 * LANGUAGE MODES
+** UXNTAL
+#+begin_src emacs-lisp
+  (use-package uxntal-mode
+    :bind (("C-c C-." . uxntal-explain-word)))
+#+end_src
 
 ** rust
 #+begin_src emacs-lisp

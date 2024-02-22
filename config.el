@@ -115,6 +115,9 @@
 (use-package org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
+(require 'org-tempo)
+;; allows the ability to generate #+begin blocks using `<s or q or e...etc
+
 (use-package transient)
   (use-package magit
     :after transient)
@@ -241,6 +244,9 @@
   :config
   (add-hook 'lua-mode-hook #'norns-mode-maybe-activate)
   (add-hook 'sclang-mode-mode-hook #'norns-mode-maybe-activate))
+
+(use-package uxntal-mode
+  :bind (("C-c C-." . uxntal-explain-word)))
 
 (use-package rust-mode
   :interpreter ("rust" . rust-mode))

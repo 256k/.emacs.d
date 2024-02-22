@@ -1,36 +1,27 @@
-
+[[file:config.org][Config]]
 * Custom functions
-
+SCHEDULED: <2024-02-10 7:00pm Sat>
+ 
 #+begin_src emacs-lisp
   (defun 256k/edit-config ()
     "edit config files"
     (interactive)
     (find-file "~/.emacs.d/config.org"))
-
-
-  (defun 256k/split-recent ()
-    "split window and open recent files"
-    (interactive)
-    (split-window-horizontally))
-
-
 #+end_src
 
 * Keymaps
 
 #+begin_src emacs-lisp
+    (keymap-global-set "C-x C-r" 'recentf-open)
+ 
+    ;; change window positions
+    (keymap-global-set "C-x C-]" 'window-swap-states)
 
-  (keymap-global-set "C-x C-r" 'recentf-open)
+    ;; set 2 themes to toggle between
+    (setq ef-themes-to-toggle '(ef-light ef-night))
+    (keymap-global-set "C-x C-." 'ef-themes-toggle)
 
-  ;; change window positions
-  (keymap-global-set "C-x C-]" 'window-swap-states)
-
-  ;; set 2 themes to toggle between
-  (setq ef-themes-to-toggle '(ef-light ef-night))
-  (keymap-global-set "C-x C-." 'ef-themes-toggle)
-
-  (keymap-global-set "C-x C-/" '256k/edit-config)
-  (keymap-global-set "C-`" 'vterm-toggle)
-
+    (keymap-global-set "C-x C-/" '256k/edit-config)
+    (keymap-global-set "C-`" 'vterm-toggle)
 #+end_src
 
