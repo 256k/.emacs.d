@@ -464,8 +464,10 @@ Vterm is a terminal emulator within Emacs.  The 'shell-file-name' setting sets t
 * LANGUAGE MODES
 ** UXNTAL
 #+begin_src emacs-lisp
-  (use-package uxntal-mode
-    :bind (("C-c C-." . uxntal-explain-word)))
+        (use-package uxntal-mode
+          :bind (("C-c C-." . uxntal-explain-word))
+          :config
+          (setenv "PATH" (concat (getenv "PATH") ":/Users/fayekhelmi/bin/uxn/bin")))
 #+end_src
 
 ** rust

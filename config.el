@@ -246,7 +246,9 @@
   (add-hook 'sclang-mode-mode-hook #'norns-mode-maybe-activate))
 
 (use-package uxntal-mode
-  :bind (("C-c C-." . uxntal-explain-word)))
+  :bind (("C-c C-." . uxntal-explain-word))
+  :config
+  (setenv "PATH" (concat (getenv "PATH") ":/Users/fayekhelmi/bin/uxn/bin")))
 
 (use-package rust-mode
   :interpreter ("rust" . rust-mode))

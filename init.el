@@ -1,5 +1,5 @@
-;; (toggle-frame-maximized)
-;; (toggle-frame-fullscreen)
+;; (toggle-frame-maximized)	
+;; (toggle-frame-fullscreen)	     
 
 (org-babel-load-file
  (expand-file-name
@@ -10,6 +10,8 @@
  (expand-file-name
   "bindings.org"
   user-emacs-directory))
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
