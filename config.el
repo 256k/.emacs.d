@@ -70,11 +70,11 @@
 ;;      (setq evil-split-window-below t))
 ;; (add-hook 'prog-mode-hook 'evil-mode)
 
-;; ;;  (use-package evil-collection
-;;     :after evil
-;;     :config
-;;     (setq evil-collection-mode-list '(dashboard dired ibuffer))
-;;     (evil-collection-init))
+;;  (use-package evil-collection
+    ;; :after evil
+    ;; :config
+    ;; (setq evil-collection-mode-list '(dashboard dired ibuffer))
+    ;; (evil-collection-init))
 ;;   (use-package evil-tutor)
 
 ;; ;;Turns off elpaca-use-pa

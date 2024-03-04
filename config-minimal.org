@@ -1,0 +1,86 @@
+#+TITLE: 256k emacs 29.1 config (see no evil)
+#+AUTHOR: 256k
+
+* CORE SETTINGS AND INSTALLS
+** set backups directory
+#+begin_src emacs-lisp
+  (setq package-enable-at-startup t)
+  (setq lexical-binding t)
+  (setq backup-directory-alist '(("" . "~/.emacs.d/backup/")))
+  (setq backup-by-copying t    ; Don't delink hardlinks
+	delete-old-versions t  ; Clean up the backups
+	version-control t      ; Use version numbers on backups,
+	kept-new-versions 5    ; keep some new versions
+	kept-old-versions 2)   ; and some old ones, too
+  (setq use-package-always-ensure t)
+#+end_src
+
+** setup package
+#+begin_src emacs-lisp
+  (require 'package)
+  (setq package-archives
+	'(("gnu-elpa" . "https://elpa.gnu.org/packages/")
+	  ("gnu-elpa-devel" . "https://elpa.gnu.org/devel/")
+	  ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+	  ("melpa" . "https://melpa.org/packages/")))
+
+  ;; Highest number gets priority (what is not mentioned has priority 0)
+  (setq package-archive-priorities
+	'(("gnu-elpa" . 3)
+	  ("melpa" . 2)
+	  ("nongnu" . 1)))
+  (package-initialize)
+#+end_src
+
+** Disable Menubar, Toolbars and Scrollbars
+#+begin_src emacs-lisp
+  (menu-bar-mode 1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (setq inhibit-startup-screen 1)
+#+end_src
+
+** Display Line Numbers and Truncated Lines
+#+begin_src emacs-lisp
+(global-display-line-numbers-mode 1)
+(global-visual-line-mode t) ;; wraps the text in a buffer
+#+end_src
+
+** Hide DIRED details
+#+begin_src emacs-lisp
+  (add-hook 'dired-mode-hook 'dired-hide-details-mode)
+#+end_src
+
+** Enabling shorthand block generation
+#+begin_src emacs-lisp
+  (require 'org-tempo)
+  ;; allows the ability to generate #+begin blocks using `<s or q or e...etc
+#+end_src
+
+* Packages
+#+begin_src emacs-lisp
+  (use-package magit :ensure t)
+  (use-package consult :ensure t)
+  (use-package vertico
+    :ensure t
+    :config
+    (vertico-mode))
+  (use-package marginalia
+    :ensure t
+    :config
+    (marginalia-mode))
+  (use-package uxntal-mode
+    :ensure t)
+
+#+end_src
+
+
+** set env paths
+#+begin_src emacs-lisp
+
+  (setenv "PATH" (concat (getenv "PATH") ":/Users/fayekhelmi/bin/uxn/bin/"))
+  
+
+  (setenv "PATH" (concat (getenv "PATH") ":/Users/fayekhelmi/.nvm/versions/node/v21.3.0/bin"))
+
+#+end_src

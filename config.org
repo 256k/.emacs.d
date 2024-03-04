@@ -124,11 +124,11 @@
   ;;      (setq evil-split-window-below t))
   ;; (add-hook 'prog-mode-hook 'evil-mode)
 
-  ;; ;;  (use-package evil-collection
-  ;;     :after evil
-  ;;     :config
-  ;;     (setq evil-collection-mode-list '(dashboard dired ibuffer))
-  ;;     (evil-collection-init))
+  ;;  (use-package evil-collection
+      ;; :after evil
+      ;; :config
+      ;; (setq evil-collection-mode-list '(dashboard dired ibuffer))
+      ;; (evil-collection-init))
   ;;   (use-package evil-tutor)
 
   ;; ;;Turns off elpaca-use-pa
@@ -206,7 +206,6 @@ Org-bullets gives us attractive bullets rather than asterisks.
   ;; allows the ability to generate #+begin blocks using `<s or q or e...etc
 #+end_src
 * PACKAGES
-
 ** MAGIT
 #+begin_src emacs-lisp
   (use-package transient)

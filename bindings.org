@@ -1,6 +1,6 @@
+
 [[file:config.org][Config]]
 * Custom functions
-SCHEDULED: <2024-02-10 7:00pm Sat>
  
 #+begin_src emacs-lisp
   (defun 256k/edit-config ()
@@ -11,17 +11,17 @@ SCHEDULED: <2024-02-10 7:00pm Sat>
 
 * Keymaps
 
-#+begin_src emacs-lisp
-    (keymap-global-set "C-x C-r" 'recentf-open)
+# #+begin_src emacs-lisp
+#     (keymap-global-set "C-x C-r" 'recentf-open)
  
-    ;; change window positions
-    (keymap-global-set "C-x C-]" 'window-swap-states)
+#     ;; change window positions
+#     (keymap-global-set "C-x C-]" 'window-swap-states)
 
-    ;; set 2 themes to toggle between
-    (setq ef-themes-to-toggle '(ef-light ef-night))
-    (keymap-global-set "C-x C-." 'ef-themes-toggle)
+#     ;; set 2 themes to toggle between
+#     (setq ef-themes-to-toggle '(ef-light ef-night))
+#     (keymap-global-set "C-x C-." 'ef-themes-toggle)
 
-    (keymap-global-set "C-x C-/" '256k/edit-config)
-    (keymap-global-set "C-`" 'vterm-toggle)
-#+end_src
+#     (keymap-global-set "C-x C-/" '256k/edit-config)
+#     (keymap-global-set "C-`" 'vterm-toggle)
+# #+end_src
 
