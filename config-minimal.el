@@ -26,7 +26,23 @@
 (menu-bar-mode 1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(setq frame-inhibit-implied-resize t) ; disables frame resizing when font resizing happens
 (setq inhibit-startup-screen 1)
+
+(defun 256k/toggle-font-size
+(interactive)
+(set-face-attribute 'default nil :height 200)
+(print "test"))
+
+(setq xref-search-program ;; Prefer ripgrep, then ugrep, and fall back to regular grep.
+    (cond
+     ((or (executable-find "ripgrep")
+          (executable-find "rg"))
+      'ripgrep)
+     ((executable-find "ugrep")
+      'ugrep)
+     (t
+      'grep)))
 
 (use-package doom-themes
 :ensure t
@@ -34,7 +50,7 @@
 ;; Global settings (defaults)
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
-(load-theme 'doom-opera t)
+(load-theme 'doom-one t)
 
 ;; Enable flashing mode-line on errors
 (doom-themes-visual-bell-config)

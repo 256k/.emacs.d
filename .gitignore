@@ -1,3 +1,5 @@
+projects
+.lsp-session*
 eshell/
 auto-save-list/
 elpaca/
