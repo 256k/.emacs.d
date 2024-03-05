@@ -8,27 +8,28 @@
   (setq lexical-binding t)
   (setq backup-directory-alist '(("" . "~/.emacs.d/backup/")))
   (setq backup-by-copying t    ; Don't delink hardlinks
-	delete-old-versions t  ; Clean up the backups
-	version-control t      ; Use version numbers on backups,
-	kept-new-versions 5    ; keep some new versions
-	kept-old-versions 2)   ; and some old ones, too
+        delete-old-versions t  ; Clean up the backups
+        version-control t      ; Use version numbers on backups,
+        kept-new-versions 5    ; keep some new versions
+        kept-old-versions 2)   ; and some old ones, too
   (setq use-package-always-ensure t)
-#+end_src
+  (pending-delete-mode 1) ; when a piece of text is marked, typing will delete and replace that selection.
+        #+end_src
 
 ** setup package
 #+begin_src emacs-lisp
   (require 'package)
   (setq package-archives
-	'(("gnu-elpa" . "https://elpa.gnu.org/packages/")
-	  ("gnu-elpa-devel" . "https://elpa.gnu.org/devel/")
-	  ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-	  ("melpa" . "https://melpa.org/packages/")))
+        '(("gnu-elpa" . "https://elpa.gnu.org/packages/")
+          ("gnu-elpa-devel" . "https://elpa.gnu.org/devel/")
+          ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+          ("melpa" . "https://melpa.org/packages/")))
 
-  ;; Highest number gets priority (what is not mentioned has priority 0)
+                                          ; Highest number gets priority (what is not mentioned has priority 0)
   (setq package-archive-priorities
-	'(("gnu-elpa" . 3)
-	  ("melpa" . 2)
-	  ("nongnu" . 1)))
+        '(("gnu-elpa" . 3)
+          ("melpa" . 2)
+          ("nongnu" . 1)))
   (package-initialize)
 #+end_src
 
@@ -42,8 +43,8 @@
 
 ** Display Line Numbers and Truncated Lines
 #+begin_src emacs-lisp
-(global-display-line-numbers-mode 1)
-(global-visual-line-mode t) ;; wraps the text in a buffer
+  (global-display-line-numbers-mode 1)
+  (global-visual-line-mode t) ;; wraps the text in a buffer
 #+end_src
 
 ** Hide DIRED details
@@ -76,6 +77,10 @@
     :ensure t
     :config
     (exec-path-from-shell-initialize))
+
+  (use-package expand-region
+    :ensure t
+    :bind ("C-=" . er/expand-region))
 
   (use-package git-gutter
     ;; adds markings for file changes
