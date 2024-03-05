@@ -25,7 +25,7 @@
           ("nongnu" . "https://elpa.nongnu.org/nongnu/")
           ("melpa" . "https://melpa.org/packages/")))
 
-                                          ; Highest number gets priority (what is not mentioned has priority 0)
+; Highest number gets priority (what is not mentioned has priority 0)
   (setq package-archive-priorities
         '(("gnu-elpa" . 3)
           ("melpa" . 2)
@@ -152,14 +152,48 @@
     (setq tab-always-indent 'complete))
 
 
-#+end_src
+  #+end_src
 
 
 * set language modes
 #+begin_src emacs-lisp
   (use-package uxntal-mode
     :ensure t)
-
-  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+  (setq treesit-font-lock-level 4)
+  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+#+end_src
+
+
+* set LSP / UI modes
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+    :ensure t
+    :init
+    ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+    (setq lsp-keymap-prefix "C-c l")
+    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+           (typescript-ts-mode . lsp-deferred))
+    :commands lsp)
+
+  ;; optionally
+  (use-package lsp-ui
+    :ensure t
+    :commands lsp-ui-mode)
+  ;; if you are helm user
+  ;; (use-package helm-lsp :commands helm-lsp-workspace-symbol)
+  ;; if you are ivy user
+  ;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+
+  ;; (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
+  ;; optionally if you want to use debugger
+  ;; (use-package dap-mode)			;
+  ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+
+  ;; optional if you want which-key integration
+  ;; (use-package which-key
+  ;;   :config
+  ;;   (which-key-mode))
+
 #+end_src

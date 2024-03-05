@@ -7,27 +7,26 @@
       kept-new-versions 5    ; keep some new versions
       kept-old-versions 2)   ; and some old ones, too
 (setq use-package-always-ensure t)
+(pending-delete-mode 1) ; when a piece of text is marked, typing will delete and replace that selection.
 
 (require 'package)
-(setq package-archives
-      '(("gnu-elpa" . "https://elpa.gnu.org/packages/")
-	("gnu-elpa-devel" . "https://elpa.gnu.org/devel/")
-	("nongnu" . "https://elpa.nongnu.org/nongnu/")
-	("melpa" . "https://melpa.org/packages/")))
+  (setq package-archives
+        '(("gnu-elpa" . "https://elpa.gnu.org/packages/")
+          ("gnu-elpa-devel" . "https://elpa.gnu.org/devel/")
+          ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+          ("melpa" . "https://melpa.org/packages/")))
 
-;; Highest number gets priority (what is not mentioned has priority 0)
-(setq package-archive-priorities
-      '(("gnu-elpa" . 3)
-	("melpa" . 2)
-	("nongnu" . 1)))
-(package-initialize)
+; Highest number gets priority (what is not mentioned has priority 0)
+  (setq package-archive-priorities
+        '(("gnu-elpa" . 3)
+          ("melpa" . 2)
+          ("nongnu" . 1)))
+  (package-initialize)
 
 (menu-bar-mode 1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (setq inhibit-startup-screen 1)
-
-
 
 (global-display-line-numbers-mode 1)
 (global-visual-line-mode t) ;; wraps the text in a buffer
@@ -50,6 +49,10 @@
   :config
   (exec-path-from-shell-initialize))
 
+(use-package expand-region
+  :ensure t
+  :bind ("C-=" . er/expand-region))
+
 (use-package git-gutter
   ;; adds markings for file changes
   :ensure t
@@ -69,14 +72,13 @@
   :config
   (marginalia-mode))
 
+;; I've temporarily removed it because it was causing issues when trying to create new file names that matched existing file names
 ;; (use-package orderless
 ;;   :ensure t
 ;;   :custom
 ;;   (completion-styles '(orderless basic))
 ;;   (completion-category-overrides '((file (styles basic partial-completion)))))
 
-(use-package uxntal-mode
-  :ensure t)
 
 (use-package corfu
   ;; Optional customizations
@@ -120,5 +122,38 @@
   ;; `completion-at-point' is often bound to M-TAB.
   (setq tab-always-indent 'complete))
 
-(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+(use-package uxntal-mode
+  :ensure t)
+
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+(setq treesit-font-lock-level 4)
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+
+(use-package lsp-mode
+  :ensure t
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (typescript-ts-mode . lsp-deferred))
+  :commands lsp)
+
+;; optionally
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+;; if you are helm user
+;; (use-package helm-lsp :commands helm-lsp-workspace-symbol)
+;; if you are ivy user
+;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+
+;; (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
+;; optionally if you want to use debugger
+;; (use-package dap-mode)			;
+;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+
+;; optional if you want which-key integration
+;; (use-package which-key
+;;   :config
+;;   (which-key-mode))
