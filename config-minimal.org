@@ -1,7 +1,7 @@
 #+TITLE: 256k emacs 29.2 config (minimal)
 #+AUTHOR: 256k
 
-* CORE SETTINGS AND INSTALLS
+* CORE SETTINGS AND FUNCTIONS
 ** set backups directory
 #+begin_src emacs-lisp
   (setq package-enable-at-startup t)
@@ -15,7 +15,7 @@
   (setq use-package-always-ensure t)
   (pending-delete-mode 1) ; when a piece of text is marked, typing will delete and replace that selection.
         #+end_src
-
+        
 ** setup package
 #+begin_src emacs-lisp
   (require 'package)
@@ -57,38 +57,31 @@
       (setq big-font-mode t))))
 
 #+end_src
+
 ** replace project grep with ripgrep
 #+begin_src emacs-lisp
   (setq xref-search-program ;; Prefer ripgrep, then ugrep, and fall back to regular grep.
-      (cond
-       ((or (executable-find "ripgrep")
-            (executable-find "rg"))
-        'ripgrep)
-       ((executable-find "ugrep")
-        'ugrep)
-       (t
-        'grep)))
+        (cond
+         ((or (executable-find "ripgrep")
+              (executable-find "rg"))
+          'ripgrep)
+         ((executable-find "ugrep")
+          'ugrep)
+         (t
+          'grep)))
 
-#+end_src
+  #+end_src
+
 ** Theme
 #+begin_src emacs-lisp
   (use-package doom-themes
-  :ensure t
-  :config
-  ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-one t)
-
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
-  ;; Enable custom neotree theme (all-the-icons must be installed!)
-  ;; (doom-themes-neotree-config)
-  ;; or for treemacs users
-  ;; (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
-  ;; (doom-themes-treemacs-config)
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config))
+    :ensure t
+    :config
+    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+          doom-themes-enable-italic t) ; if nil, italics is universally disabled
+    (load-theme 'doom-oksolar-light t)
+    (doom-themes-visual-bell-config)
+    (doom-themes-org-config))
 #+end_src
 
 ** Display Line Numbers and Truncated Lines
@@ -115,51 +108,76 @@
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 #+end_src
 
-
-* Packages
+* PACKAGES
+** Highlight indentation guides
 #+begin_src emacs-lisp
-
-  ;; IMPORTANT: instead of having to set every executable's path in emacs's own custom PATH variable. 
-  ;; This will just mimic whatever the shell path that we have contains.
-  ;; That way if it works in the shell it should work in emacs (fixes issues with typescript LSP)
-  ;; this is for macos apparently
-  (use-package exec-path-from-shell
+  (use-package highlight-indent-guides
     :ensure t
     :config
-    (exec-path-from-shell-initialize))
+    (progn
+      (setq highlight-indent-guides-method 'character)
+      (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+      (highlight-indent-guides-mode)))
+#+end_src
 
-  (use-package expand-region
-    :ensure t
-    :bind ("C-=" . er/expand-region))
-
-  (use-package git-gutter
-    ;; adds markings for file changes
-    :ensure t
-    :config
-    (global-git-gutter-mode +1))
-
-  (use-package magit :ensure t)
-  ;; (use-package consult :ensure t)
-
-  (use-package vertico
-    :ensure t
-    :config
-    (vertico-mode))
-
-  (use-package marginalia
-    :ensure t
-    :config
-    (marginalia-mode))
-
+** orderless
+#+begin_src emacs-lisp
   ;; I've temporarily removed it because it was causing issues when trying to create new file names that matched existing file names
   ;; (use-package orderless
   ;;   :ensure t
   ;;   :custom
   ;;   (completion-styles '(orderless basic))
   ;;   (completion-category-overrides '((file (styles basic partial-completion)))))
+  #+end_src
 
+** magit
+#+begin_src emacs-lisp
+ (use-package magit :ensure t)
+#+end_src
 
-  (use-package corfu
+** git gutter
+#+begin_src emacs-lisp
+  (use-package git-gutter
+    ;; adds markings for file changes
+    :ensure t
+    :config
+    (global-git-gutter-mode +1))
+#+end_src
+  
+** expand region
+#+begin_src emacs-lisp
+  (use-package expand-region
+    :ensure t
+    :bind ("C-=" . er/expand-region))
+#+end_src
+  
+** exec path from shell
+#+begin_src emacs-lisp
+   (use-package exec-path-from-shell
+    :ensure t
+    :config
+    (exec-path-from-shell-initialize))
+#+end_src
+  
+** vertico
+#+begin_src emacs-lisp
+ (use-package vertico
+    :ensure t
+    :config
+    (vertico-mode))
+#+end_src
+
+** marginalia
+#+begin_src emacs-lisp
+  (use-package marginalia
+    :ensure t
+    :config
+    (marginalia-mode))
+#+end_src
+
+** corfu
+#+begin_src emacs-lisp
+    (use-package corfu
     ;; Optional customizations
     ;; :custom
     ;; (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
@@ -200,22 +218,30 @@
     ;; Enable indentation+completion using the TAB key.
     ;; `completion-at-point' is often bound to M-TAB.
     (setq tab-always-indent 'complete))
+#+end_src
 
+** project-tree
+#+begin_src emacs-lisp
+      (use-package project-explorer
+        :ensure t
+        :bind
+        ("C-x C-`" . project-explorer-toggle))
+#+end_src
 
-  #+end_src
-
-
-* set language modes
+* LANGUAGES
+** Language modes
 #+begin_src emacs-lisp
   (use-package uxntal-mode
     :ensure t)
+#+end_src
+
+** treesit
+#+begin_src emacs-lisp
   (setq treesit-font-lock-level 4)
   (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
 #+end_src
-
-
-* set LSP / UI modes
+* LSP
 #+begin_src emacs-lisp
   (use-package lsp-mode
     :ensure t
@@ -226,24 +252,7 @@
            (typescript-ts-mode . lsp-deferred))
     :commands lsp)
 
-  ;; optionally
-  (use-package lsp-ui
+   (use-package lsp-ui
     :ensure t
     :commands lsp-ui-mode)
-  ;; if you are helm user
-  ;; (use-package helm-lsp :commands helm-lsp-workspace-symbol)
-  ;; if you are ivy user
-  ;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-
-  ;; (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-
-  ;; optionally if you want to use debugger
-  ;; (use-package dap-mode)			;
-  ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
-
-  ;; optional if you want which-key integration
-  ;; (use-package which-key
-  ;;   :config
-  ;;   (which-key-mode))
-
 #+end_src

@@ -29,38 +29,36 @@
 (setq frame-inhibit-implied-resize t) ; disables frame resizing when font resizing happens
 (setq inhibit-startup-screen 1)
 
-(defun 256k/toggle-font-size
-(interactive)
-(set-face-attribute 'default nil :height 200)
-(print "test"))
+(defvar big-font-mode nil)
+(defun 256k/toggle-font-size ()
+  "Toggle between two font sizes."
+  (interactive)
+  (if big-font-mode
+      (progn
+        (set-face-attribute 'default nil :height 160)
+        (setq big-font-mode nil))
+    (progn
+      (set-face-attribute 'default nil :height 200)
+      (setq big-font-mode t))))
 
 (setq xref-search-program ;; Prefer ripgrep, then ugrep, and fall back to regular grep.
-    (cond
-     ((or (executable-find "ripgrep")
-          (executable-find "rg"))
-      'ripgrep)
-     ((executable-find "ugrep")
-      'ugrep)
-     (t
-      'grep)))
+      (cond
+       ((or (executable-find "ripgrep")
+            (executable-find "rg"))
+        'ripgrep)
+       ((executable-find "ugrep")
+        'ugrep)
+       (t
+        'grep)))
 
 (use-package doom-themes
-:ensure t
-:config
-;; Global settings (defaults)
-(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-      doom-themes-enable-italic t) ; if nil, italics is universally disabled
-(load-theme 'doom-one t)
-
-;; Enable flashing mode-line on errors
-(doom-themes-visual-bell-config)
-;; Enable custom neotree theme (all-the-icons must be installed!)
-;; (doom-themes-neotree-config)
-;; or for treemacs users
-;; (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
-;; (doom-themes-treemacs-config)
-;; Corrects (and improves) org-mode's native fontification.
-(doom-themes-org-config))
+  :ensure t
+  :config
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-one t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-org-config))
 
 (global-display-line-numbers-mode 1)
 (global-visual-line-mode t) ;; wraps the text in a buffer
@@ -74,37 +72,13 @@
 (use-package org-bullets :ensure t)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-;; IMPORTANT: instead of having to set every executable's path in emacs's own custom PATH variable. 
-;; This will just mimic whatever the shell path that we have contains.
-;; That way if it works in the shell it should work in emacs (fixes issues with typescript LSP)
-;; this is for macos apparently
-(use-package exec-path-from-shell
+(use-package highlight-indent-guides
   :ensure t
   :config
-  (exec-path-from-shell-initialize))
-
-(use-package expand-region
-  :ensure t
-  :bind ("C-=" . er/expand-region))
-
-(use-package git-gutter
-  ;; adds markings for file changes
-  :ensure t
-  :config
-  (global-git-gutter-mode +1))
-
-(use-package magit :ensure t)
-;; (use-package consult :ensure t)
-
-(use-package vertico
-  :ensure t
-  :config
-  (vertico-mode))
-
-(use-package marginalia
-  :ensure t
-  :config
-  (marginalia-mode))
+  (progn
+    (setq highlight-indent-guides-method 'character)
+    (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+    (highlight-indent-guides-mode)))
 
 ;; I've temporarily removed it because it was causing issues when trying to create new file names that matched existing file names
 ;; (use-package orderless
@@ -113,6 +87,32 @@
 ;;   (completion-styles '(orderless basic))
 ;;   (completion-category-overrides '((file (styles basic partial-completion)))))
 
+(use-package magit :ensure t)
+
+(use-package git-gutter
+  ;; adds markings for file changes
+  :ensure t
+  :config
+  (global-git-gutter-mode +1))
+
+(use-package expand-region
+  :ensure t
+  :bind ("C-=" . er/expand-region))
+
+(use-package exec-path-from-shell
+ :ensure t
+ :config
+ (exec-path-from-shell-initialize))
+
+(use-package vertico
+   :ensure t
+   :config
+   (vertico-mode))
+
+(use-package marginalia
+  :ensure t
+  :config
+  (marginalia-mode))
 
 (use-package corfu
   ;; Optional customizations
@@ -156,8 +156,14 @@
   ;; `completion-at-point' is often bound to M-TAB.
   (setq tab-always-indent 'complete))
 
+(use-package project-explorer
+  :ensure t
+  :bind
+  ("C-x C-`" . project-explorer-toggle))
+
 (use-package uxntal-mode
   :ensure t)
+
 (setq treesit-font-lock-level 4)
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
@@ -171,22 +177,6 @@
          (typescript-ts-mode . lsp-deferred))
   :commands lsp)
 
-;; optionally
-(use-package lsp-ui
+ (use-package lsp-ui
   :ensure t
   :commands lsp-ui-mode)
-;; if you are helm user
-;; (use-package helm-lsp :commands helm-lsp-workspace-symbol)
-;; if you are ivy user
-;; (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-
-;; (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-
-;; optionally if you want to use debugger
-;; (use-package dap-mode)			;
-;; (use-package dap-LANGUAGE) to load the dap adapter for your language
-
-;; optional if you want which-key integration
-;; (use-package which-key
-;;   :config
-;;   (which-key-mode))
