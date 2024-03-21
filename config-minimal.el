@@ -10,24 +10,25 @@
 (pending-delete-mode 1) ; when a piece of text is marked, typing will delete and replace that selection.
 
 (require 'package)
-  (setq package-archives
-        '(("gnu-elpa" . "https://elpa.gnu.org/packages/")
-          ("gnu-elpa-devel" . "https://elpa.gnu.org/devel/")
-          ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-          ("melpa" . "https://melpa.org/packages/")))
+(setq package-archives
+      '(("gnu-elpa" . "https://elpa.gnu.org/packages/")
+        ("gnu-elpa-devel" . "https://elpa.gnu.org/devel/")
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+        ("melpa" . "https://melpa.org/packages/")))
 
-; Highest number gets priority (what is not mentioned has priority 0)
-  (setq package-archive-priorities
-        '(("gnu-elpa" . 3)
-          ("melpa" . 2)
-          ("nongnu" . 1)))
-  (package-initialize)
+                                        ; Highest number gets priority (what is not mentioned has priority 0)
+(setq package-archive-priorities
+      '(("gnu-elpa" . 3)
+        ("melpa" . 2)
+        ("nongnu" . 1)))
+(package-initialize)
 
 (menu-bar-mode 1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (setq frame-inhibit-implied-resize t) ; disables frame resizing when font resizing happens
 (setq inhibit-startup-screen 1)
+(electric-pair-mode 1)  ;; (){}""<>[]
 
 (defvar big-font-mode nil)
 (defun 256k/toggle-font-size ()
@@ -56,6 +57,7 @@
   :config
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  ;; (load-theme 'doom-oksolar-light t)
   (load-theme 'doom-one t)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config))
@@ -100,14 +102,18 @@
   :bind ("C-=" . er/expand-region))
 
 (use-package exec-path-from-shell
- :ensure t
- :config
- (exec-path-from-shell-initialize))
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
 
 (use-package vertico
-   :ensure t
-   :config
-   (vertico-mode))
+  :ensure t
+  :init
+  (vertico-mode)
+  (vertico-multiform-mode)
+  :config
+  (setq vertico-multiform-commands
+        '((consult-line buffer))))
 
 (use-package marginalia
   :ensure t
@@ -161,12 +167,32 @@
   :bind
   ("C-x C-`" . project-explorer-toggle))
 
-(use-package uxntal-mode
+;; Uxntal
+
+;;; Set location of uxntal-mode.el
+(add-to-list 'load-path "~/.emacs.d/site-lisp")
+
+;;; If you want to use a different assembler
+(setq uxntal-assembler "ruxnasm")
+
+;;; Enable the mode and associate with the .tal extension 
+(require 'uxntal-mode)
+(add-to-list 'auto-mode-alist '("\\.tal\\'" . uxntal-mode))
+
+(use-package forth-mode
   :ensure t)
 
+(use-package lua-mode 
+  :ensure t)
+
+(use-package treesit-auto
+  :ensure t
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all))
 (setq treesit-font-lock-level 4)
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))
 
 (use-package lsp-mode
   :ensure t

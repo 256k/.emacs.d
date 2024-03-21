@@ -14,7 +14,7 @@
         kept-old-versions 2)   ; and some old ones, too
   (setq use-package-always-ensure t)
   (pending-delete-mode 1) ; when a piece of text is marked, typing will delete and replace that selection.
-        #+end_src
+#+end_src
         
 ** setup package
 #+begin_src emacs-lisp
@@ -25,7 +25,7 @@
           ("nongnu" . "https://elpa.nongnu.org/nongnu/")
           ("melpa" . "https://melpa.org/packages/")))
 
-; Highest number gets priority (what is not mentioned has priority 0)
+                                          ; Highest number gets priority (what is not mentioned has priority 0)
   (setq package-archive-priorities
         '(("gnu-elpa" . 3)
           ("melpa" . 2)
@@ -40,21 +40,23 @@
   (scroll-bar-mode -1)
   (setq frame-inhibit-implied-resize t) ; disables frame resizing when font resizing happens
   (setq inhibit-startup-screen 1)
+  (electric-pair-mode 1)  ;; (){}""<>[] 
+
 #+end_src
 
 ** toggle large font mode
 #+begin_src emacs-lisp
-(defvar big-font-mode nil)
-(defun 256k/toggle-font-size ()
-  "Toggle between two font sizes."
-  (interactive)
-  (if big-font-mode
+  (defvar big-font-mode nil)
+  (defun 256k/toggle-font-size ()
+    "Toggle between two font sizes."
+    (interactive)
+    (if big-font-mode
+        (progn
+          (set-face-attribute 'default nil :height 160)
+          (setq big-font-mode nil))
       (progn
-        (set-face-attribute 'default nil :height 160)
-        (setq big-font-mode nil))
-    (progn
-      (set-face-attribute 'default nil :height 200)
-      (setq big-font-mode t))))
+        (set-face-attribute 'default nil :height 200)
+        (setq big-font-mode t))))
 
 #+end_src
 
@@ -70,7 +72,7 @@
          (t
           'grep)))
 
-  #+end_src
+#+end_src
 
 ** Theme
 #+begin_src emacs-lisp
@@ -79,7 +81,8 @@
     :config
     (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
           doom-themes-enable-italic t) ; if nil, italics is universally disabled
-    (load-theme 'doom-oksolar-light t)
+    ;; (load-theme 'doom-oksolar-light t)
+    (load-theme 'doom-one t)
     (doom-themes-visual-bell-config)
     (doom-themes-org-config))
 #+end_src
@@ -128,11 +131,11 @@
   ;;   :custom
   ;;   (completion-styles '(orderless basic))
   ;;   (completion-category-overrides '((file (styles basic partial-completion)))))
-  #+end_src
+#+end_src
 
 ** magit
 #+begin_src emacs-lisp
- (use-package magit :ensure t)
+  (use-package magit :ensure t)
 #+end_src
 
 ** git gutter
@@ -153,7 +156,7 @@
   
 ** exec path from shell
 #+begin_src emacs-lisp
-   (use-package exec-path-from-shell
+  (use-package exec-path-from-shell
     :ensure t
     :config
     (exec-path-from-shell-initialize))
@@ -161,10 +164,14 @@
   
 ** vertico
 #+begin_src emacs-lisp
- (use-package vertico
-    :ensure t
-    :config
-    (vertico-mode))
+      (use-package vertico
+        :ensure t
+        :init
+        (vertico-mode)
+        (vertico-multiform-mode)
+        :config
+        (setq vertico-multiform-commands
+              '((consult-line buffer))))
 #+end_src
 
 ** marginalia
@@ -177,7 +184,7 @@
 
 ** corfu
 #+begin_src emacs-lisp
-    (use-package corfu
+  (use-package corfu
     ;; Optional customizations
     ;; :custom
     ;; (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
@@ -220,26 +227,40 @@
     (setq tab-always-indent 'complete))
 #+end_src
 
-** project-tree
-#+begin_src emacs-lisp
-      (use-package project-explorer
-        :ensure t
-        :bind
-        ("C-x C-`" . project-explorer-toggle))
-#+end_src
-
 * LANGUAGES
 ** Language modes
+
 #+begin_src emacs-lisp
-  (use-package uxntal-mode
+  ;; Uxntal
+
+  ;;; Set location of uxntal-mode.el
+
+  (add-to-list 'load-path "~/.emacs.d/site-lisp")
+
+  ;;; If you want to use a different assembler
+  (setq uxntal-assembler "ruxnasm")
+
+  ;;; Enable the mode and associate with the .tal extension 
+  (require 'uxntal-mode)
+  (add-to-list 'auto-mode-alist '("\\.tal\\'" . uxntal-mode))
+
+  (use-package forth-mode
+    :ensure t)
+
+  (use-package lua-mode 
     :ensure t)
 #+end_src
 
 ** treesit
 #+begin_src emacs-lisp
-  (setq treesit-font-lock-level 4)
-  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
-  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+        (use-package treesit-auto
+          :ensure t
+          :config
+          (treesit-auto-add-to-auto-mode-alist 'all))
+        (setq treesit-font-lock-level 4)
+        (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+        (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+        (add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))
 #+end_src
 * LSP
 #+begin_src emacs-lisp
