@@ -1,7 +1,6 @@
 
 [[file:config.org][Config]]
 * Custom functions
- 
 #+begin_src emacs-lisp
   (defun 256k/edit-config ()
     "edit config files"
@@ -13,9 +12,12 @@
 
  #+begin_src emacs-lisp
    (keymap-global-set "C-x C-r" 'recentf-open)
-   (keymap-global-set "C-x C-]" 'window-swap-states)
+   (keymap-global-set "C-x C-]" 'flip-window-updown-256k)
+   (keymap-global-set "C-x C-}" 'flip-window-leftright-256k)
    (keymap-global-set "C-x C-/" '256k/edit-config)
-  
+   (keymap-global-set "M-TAB" 'dabbrev-expand)
+   (keymap-global-set "C-;" 'execute-extended-command) ;; replaces M-x as an easier solution.
+   
    ;; set 2 themes to toggle between
    ;; (setq ef-themes-to-toggle '(ef-light ef-night))
    ;; (keymap-global-set "C-x C-." 'ef-themes-toggle)

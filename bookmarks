@@ -1,0 +1,23 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("length-change"
+ (filename . "~/code/personal/prolly/lib/Sequencer.lua")
+ (front-context-string . "function Sequenc")
+ (rear-context-string . "  return s\nend\n\n")
+ (position . 1818)
+ (last-modified 26107 38888 449865 0))
+("params"
+ (filename . "~/code/personal/prolly/lib/Sequencer.lua")
+ (front-context-string . "  params:add {\n ")
+ (rear-context-string . "quantum, wrap)\n\n")
+ (position . 631)
+ (last-modified 26107 38849 16221 0))
+("test"
+ (filename . "~/code/personal/prolly/lib/Sequencer.lua")
+ (front-context-string . "Sequencer = {}\n\n")
+ (rear-context-string)
+ (position . 1)
+ (last-modified 26107 38839 318823 0))
+)

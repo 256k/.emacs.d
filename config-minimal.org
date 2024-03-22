@@ -15,7 +15,8 @@
   (setq use-package-always-ensure t)
   (pending-delete-mode 1) ; when a piece of text is marked, typing will delete and replace that selection.
 #+end_src
-        
+
+
 ** setup package
 #+begin_src emacs-lisp
   (require 'package)
@@ -24,7 +25,7 @@
           ("gnu-elpa-devel" . "https://elpa.gnu.org/devel/")
           ("nongnu" . "https://elpa.nongnu.org/nongnu/")
           ("melpa" . "https://melpa.org/packages/")))
-
+      
                                           ; Highest number gets priority (what is not mentioned has priority 0)
   (setq package-archive-priorities
         '(("gnu-elpa" . 3)
@@ -58,7 +59,7 @@
         (set-face-attribute 'default nil :height 200)
         (setq big-font-mode t))))
 
-#+end_src
+      #+end_src
 
 ** replace project grep with ripgrep
 #+begin_src emacs-lisp
@@ -86,6 +87,7 @@
     (doom-themes-visual-bell-config)
     (doom-themes-org-config))
 #+end_src
+
 
 ** Display Line Numbers and Truncated Lines
 #+begin_src emacs-lisp
@@ -123,11 +125,31 @@
       (highlight-indent-guides-mode)))
 #+end_src
 
+** which key
+#+begin_src emacs-lisp
+        (use-package which-key
+          :ensure t
+          :config
+          (which-key-mode t))
+#+end_src
+
+** god mode
+#+begin_src emacs-lisp
+  (use-package god-mode
+    :ensure t
+    :init
+    (global-set-key (kbd "<escape>") #'god-local-mode)
+    :config
+    (god-mode))
+
+#+end_src
+
 ** orderless
 #+begin_src emacs-lisp
   ;; I've temporarily removed it because it was causing issues when trying to create new file names that matched existing file names
   ;; (use-package orderless
   ;;   :ensure t
+  ;;   :demand t
   ;;   :custom
   ;;   (completion-styles '(orderless basic))
   ;;   (completion-category-overrides '((file (styles basic partial-completion)))))

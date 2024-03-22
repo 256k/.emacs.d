@@ -62,6 +62,13 @@
   (doom-themes-visual-bell-config)
   (doom-themes-org-config))
 
+;; i keep going back and forth on whether i want to use it or not.
+;; and honestly having it be there just ends up confusing me 
+  ;; (use-package evil
+  ;;   :ensure t
+  ;;   :config
+  ;;   (evil-mode))
+
 (global-display-line-numbers-mode 1)
 (global-visual-line-mode t) ;; wraps the text in a buffer
 
@@ -85,6 +92,7 @@
 ;; I've temporarily removed it because it was causing issues when trying to create new file names that matched existing file names
 ;; (use-package orderless
 ;;   :ensure t
+;;   :demand t
 ;;   :custom
 ;;   (completion-styles '(orderless basic))
 ;;   (completion-category-overrides '((file (styles basic partial-completion)))))
@@ -162,14 +170,10 @@
   ;; `completion-at-point' is often bound to M-TAB.
   (setq tab-always-indent 'complete))
 
-(use-package project-explorer
-  :ensure t
-  :bind
-  ("C-x C-`" . project-explorer-toggle))
-
 ;; Uxntal
 
 ;;; Set location of uxntal-mode.el
+
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
 ;;; If you want to use a different assembler
