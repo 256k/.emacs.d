@@ -2,7 +2,13 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("length-change"
+(("config"
+ (filename . "~/.emacs.d/config-minimal.org")
+ (front-context-string . "#+TITLE: 256k em")
+ (rear-context-string)
+ (position . 1)
+ (last-modified 26112 53795 356873 0))
+("length-change"
  (filename . "~/code/personal/prolly/lib/Sequencer.lua")
  (front-context-string . "function Sequenc")
  (rear-context-string . "  return s\nend\n\n")

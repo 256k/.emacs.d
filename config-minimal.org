@@ -13,6 +13,8 @@
         kept-new-versions 5    ; keep some new versions
         kept-old-versions 2)   ; and some old ones, too
   (setq use-package-always-ensure t)
+  (setq auto-save-file-name-transforms
+        `((".*" "~/.emacs.d/auto-save/" t)))
   (pending-delete-mode 1) ; when a piece of text is marked, typing will delete and replace that selection.
 #+end_src
 
@@ -25,7 +27,7 @@
           ("gnu-elpa-devel" . "https://elpa.gnu.org/devel/")
           ("nongnu" . "https://elpa.nongnu.org/nongnu/")
           ("melpa" . "https://melpa.org/packages/")))
-      
+
                                           ; Highest number gets priority (what is not mentioned has priority 0)
   (setq package-archive-priorities
         '(("gnu-elpa" . 3)
@@ -59,7 +61,7 @@
         (set-face-attribute 'default nil :height 200)
         (setq big-font-mode t))))
 
-      #+end_src
+#+end_src
 
 ** replace project grep with ripgrep
 #+begin_src emacs-lisp
@@ -83,11 +85,16 @@
     (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
           doom-themes-enable-italic t) ; if nil, italics is universally disabled
     ;; (load-theme 'doom-oksolar-light t)
-    (load-theme 'doom-one t)
+    ;; (load-theme 'doom-one t)
+    (load-theme 'doom-palenight t)
     (doom-themes-visual-bell-config)
     (doom-themes-org-config))
 #+end_src
 
+** define aliases
+#+begin_src emacs-lisp
+  (defalias 'list-buffers 'consult-buffer)
+#+end_src
 
 ** Display Line Numbers and Truncated Lines
 #+begin_src emacs-lisp
@@ -114,6 +121,12 @@
 #+end_src
 
 * PACKAGES
+
+** try
+#+begin_src emacs-lisp
+  (use-package try :ensure t)
+#+end_src
+
 ** Highlight indentation guides
 #+begin_src emacs-lisp
   (use-package highlight-indent-guides
@@ -127,34 +140,18 @@
 
 ** which key
 #+begin_src emacs-lisp
-        (use-package which-key
-          :ensure t
-          :config
-          (which-key-mode t))
-#+end_src
-
-** god mode
-#+begin_src emacs-lisp
-  (use-package god-mode
+  (use-package which-key
     :ensure t
-    :init
-    (global-set-key (kbd "<escape>") #'god-local-mode)
     :config
-    (god-mode))
-
+    (which-key-mode t))
 #+end_src
 
-** orderless
+** consult
 #+begin_src emacs-lisp
-  ;; I've temporarily removed it because it was causing issues when trying to create new file names that matched existing file names
-  ;; (use-package orderless
-  ;;   :ensure t
-  ;;   :demand t
-  ;;   :custom
-  ;;   (completion-styles '(orderless basic))
-  ;;   (completion-category-overrides '((file (styles basic partial-completion)))))
-#+end_src
+  (use-package consult
+    :ensure t)
 
+#+end_src
 ** magit
 #+begin_src emacs-lisp
   (use-package magit :ensure t)
@@ -186,15 +183,25 @@
   
 ** vertico
 #+begin_src emacs-lisp
-      (use-package vertico
-        :ensure t
-        :init
-        (vertico-mode)
-        (vertico-multiform-mode)
-        :config
-        (setq vertico-multiform-commands
-              '((consult-line buffer))))
+  (use-package vertico
+    :ensure t
+    :init
+    (vertico-mode)
+    (vertico-multiform-mode)
+    :config
+    (setq vertico-multiform-commands
+          '((consult-line buffer))))
 #+end_src
+
+** company
+#+begin_src emacs-lisp
+    (use-package company
+      :ensure t
+      :bind ("C-." . company-complete)
+      :init
+      (add-hook 'after-init-hook 'global-company-mode))
+#+end_src
+
 
 ** marginalia
 #+begin_src emacs-lisp
@@ -204,67 +211,11 @@
     (marginalia-mode))
 #+end_src
 
-** corfu
-#+begin_src emacs-lisp
-  (use-package corfu
-    ;; Optional customizations
-    ;; :custom
-    ;; (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-    ;; (corfu-auto t)                 ;; Enable auto completion
-    ;; (corfu-separator ?\s)          ;; Orderless field separator
-    ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
-    ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
-    ;; (corfu-preview-current nil)    ;; Disable current candidate preview
-    ;; (corfu-preselect 'prompt)      ;; Preselect the prompt
-    ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
-    ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+* Languages and linting
 
-    ;; Enable Corfu only for certain modes.
-    ;; :hook ((prog-mode . corfu-mode)
-    ;;        (shell-mode . corfu-mode)
-    ;;        (eshell-mode . corfu-mode))
-
-    ;; Recommended: Enable Corfu globally.  This is recommended since Dabbrev can
-    ;; be used globally (M-/).  See also the customization variable
-    ;; `global-corfu-modes' to exclude certain modes.
-    :init
-    (global-corfu-mode))
-
-  ;; Enable auto completion and configure quitting
-  (setq corfu-auto t
-        corfu-quit-no-match 'separator) ;; or t
-  ;; A few more useful configurations...
-  (use-package emacs
-    :init
-    ;; TAB cycle if there are only few candidates
-    (setq completion-cycle-threshold 3)
-
-    ;; Emacs 28: Hide commands in M-x which do not apply to the current mode.
-    ;; Corfu commands are hidden, since they are not supposed to be used via M-x.
-    ;; (setq read-extended-command-predicate
-    ;;       #'command-completion-default-include-p)
-
-    ;; Enable indentation+completion using the TAB key.
-    ;; `completion-at-point' is often bound to M-TAB.
-    (setq tab-always-indent 'complete))
-#+end_src
-
-* LANGUAGES
 ** Language modes
-
 #+begin_src emacs-lisp
-  ;; Uxntal
-
-  ;;; Set location of uxntal-mode.el
-
   (add-to-list 'load-path "~/.emacs.d/site-lisp")
-
-  ;;; If you want to use a different assembler
-  (setq uxntal-assembler "ruxnasm")
-
-  ;;; Enable the mode and associate with the .tal extension 
-  (require 'uxntal-mode)
-  (add-to-list 'auto-mode-alist '("\\.tal\\'" . uxntal-mode))
 
   (use-package forth-mode
     :ensure t)
@@ -275,27 +226,35 @@
 
 ** treesit
 #+begin_src emacs-lisp
-        (use-package treesit-auto
-          :ensure t
-          :config
-          (treesit-auto-add-to-auto-mode-alist 'all))
-        (setq treesit-font-lock-level 4)
-        (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
-        (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
-        (add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))
+  ;; (use-package treesit-auto
+    ;; :ensure t
+    ;; :config
+    ;; (treesit-auto-add-to-auto-mode-alist 'all))
+
+  (use-package treesit-auto
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
+
+  (setq treesit-font-lock-level 4)
+  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))
 #+end_src
 * LSP
-#+begin_src emacs-lisp
-  (use-package lsp-mode
-    :ensure t
-    :init
-    ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-    (setq lsp-keymap-prefix "C-c l")
-    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-           (typescript-ts-mode . lsp-deferred))
-    :commands lsp)
+# #+begin_src emacs-lisp
+#   (use-package lsp-mode
+#     :ensure t
+#     :init
+#     ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+#     (setq lsp-keymap-prefix "C-c l")
+#     :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+#            (typescript-ts-mode . lsp-deferred))
+#     :commands lsp)
 
-   (use-package lsp-ui
-    :ensure t
-    :commands lsp-ui-mode)
-#+end_src
+#    (use-package lsp-ui
+#     :ensure t
+#     :commands lsp-ui-mode)
+# #+end_src
