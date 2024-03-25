@@ -247,6 +247,7 @@
   (global-treesit-auto-mode))
 
   (setq treesit-font-lock-level 4)
+  (fset #'jsonrpc--log-event #'ignore) ;; helps remove laggy typing
   (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))
