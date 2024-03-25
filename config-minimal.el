@@ -134,6 +134,11 @@
   :config
   (marginalia-mode))
 
+(use-package flycheck-eglot
+  :ensure t
+  :config
+  (global-flycheck-eglot-mode 1))
+
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
 (use-package forth-mode
@@ -155,6 +160,7 @@
 (global-treesit-auto-mode))
 
 (setq treesit-font-lock-level 4)
+(fset #'jsonrpc--log-event #'ignore) ;; helps remove laggy typing
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))

@@ -2,7 +2,13 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("config"
+(("mms"
+ (filename . "~/projects/phoenix-mach-component-monorepo/")
+ (front-context-string . ".branchnamelintr")
+ (rear-context-string . "23 18 Mar 16:54 ")
+ (position . 229)
+ (last-modified 26113 32139 67989 0))
+("config"
  (filename . "~/.emacs.d/config-minimal.org")
  (front-context-string . "#+TITLE: 256k em")
  (rear-context-string)

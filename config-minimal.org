@@ -195,11 +195,12 @@
 
 ** company
 #+begin_src emacs-lisp
-    (use-package company
-      :ensure t
-      :bind ("C-." . company-complete)
-      :init
-      (add-hook 'after-init-hook 'global-company-mode))
+  (use-package company
+    :ensure t
+    :bind ("C-." . company-complete)
+    :init
+    (setq company-minimum-prefix-length 1)
+    (add-hook 'after-init-hook 'global-company-mode))
 #+end_src
 
 

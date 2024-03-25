@@ -11,10 +11,3 @@
 (keymap-global-set "C-;" 'execute-extended-command) ;; replaces M-x as an easier solution.
 (keymap-global-set "C-," 'revert-buffer)
 (keymap-global-set "C-." '256k/toggle-font-size)
-
-
-
-;; set 2 themes to toggle between
-;; (setq ef-themes-to-toggle '(ef-light ef-night))
-;; (keymap-global-set "C-x C-." 'ef-themes-toggle)
-;; (keymap-global-set "C-`" 'vterm-toggle)
