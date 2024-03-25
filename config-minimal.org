@@ -212,6 +212,14 @@
 #+end_src
 
 * Languages and linting
+** flycheck eglot
+#+begin_src emacs-lisp
+          (use-package flycheck-eglot
+            :ensure t
+            :config
+            (global-flycheck-eglot-mode 1))
+
+#+end_src
 
 ** Language modes
 #+begin_src emacs-lisp
