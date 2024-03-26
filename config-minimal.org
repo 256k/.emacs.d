@@ -235,11 +235,6 @@
 
 ** treesit
 #+begin_src emacs-lisp
-  ;; (use-package treesit-auto
-    ;; :ensure t
-    ;; :config
-    ;; (treesit-auto-add-to-auto-mode-alist 'all))
-
   (use-package treesit-auto
   :custom
   (treesit-auto-install 'prompt)
@@ -251,8 +246,10 @@
   (fset #'jsonrpc--log-event #'ignore) ;; helps remove laggy typing
   (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . typescript-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))
 #+end_src
+
 * LSP
 # #+begin_src emacs-lisp
 #   (use-package lsp-mode

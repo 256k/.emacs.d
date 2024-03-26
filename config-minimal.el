@@ -127,6 +127,7 @@
   :ensure t
   :bind ("C-." . company-complete)
   :init
+  (setq company-minimum-prefix-length 1)
   (add-hook 'after-init-hook 'global-company-mode))
 
 (use-package marginalia
