@@ -15,6 +15,7 @@
   (setq use-package-always-ensure t)
   (setq auto-save-file-name-transforms
         `((".*" "~/.emacs.d/auto-save/" t)))
+  
   (pending-delete-mode 1) ; when a piece of text is marked, typing will delete and replace that selection.
 #+end_src
 
@@ -121,6 +122,15 @@
 #+end_src
 
 * PACKAGES
+** evil
+#+begin_src emacs-lisp
+  (use-package evil
+    :ensure
+    :init
+    (setq evil-default-state "emacs")
+    :config
+    (add-hook 'prog-mode-hook 'evil-mode))
+#+end_src
 
 ** try
 #+begin_src emacs-lisp
@@ -212,6 +222,14 @@
     (marginalia-mode))
 #+end_src
 
+** slime
+#+begin_src emacs-lisp
+      (use-package slime
+        :ensure t
+        :init
+      (setq inferior-lisp-program "sbcl"))
+#+end_src
+
 * Languages and linting
 ** flycheck eglot
 #+begin_src emacs-lisp
@@ -251,17 +269,21 @@
 #+end_src
 
 * LSP
-# #+begin_src emacs-lisp
-#   (use-package lsp-mode
-#     :ensure t
-#     :init
-#     ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-#     (setq lsp-keymap-prefix "C-c l")
-#     :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-#            (typescript-ts-mode . lsp-deferred))
-#     :commands lsp)
 
-#    (use-package lsp-ui
-#     :ensure t
-#     :commands lsp-ui-mode)
-# #+end_src
+
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+    :ensure t
+    :init
+    ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+    (setq lsp-keymap-prefix "C-c l")
+    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+           (typescript-ts-mode . lsp-deferred))
+    :commands lsp)
+
+   (use-package lsp-ui
+    :ensure t
+    :commands lsp-ui-mode)
+  (with-eval-after-load 'lsp-mode
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
+#+end_src

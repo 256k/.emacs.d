@@ -2,7 +2,19 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("mms"
+(("gross"
+ (filename . "~/code/personal/gross/")
+ (front-context-string . "go.mod\n  -rw-r--")
+ (rear-context-string . "30  7 Mar 09:56 ")
+ (position . 209)
+ (last-modified 26123 27041 618506 0))
+("pongjs"
+ (filename . "~/code/personal/pongjs/")
+ (front-context-string . "index.html\n  -rw")
+ (rear-context-string . "56 24 Mar 20:27 ")
+ (position . 210)
+ (last-modified 26115 25207 254211 0))
+("mms"
  (filename . "~/projects/phoenix-mach-component-monorepo/")
  (front-context-string . ".branchnamelintr")
  (rear-context-string . "23 18 Mar 16:54 ")

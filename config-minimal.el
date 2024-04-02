@@ -9,6 +9,7 @@
 (setq use-package-always-ensure t)
 (setq auto-save-file-name-transforms
       `((".*" "~/.emacs.d/auto-save/" t)))
+
 (pending-delete-mode 1) ; when a piece of text is marked, typing will delete and replace that selection.
 
 (require 'package)
@@ -79,6 +80,13 @@
 (use-package org-bullets :ensure t)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
+(use-package evil
+  :ensure
+  :init
+  (setq evil-default-state "emacs")
+  :config
+  (add-hook 'prog-mode-hook 'evil-mode))
+
 (use-package try :ensure t)
 
 (use-package highlight-indent-guides
@@ -135,6 +143,11 @@
   :config
   (marginalia-mode))
 
+(use-package slime
+  :ensure t
+  :init
+(setq inferior-lisp-program "sbcl"))
+
 (use-package flycheck-eglot
   :ensure t
   :config
@@ -148,11 +161,6 @@
 (use-package lua-mode 
   :ensure t)
 
-;; (use-package treesit-auto
-  ;; :ensure t
-  ;; :config
-  ;; (treesit-auto-add-to-auto-mode-alist 'all))
-
 (use-package treesit-auto
 :custom
 (treesit-auto-install 'prompt)
@@ -164,4 +172,20 @@
 (fset #'jsonrpc--log-event #'ignore) ;; helps remove laggy typing
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . typescript-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))
+
+(use-package lsp-mode
+  :ensure t
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (typescript-ts-mode . lsp-deferred))
+  :commands lsp)
+
+ (use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+(with-eval-after-load 'lsp-mode
+(add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
