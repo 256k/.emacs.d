@@ -62,9 +62,14 @@
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
   ;; (load-theme 'doom-oksolar-light t)
   ;; (load-theme 'doom-one t)
-  (load-theme 'doom-palenight t)
+  ;; (load-theme 'doom-palenight t)
   (doom-themes-visual-bell-config)
   (doom-themes-org-config))
+
+(use-package acme-theme
+  :ensure t
+  :config
+  (load-theme 'acme t))
 
 (defalias 'list-buffers 'consult-buffer)
 
@@ -79,6 +84,21 @@
 (add-hook 'org-mode-hook 'org-indent-mode)
 (use-package org-bullets :ensure t)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+(use-package norns
+    :ensure t
+    :bind
+    (
+     :map norns-mode-map
+     ("C-c e b" . norns-load-current-script)
+     ("C-c e r" . norns-send-selection)
+
+     :map norns-maiden-repl-mode-map
+     ("C-c e b" . norns-rerun)
+
+     :map norns-sc-repl-mode-map
+     ("C-." . norns-sc-stop))
+)
 
 (use-package evil
   :ensure
@@ -189,3 +209,6 @@
   :commands lsp-ui-mode)
 (with-eval-after-load 'lsp-mode
 (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
+
+(use-package consult-lsp
+  :ensure t)

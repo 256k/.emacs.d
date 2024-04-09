@@ -80,16 +80,21 @@
 
 ** Theme
 #+begin_src emacs-lisp
-  (use-package doom-themes
-    :ensure t
-    :config
-    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-          doom-themes-enable-italic t) ; if nil, italics is universally disabled
-    ;; (load-theme 'doom-oksolar-light t)
-    ;; (load-theme 'doom-one t)
-    (load-theme 'doom-palenight t)
-    (doom-themes-visual-bell-config)
-    (doom-themes-org-config))
+          (use-package doom-themes
+            :ensure t
+            :config
+            (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+                  doom-themes-enable-italic t) ; if nil, italics is universally disabled
+            ;; (load-theme 'doom-oksolar-light t)
+            ;; (load-theme 'doom-one t)
+            ;; (load-theme 'doom-palenight t)
+            (doom-themes-visual-bell-config)
+            (doom-themes-org-config))
+
+          (use-package acme-theme
+            :ensure t
+            :config
+            (load-theme 'acme t))
 #+end_src
 
 ** define aliases
@@ -122,14 +127,22 @@
 #+end_src
 
 * PACKAGES
-** evil
+** norns
 #+begin_src emacs-lisp
-  (use-package evil
-    :ensure
-    :init
-    (setq evil-default-state "emacs")
-    :config
-    (add-hook 'prog-mode-hook 'evil-mode))
+      (use-package norns
+        :ensure t
+        :bind
+        (
+         :map norns-mode-map
+         ("C-c e b" . norns-load-current-script)
+         ("C-c e r" . norns-send-selection)
+
+         :map norns-maiden-repl-mode-map
+         ("C-c e b" . norns-rerun)
+
+         :map norns-sc-repl-mode-map
+         ("C-." . norns-sc-stop))
+    )
 #+end_src
 
 ** try
@@ -272,18 +285,21 @@
 
 
 #+begin_src emacs-lisp
-  (use-package lsp-mode
-    :ensure t
-    :init
-    ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-    (setq lsp-keymap-prefix "C-c l")
-    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-           (typescript-ts-mode . lsp-deferred))
-    :commands lsp)
+        (use-package lsp-mode
+          :ensure t
+          :init
+          ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+          (setq lsp-keymap-prefix "C-c l")
+          :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+                 (typescript-ts-mode . lsp-deferred))
+          :commands lsp)
 
-   (use-package lsp-ui
-    :ensure t
-    :commands lsp-ui-mode)
-  (with-eval-after-load 'lsp-mode
-  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
+         (use-package lsp-ui
+          :ensure t
+          :commands lsp-ui-mode)
+        (with-eval-after-load 'lsp-mode
+        (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
+
+        (use-package consult-lsp
+          :ensure t)
 #+end_src

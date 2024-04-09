@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <24/02/29 20:47:32 ~/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <24/04/07 11:22:47 ~/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; Run `M-x tramp-cleanup-all-connections' instead.
 
@@ -38,5 +38,5 @@
   ("ls--dired" "--dired")
   ("df-blocksize" 1)
   ("df" "\\df --block-size=1 --output=size,used,avail"))
- ((tramp-file-name "scp" "we" nil "norns.lan" nil nil nil)
+ ((tramp-file-name "ssh" "we" nil "norns.local" nil nil nil)
   nil))
