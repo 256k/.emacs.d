@@ -2,7 +2,13 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("gross"
+(("code"
+ (filename . "~/code/personal/")
+ (front-context-string . ".DS_Store\n  drwx")
+ (rear-context-string . "88 24 Mar 17:24 ")
+ (position . 212)
+ (last-modified 26140 33026 163174 0))
+("gross"
  (filename . "~/code/personal/gross/")
  (front-context-string . "go.mod\n  -rw-r--")
  (rear-context-string . "30  7 Mar 09:56 ")

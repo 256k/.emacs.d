@@ -39,10 +39,10 @@
   (interactive)
   (if big-font-mode
       (progn
-        (set-face-attribute 'default nil :height 160)
+        (set-face-attribute 'default nil :height 200)
         (setq big-font-mode nil))
     (progn
-      (set-face-attribute 'default nil :height 200)
+      (set-face-attribute 'default nil :height 260)
       (setq big-font-mode t))))
 
 (setq xref-search-program ;; Prefer ripgrep, then ugrep, and fall back to regular grep.
@@ -56,20 +56,20 @@
         'grep)))
 
 (use-package doom-themes
-  :ensure t
-  :config
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  ;; (load-theme 'doom-oksolar-light t)
-  ;; (load-theme 'doom-one t)
-  ;; (load-theme 'doom-palenight t)
-  (doom-themes-visual-bell-config)
-  (doom-themes-org-config))
+            :ensure t
+            :config
+            (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+                  doom-themes-enable-italic t) ; if nil, italics is universally disabled
+            ;; (load-theme 'doom-oksolar-light t)
+            ;; (load-theme 'doom-one t)
+            (load-theme 'doom-zenburn t)
+            (doom-themes-visual-bell-config)
+            (doom-themes-org-config))
 
-(use-package acme-theme
-  :ensure t
-  :config
-  (load-theme 'acme t))
+;;           (use-package acme-theme
+;;             :ensure t
+;;             :config
+;;             (load-theme 'acme t))
 
 (defalias 'list-buffers 'consult-buffer)
 
@@ -100,12 +100,14 @@
      ("C-." . norns-sc-stop))
 )
 
-(use-package evil
-  :ensure
-  :init
-  (setq evil-default-state "emacs")
-  :config
-  (add-hook 'prog-mode-hook 'evil-mode))
+(use-package evil 
+:ensure t
+:init
+(setq evil-undo-system 'undo-redo)
+(setq evil-disable-insert-state-bindings t)
+(setq evil-want-C-u-scroll t)
+:config
+(evil-mode))
 
 (use-package try :ensure t)
 
