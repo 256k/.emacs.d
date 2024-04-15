@@ -39,10 +39,10 @@
   (interactive)
   (if big-font-mode
       (progn
-        (set-face-attribute 'default nil :height 200)
+        (set-face-attribute 'default nil :height 160)
         (setq big-font-mode nil))
     (progn
-      (set-face-attribute 'default nil :height 260)
+      (set-face-attribute 'default nil :height 240)
       (setq big-font-mode t))))
 
 (setq xref-search-program ;; Prefer ripgrep, then ugrep, and fall back to regular grep.

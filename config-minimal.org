@@ -15,7 +15,7 @@
   (setq use-package-always-ensure t)
   (setq auto-save-file-name-transforms
         `((".*" "~/.emacs.d/auto-save/" t)))
-  
+
   (pending-delete-mode 1) ; when a piece of text is marked, typing will delete and replace that selection.
 #+end_src
 
@@ -64,7 +64,6 @@
 
 #+end_src
 
-** 
 ** replace project grep with ripgrep
 #+begin_src emacs-lisp
   (setq xref-search-program ;; Prefer ripgrep, then ugrep, and fall back to regular grep.
@@ -80,21 +79,25 @@
 
 ** Theme
 #+begin_src emacs-lisp
-          (use-package doom-themes
-            :ensure t
-            :config
-            (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-                  doom-themes-enable-italic t) ; if nil, italics is universally disabled
-            ;; (load-theme 'doom-oksolar-light t)
-            ;; (load-theme 'doom-one t)
-            (load-theme 'doom-zenburn t)
-            (doom-themes-visual-bell-config)
-            (doom-themes-org-config))
+  (use-package doom-themes
+    :ensure t
+    :config
+    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+          doom-themes-enable-italic t) ; if nil, italics is universally disabled
+    ;; (load-theme 'doom-oksolar-light t)
+    ;; (load-theme 'doom-one t)
+    (load-theme 'doom-zenburn t)
+    (doom-themes-visual-bell-config)
+    (doom-themes-org-config))
 
-;;           (use-package acme-theme
-;;             :ensure t
-;;             :config
-;;             (load-theme 'acme t))
+  ;;           (use-package acme-theme
+  ;;             :ensure t
+  ;;             :config
+  ;;             (load-theme 'acme t))
+  (use-package solo-jazz-theme
+    :ensure t
+    :config
+    (load-theme 'solo-jazz t))
 #+end_src
 
 ** define aliases
@@ -158,17 +161,6 @@
 ** try
 #+begin_src emacs-lisp
   (use-package try :ensure t)
-#+end_src
-
-** Highlight indentation guides
-#+begin_src emacs-lisp
-  (use-package highlight-indent-guides
-    :ensure t
-    :config
-    (progn
-      (setq highlight-indent-guides-method 'character)
-      (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-      (highlight-indent-guides-mode)))
 #+end_src
 
 ** which key

@@ -11,4 +11,5 @@
  (magit-remote
   ("-f"))
  (magit-revert
-  ("--edit")))
+  ("--edit"))
+ (magit-status-jump nil))
