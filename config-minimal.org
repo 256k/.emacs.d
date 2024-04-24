@@ -77,7 +77,7 @@
           'grep)))
 #+end_src
 
-** Theme
+** COMMENT Theme
 #+begin_src emacs-lisp
   (use-package doom-themes
     :ensure t
@@ -94,10 +94,13 @@
   ;;             :ensure t
   ;;             :config
   ;;             (load-theme 'acme t))
-  (use-package solo-jazz-theme
-    :ensure t
-    :config
-    (load-theme 'solo-jazz t))
+  ;; (use-package solo-jazz-theme
+  ;;   :ensure t
+  ;;   :config
+  ;;   (load-theme 'solo-jazz t))
+  (use-package atom-one-dark-theme
+    :ensure t)
+  (load-theme 'atom-one-dark t)
 #+end_src
 
 ** define aliases
