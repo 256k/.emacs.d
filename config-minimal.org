@@ -77,16 +77,17 @@
           'grep)))
 #+end_src
 
-** COMMENT Theme
+** Theme
 #+begin_src emacs-lisp
-  (use-package doom-themes
+  (print "hello")
+(use-package doom-themes
     :ensure t
     :config
     (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
           doom-themes-enable-italic t) ; if nil, italics is universally disabled
     ;; (load-theme 'doom-oksolar-light t)
     ;; (load-theme 'doom-one t)
-    ;; (load-theme 'doom-zenburn t)
+    (load-theme 'doom-zenburn t)
     (doom-themes-visual-bell-config)
     (doom-themes-org-config))
 
@@ -98,9 +99,12 @@
   ;;   :ensure t
   ;;   :config
   ;;   (load-theme 'solo-jazz t))
-  (use-package atom-one-dark-theme
-    :ensure t)
-  (load-theme 'atom-one-dark t)
+
+  ;; (use-package atom-one-dark-theme
+  ;;   :ensure t
+  ;;   :config
+  ;;   (load-theme 'atom-one-dark t))
+
 #+end_src
 
 ** define aliases
