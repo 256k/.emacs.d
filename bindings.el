@@ -10,4 +10,4 @@
 (keymap-global-set "M-TAB" 'dabbrev-expand)
 (keymap-global-set "C-;" 'execute-extended-command) ;; replaces M-x as an easier solution.
 (keymap-global-set "C-," 'revert-buffer)
-(keymap-global-set "C-." '256k/toggle-font-size)
+(keymap-global-set "C-x C-." '256k/toggle-font-size)

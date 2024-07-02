@@ -55,26 +55,6 @@
        (t
         'grep)))
 
-(use-package doom-themes
-  :ensure t
-  :config
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  ;; (load-theme 'doom-oksolar-light t)
-  ;; (load-theme 'doom-one t)
-  ;; (load-theme 'doom-zenburn t)
-  (doom-themes-visual-bell-config)
-  (doom-themes-org-config))
-
-;;           (use-package acme-theme
-;;             :ensure t
-;;             :config
-;;             (load-theme 'acme t))
-(use-package solo-jazz-theme
-  :ensure t
-  :config
-  (load-theme 'solo-jazz t))
-
 (defalias 'list-buffers 'consult-buffer)
 
 (global-display-line-numbers-mode 1)
