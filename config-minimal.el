@@ -55,31 +55,18 @@
        (t
         'grep)))
 
-(print "hello")
 (use-package doom-themes
-    :ensure t
-    :config
-    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-          doom-themes-enable-italic t) ; if nil, italics is universally disabled
-    ;; (load-theme 'doom-oksolar-light t)
-    ;; (load-theme 'doom-one t)
-    (load-theme 'doom-zenburn t)
-    (doom-themes-visual-bell-config)
-    (doom-themes-org-config))
+  :ensure t
+  :config
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (doom-themes-visual-bell-config)
+  (doom-themes-org-config))
 
-  ;;           (use-package acme-theme
-  ;;             :ensure t
-  ;;             :config
-  ;;             (load-theme 'acme t))
-  ;; (use-package solo-jazz-theme
-  ;;   :ensure t
-  ;;   :config
-  ;;   (load-theme 'solo-jazz t))
-
-  ;; (use-package atom-one-dark-theme
-  ;;   :ensure t
-  ;;   :config
-  ;;   (load-theme 'atom-one-dark t))
+(use-package ef-themes
+  :ensure t
+  :config
+  (load-theme ef-light t))
 
 (defalias 'list-buffers 'consult-buffer)
 
@@ -167,6 +154,12 @@
   :config
   (marginalia-mode))
 
+(use-package embark
+  :ensure t
+  :after
+  (use-package embark-consult
+  :ensure t))
+
 (use-package slime
   :ensure t
   :init
@@ -205,14 +198,15 @@
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (typescript-ts-mode . lsp-deferred))
+         (typescript-ts-mode . lsp-deferred)
+         (tsx-ts-mode . lsp-deferred))
   :commands lsp)
 
- (use-package lsp-ui
+(use-package lsp-ui
   :ensure t
   :commands lsp-ui-mode)
 (with-eval-after-load 'lsp-mode
-(add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
 
 (use-package consult-lsp
   :ensure t)
