@@ -66,7 +66,7 @@
 (use-package ef-themes
   :ensure t
   :config
-  (load-theme ef-light t))
+  (load-theme 'ef-light t))
 
 (defalias 'list-buffers 'consult-buffer)
 
@@ -81,6 +81,9 @@
 (add-hook 'org-mode-hook 'org-indent-mode)
 (use-package org-bullets :ensure t)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+(use-package workgroups2
+:ensure t)
 
 (use-package norns
     :ensure t

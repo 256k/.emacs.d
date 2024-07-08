@@ -2,7 +2,13 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("code"
+(("logo-preview-generation-function"
+ (filename . "~/projects/phoenix-mach-component-monorepo/apps/mms/mms-webapp/src/ui/features/ProductDetail/ProductDetail.tsx")
+ (front-context-string . "// Logo - Previe")
+ (rear-context-string . "-------------\n  ")
+ (position . 35564)
+ (last-modified 26248 1803 372984 0))
+("code"
  (filename . "~/code/personal/")
  (front-context-string . ".DS_Store\n  drwx")
  (rear-context-string . "88 24 Mar 17:24 ")
