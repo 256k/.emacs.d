@@ -14,5 +14,5 @@
   ("-f"))
  (magit-revert
   ("--edit"))
- (magit-status-jump nil)
+ (magit-stash nil)
  (magit-submodule nil))

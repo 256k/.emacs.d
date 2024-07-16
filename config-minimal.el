@@ -62,20 +62,7 @@
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
   (doom-themes-visual-bell-config)
   (doom-themes-org-config))
-
-(use-package ef-themes
-  :ensure t
-  :config
-  (load-theme 'ef-light t))
-(load "~/.emacs.d/local-themes/bluloco-light-theme.el")
-(load-theme 'bluloco-light t)
-
-(use-package catppuccin-theme
-  :ensure t
-  :init
-  (setq catppuccin-flavor 'latte)
-  :config
-  (load-theme 'catppuccin t))
+(load-theme 'doom-dark+ t)
 
 (defalias 'list-buffers 'consult-buffer)
 
@@ -91,9 +78,6 @@
 (use-package org-bullets :ensure t)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-(use-package workgroups2
-  :ensure t)
-
 (use-package norns
   :ensure t
   :bind
@@ -108,6 +92,11 @@
    :map norns-sc-repl-mode-map
    ("C-." . norns-sc-stop))
   )
+
+(use-package golden-ratio
+  :ensure
+  :config
+  (golden-ratio-mode))
 
 (use-package rainbow-delimiters
   :ensure t

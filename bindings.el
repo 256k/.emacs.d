@@ -1,7 +1,7 @@
 (defun 256k/edit-config ()
   "edit config files"
   (interactive)
-  (find-file-other-tab "~/.emacs.d/config-minimal.org"))
+  (find-file "~/.emacs.d/config-minimal.org"))
 
 (keymap-global-set "C-x C-r" 'recentf-open)
 (keymap-global-set "C-x C-}" 'flip-window-updown-256k)

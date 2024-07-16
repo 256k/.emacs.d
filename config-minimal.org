@@ -86,22 +86,9 @@
           doom-themes-enable-italic t) ; if nil, italics is universally disabled
     (doom-themes-visual-bell-config)
     (doom-themes-org-config))
+  (load-theme 'doom-dark+ t)
 
-  (use-package ef-themes
-    :ensure t
-    :config
-    (load-theme 'ef-light t))
-  (load "~/.emacs.d/local-themes/bluloco-light-theme.el")
-  (load-theme 'bluloco-light t)
-
-  (use-package catppuccin-theme
-    :ensure t
-    :init
-    (setq catppuccin-flavor 'latte)
-    :config
-    (load-theme 'catppuccin t))
-
-  #+end_src
+#+end_src
 
 ** define aliases
 #+begin_src emacs-lisp
@@ -133,11 +120,6 @@
 #+end_src
 
 * PACKAGES
-** workgroups
-#+begin_src emacs-lisp
-  (use-package workgroups2
-    :ensure t)
-#+end_src
 ** norns
 #+begin_src emacs-lisp
   (use-package norns
@@ -154,6 +136,13 @@
      :map norns-sc-repl-mode-map
      ("C-." . norns-sc-stop))
     )
+#+end_src
+** Golden-ratio auto-resizing window manager
+#+begin_src emacs-lisp
+  (use-package golden-ratio
+    :ensure
+    :config
+    (golden-ratio-mode))
 #+end_src
 ** rainbow delimiters
 #+begin_src emacs-lisp
