@@ -67,6 +67,15 @@
   :ensure t
   :config
   (load-theme 'ef-light t))
+(load "~/.emacs.d/local-themes/bluloco-light-theme.el")
+(load-theme 'bluloco-light t)
+
+(use-package catppuccin-theme
+  :ensure t
+  :init
+  (setq catppuccin-flavor 'latte)
+  :config
+  (load-theme 'catppuccin t))
 
 (defalias 'list-buffers 'consult-buffer)
 
@@ -83,31 +92,36 @@
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 (use-package workgroups2
-:ensure t)
+  :ensure t)
 
 (use-package norns
-    :ensure t
-    :bind
-    (
-     :map norns-mode-map
-     ("C-c e b" . norns-load-current-script)
-     ("C-c e r" . norns-send-selection)
+  :ensure t
+  :bind
+  (
+   :map norns-mode-map
+   ("C-c e b" . norns-load-current-script)
+   ("C-c e r" . norns-send-selection)
 
-     :map norns-maiden-repl-mode-map
-     ("C-c e b" . norns-rerun)
+   :map norns-maiden-repl-mode-map
+   ("C-c e b" . norns-rerun)
 
-     :map norns-sc-repl-mode-map
-     ("C-." . norns-sc-stop))
-)
+   :map norns-sc-repl-mode-map
+   ("C-." . norns-sc-stop))
+  )
+
+(use-package rainbow-delimiters
+  :ensure t
+  :hook
+  (prog-mode . rainbow-delimiters-mode))
 
 (use-package evil 
-:ensure t
-:init
-(setq evil-undo-system 'undo-redo)
-(setq evil-disable-insert-state-bindings t)
-(setq evil-want-C-u-scroll t)
-:config
-(evil-mode))
+  :ensure t
+  :init
+  (setq evil-undo-system 'undo-redo)
+  (setq evil-disable-insert-state-bindings t)
+  (setq evil-want-C-u-scroll t)
+  :config
+  (evil-mode))
 
 (use-package try :ensure t)
 
@@ -161,12 +175,12 @@
   :ensure t
   :after
   (use-package embark-consult
-  :ensure t))
+    :ensure t))
 
 (use-package slime
   :ensure t
   :init
-(setq inferior-lisp-program "sbcl"))
+  (setq inferior-lisp-program "sbcl"))
 
 (use-package flycheck-eglot
   :ensure t
@@ -182,11 +196,11 @@
   :ensure t)
 
 (use-package treesit-auto
-:custom
-(treesit-auto-install 'prompt)
-:config
-(treesit-auto-add-to-auto-mode-alist 'all)
-(global-treesit-auto-mode))
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
 
 (setq treesit-font-lock-level 4)
 (fset #'jsonrpc--log-event #'ignore) ;; helps remove laggy typing
@@ -200,9 +214,9 @@
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
-  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (typescript-ts-mode . lsp-deferred)
-         (tsx-ts-mode . lsp-deferred))
+  ;; :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+  ;;        (typescript-ts-mode . lsp-deferred)
+  ;;        (tsx-ts-mode . lsp-deferred))
   :commands lsp)
 
 (use-package lsp-ui
