@@ -223,6 +223,16 @@
           '((consult-line buffer))))
 #+end_src
 
+** treemacs
+#+begin_src emacs-lisp
+  (use-package treemacs
+    :ensure t
+  :bind
+  ("C-c b" . treemacs)
+    :config
+    (treemacs-follow-mode t)
+    (treemacs-project-follow-mode t))
+#+end_src
 ** company
 #+begin_src emacs-lisp
   (use-package company
