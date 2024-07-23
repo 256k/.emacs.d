@@ -78,22 +78,20 @@
 (use-package org-bullets :ensure t)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-;; (use-package norns			;
-  ;;   :ensure t
-  ;;   :bind
-  ;;   (
-  ;;  :bind
-  ;;    ("C-c e b" . norns-load-current-script)
-  ;;    ("C-c e r" . norns-send-selection)
-
-  ;;    ("C-c e b" . norns-rerun)
-
-  ;;    ("C-." . norns-sc-stop))
-  ;;   )
 (use-package norns
-  :config
-  (add-hook 'lua-mode-hook #'norns-mode-maybe-activate)
-  (add-hook 'sclang-mode-mode-hook #'norns-mode-maybe-activate))
+  :ensure t
+  :bind
+  (
+   :map norns-mode-map
+   ("C-c e b" . norns-load-current-script)
+   ("C-c e r" . norns-send-selection)
+
+   :map norns-maiden-repl-mode-map
+   ("C-c e b" . norns-rerun)
+
+   :map norns-sc-repl-mode-map
+   ("C-." . norns-sc-stop))
+  )
 
 (use-package golden-ratio
   :ensure
@@ -207,6 +205,9 @@
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . typescript-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))
+
+(use-package emacs-lsp-booster
+:ensure t)
 
 (use-package lsp-mode
   :ensure t

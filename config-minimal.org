@@ -309,12 +309,6 @@
 
 * LSP
 
-** lsp-booster
-#+begin_src emacs-lisp
-  (use-package emacs-lsp-booster
-  :ensure t)  
-
-#+end_src
 
 #+begin_src emacs-lisp
   (use-package lsp-mode

@@ -15,4 +15,5 @@
  (magit-revert
   ("--edit"))
  (magit-stash nil)
+ (magit-status-jump nil)
  (magit-submodule nil))

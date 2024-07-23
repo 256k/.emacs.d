@@ -7,6 +7,7 @@
 (keymap-global-set "C-x C-}" 'flip-window-updown-256k)
 (keymap-global-set "C-x C-]" 'flip-window-leftright-256k)
 (keymap-global-set "C-x C-/" '256k/edit-config)
+(keymap-global-set "C-x t s" '256k/new-scratch-tab)
 (keymap-global-set "M-TAB" 'dabbrev-expand)
 (keymap-global-set "C-;" 'execute-extended-command) ;; replaces M-x as an easier solution.
 (keymap-global-set "C-," 'revert-buffer)
