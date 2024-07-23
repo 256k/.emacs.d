@@ -97,8 +97,8 @@
 
 (use-package golden-ratio
   :ensure
-  :config
-  (golden-ratio-mode))
+  :bind
+  ("C-c g" . golden-ratio-mode))
 
 (use-package rainbow-delimiters
   :ensure t

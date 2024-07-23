@@ -86,8 +86,7 @@
           doom-themes-enable-italic t) ; if nil, italics is universally disabled
     (doom-themes-visual-bell-config)
     (doom-themes-org-config))
-
-  (load-theme 'doom-one t)
+  (load-theme 'doom-dark+ t)
 
 #+end_src
 
@@ -123,29 +122,27 @@
 * PACKAGES
 ** norns
 #+begin_src emacs-lisp
-  ;; (use-package norns			;
-  ;;   :ensure t
-  ;;   :bind
-  ;;   (
-  ;;  :bind
-  ;;    ("C-c e b" . norns-load-current-script)
-  ;;    ("C-c e r" . norns-send-selection)
+  (use-package norns
+    :ensure t
+    :bind
+    (
+     :map norns-mode-map
+     ("C-c e b" . norns-load-current-script)
+     ("C-c e r" . norns-send-selection)
 
-  ;;    ("C-c e b" . norns-rerun)
+     :map norns-maiden-repl-mode-map
+     ("C-c e b" . norns-rerun)
 
-  ;;    ("C-." . norns-sc-stop))
-  ;;   )
-(use-package norns
-  :config
-  (add-hook 'lua-mode-hook #'norns-mode-maybe-activate)
-  (add-hook 'sclang-mode-mode-hook #'norns-mode-maybe-activate))
+     :map norns-sc-repl-mode-map
+     ("C-." . norns-sc-stop))
+    )
 #+end_src
 ** Golden-ratio auto-resizing window manager
 #+begin_src emacs-lisp
   (use-package golden-ratio
     :ensure
-    :config
-    (golden-ratio-mode))
+    :bind
+    ("C-c g" . golden-ratio-mode))
 #+end_src
 ** rainbow delimiters
 #+begin_src emacs-lisp
@@ -312,6 +309,12 @@
 
 * LSP
 
+** lsp-booster
+#+begin_src emacs-lisp
+  (use-package emacs-lsp-booster
+  :ensure t)  
+
+#+end_src
 
 #+begin_src emacs-lisp
   (use-package lsp-mode
@@ -333,3 +336,4 @@
   (use-package consult-lsp
     :ensure t)
 #+end_src
+
