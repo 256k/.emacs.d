@@ -78,20 +78,22 @@
 (use-package org-bullets :ensure t)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
+;; (use-package norns			;
+  ;;   :ensure t
+  ;;   :bind
+  ;;   (
+  ;;  :bind
+  ;;    ("C-c e b" . norns-load-current-script)
+  ;;    ("C-c e r" . norns-send-selection)
+
+  ;;    ("C-c e b" . norns-rerun)
+
+  ;;    ("C-." . norns-sc-stop))
+  ;;   )
 (use-package norns
-  :ensure t
-  :bind
-  (
-   :map norns-mode-map
-   ("C-c e b" . norns-load-current-script)
-   ("C-c e r" . norns-send-selection)
-
-   :map norns-maiden-repl-mode-map
-   ("C-c e b" . norns-rerun)
-
-   :map norns-sc-repl-mode-map
-   ("C-." . norns-sc-stop))
-  )
+  :config
+  (add-hook 'lua-mode-hook #'norns-mode-maybe-activate)
+  (add-hook 'sclang-mode-mode-hook #'norns-mode-maybe-activate))
 
 (use-package golden-ratio
   :ensure
@@ -147,6 +149,14 @@
   :config
   (setq vertico-multiform-commands
         '((consult-line buffer))))
+
+(use-package treemacs
+  :ensure t
+:bind
+("C-c b" . treemacs)
+  :config
+  (treemacs-follow-mode t)
+  (treemacs-project-follow-mode t))
 
 (use-package company
   :ensure t
