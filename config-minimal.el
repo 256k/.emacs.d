@@ -62,7 +62,7 @@
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
   (doom-themes-visual-bell-config)
   (doom-themes-org-config))
-(load-theme 'doom-dark+ t)
+(load-theme 'doom-one t)
 
 (defalias 'list-buffers 'consult-buffer)
 
@@ -205,9 +205,6 @@
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . typescript-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))
-
-(use-package emacs-lsp-booster
-:ensure t)
 
 (use-package lsp-mode
   :ensure t

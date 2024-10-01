@@ -86,10 +86,19 @@
           doom-themes-enable-italic t) ; if nil, italics is universally disabled
     (doom-themes-visual-bell-config)
     (doom-themes-org-config))
-  (load-theme 'doom-dark+ t)
+  ;; (load-theme 'doom-one t)
+(load-theme 'ef-frost t)
 
 #+end_src
 
+** padding
+#+begin_src emacs-lisp
+(use-package spacious-padding
+  :ensure t
+  :config
+  (setq spacious-padding-widths '(:internal-border-width 60 :right-divider-width 30 :scroll-bar-width 8))
+        (spacious-padding-mode 1))
+#+end_src
 ** define aliases
 #+begin_src emacs-lisp
   (defalias 'list-buffers 'consult-buffer)
