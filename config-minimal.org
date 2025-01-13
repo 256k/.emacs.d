@@ -57,10 +57,10 @@
     (interactive)
     (if big-font-mode
         (progn
-          (set-face-attribute 'default nil :height 160)
+          (set-face-attribute 'default nil :height 180)
           (setq big-font-mode nil))
       (progn
-        (set-face-attribute 'default nil :height 240)
+        (set-face-attribute 'default nil :height 220)
         (setq big-font-mode t))))
 
 #+end_src
@@ -187,9 +187,14 @@
 
 ** which key
 #+begin_src emacs-lisp
+;; M-x customize-group is a way to find all the variables associated with a package.
   (use-package which-key
     :ensure t
     :config
+    (setq which-key-max-display-columns 2)
+    ;; (setq which-key-min-column-description-width 0.001)
+    (setq which-key-max-description-length 100)
+    (setq which-key-separator ":")
     (which-key-mode t))
 #+end_src
 
