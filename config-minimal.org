@@ -4,6 +4,7 @@
 * CORE SETTINGS AND FUNCTIONS
 ** set backups directory
 #+begin_src emacs-lisp
+;; -*- lexical-binding: t; -*-
   (setq package-enable-at-startup t)
   (setq lexical-binding t)
   (setq backup-directory-alist '(("" . "~/.emacs.d/backup/")))

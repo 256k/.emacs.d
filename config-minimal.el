@@ -1,16 +1,17 @@
-(setq package-enable-at-startup t)
-(setq lexical-binding t)
-(setq backup-directory-alist '(("" . "~/.emacs.d/backup/")))
-(setq backup-by-copying t    ; Don't delink hardlinks
-      delete-old-versions t  ; Clean up the backups
-      version-control t      ; Use version numbers on backups,
-      kept-new-versions 5    ; keep some new versions
-      kept-old-versions 2)   ; and some old ones, too
-(setq use-package-always-ensure t)
-(setq auto-save-file-name-transforms
-      `((".*" "~/.emacs.d/auto-save/" t)))
+;; -*- lexical-binding: t; -*-
+  (setq package-enable-at-startup t)
+  (setq lexical-binding t)
+  (setq backup-directory-alist '(("" . "~/.emacs.d/backup/")))
+  (setq backup-by-copying t    ; Don't delink hardlinks
+        delete-old-versions t  ; Clean up the backups
+        version-control t      ; Use version numbers on backups,
+        kept-new-versions 5    ; keep some new versions
+        kept-old-versions 2)   ; and some old ones, too
+  (setq use-package-always-ensure t)
+  (setq auto-save-file-name-transforms
+        `((".*" "~/.emacs.d/auto-save/" t)))
 
-(pending-delete-mode 1) ; when a piece of text is marked, typing will delete and replace that selection.
+  (pending-delete-mode 1) ; when a piece of text is marked, typing will delete and replace that selection.
 
 (require 'package)
 (setq package-archives
@@ -79,8 +80,6 @@
 (global-visual-line-mode t) ;; wraps the text in a buffer
 
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
-
-(local-set-key (kbd "RET") (key-binding (kbd "M-j")))
 
 (require 'org-tempo)
 ;; allows the ability to generate #+begin blocks using `<s or q or e...etc
