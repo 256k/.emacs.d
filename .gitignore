@@ -10,3 +10,4 @@ elpa/
 .cache/
 *.dat
 ido*
+eln-cache/

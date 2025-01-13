@@ -55,14 +55,23 @@
        (t
         'grep)))
 
-(use-package doom-themes
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
+  (use-package doom-themes
+    :ensure t
+    :config
+    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+	  doom-themes-enable-italic t) ; if nil, italics is universally disabled
+    (doom-themes-visual-bell-config)
+    (doom-themes-org-config))
+  ;; (load-theme 'doom-one t)
+(load-theme 'ef-frost t)
+
+(use-package spacious-padding
   :ensure t
   :config
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (doom-themes-visual-bell-config)
-  (doom-themes-org-config))
-(load-theme 'doom-one t)
+  (setq spacious-padding-widths '(:internal-border-width 60 :right-divider-width 30 :scroll-bar-width 8))
+        (spacious-padding-mode 1))
 
 (defalias 'list-buffers 'consult-buffer)
 
@@ -70,6 +79,8 @@
 (global-visual-line-mode t) ;; wraps the text in a buffer
 
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
+
+(local-set-key (kbd "RET") (key-binding (kbd "M-j")))
 
 (require 'org-tempo)
 ;; allows the ability to generate #+begin blocks using `<s or q or e...etc

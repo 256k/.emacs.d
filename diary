@@ -1,0 +1,27 @@
+Jan 12, 2025
+
+today i am exploring the emacs calendary and diary functionality.
+
+i do like it.
+
+there are so many things i like about emacs. it does so many things and there's something neat about having everything managed within on single place like this.
+
+honestly if emacs was better at LSP and and keymaps i would definitely love to use it for so many more things.
+
+also if emacs was more like the normal modern editors like cmd a / c / v / x / f ..... perhaps i would use it more like vscode. although i find that the context menus with a mouse (which i rely on a lot in vscode) are not quite robust in emacs and the general UI is a bit weak.
+
+also, it's slow. i dont care what anyone says, emacs is slow compared to something like neovim.
+
+opening up my config file written in org takes several seconds.
+
+let me profile something now...
+Jan 12, 2025 
+i think about which editor/program i want to spend more time in, customizing and programming it to do exactly what i want.
+
+there's like so many pros and cons for each
+
+neovim
+pros:
+- fast 
+- great LSP integration
+- 

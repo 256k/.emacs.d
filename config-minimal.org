@@ -79,15 +79,17 @@
 
 ** Theme
 #+begin_src emacs-lisp
-  (use-package doom-themes
-    :ensure t
-    :config
-    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-          doom-themes-enable-italic t) ; if nil, italics is universally disabled
-    (doom-themes-visual-bell-config)
-    (doom-themes-org-config))
-  ;; (load-theme 'doom-one t)
-(load-theme 'ef-frost t)
+    (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
+      (use-package doom-themes
+	:ensure t
+	:config
+	(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+	      doom-themes-enable-italic t) ; if nil, italics is universally disabled
+	(doom-themes-visual-bell-config)
+	(doom-themes-org-config))
+      ;; (load-theme 'doom-one t)
+    (load-theme 'ef-frost t)
 
 #+end_src
 
@@ -99,6 +101,7 @@
   (setq spacious-padding-widths '(:internal-border-width 60 :right-divider-width 30 :scroll-bar-width 8))
         (spacious-padding-mode 1))
 #+end_src
+
 ** define aliases
 #+begin_src emacs-lisp
   (defalias 'list-buffers 'consult-buffer)
@@ -114,7 +117,7 @@
 #+begin_src emacs-lisp
   (add-hook 'dired-mode-hook 'dired-hide-details-mode)
 #+end_src
-
+ 
 ** Enabling shorthand block generation
 #+begin_src emacs-lisp
   (require 'org-tempo)
@@ -146,6 +149,7 @@
      ("C-." . norns-sc-stop))
     )
 #+end_src
+
 ** Golden-ratio auto-resizing window manager
 #+begin_src emacs-lisp
   (use-package golden-ratio
@@ -153,6 +157,7 @@
     :bind
     ("C-c g" . golden-ratio-mode))
 #+end_src
+
 ** rainbow delimiters
 #+begin_src emacs-lisp
   (use-package rainbow-delimiters
@@ -161,17 +166,19 @@
     (prog-mode . rainbow-delimiters-mode))
 
 #+end_src
+
 ** evil
 #+begin_src emacs-lisp
-  (use-package evil 
-    :ensure t
-    :init
-    (setq evil-undo-system 'undo-redo)
-    (setq evil-disable-insert-state-bindings t)
-    (setq evil-want-C-u-scroll t)
-    :config
-    (evil-mode))
+   (use-package evil 
+     :ensure t
+     :init
+     (setq evil-undo-system 'undo-redo)
+     (setq evil-disable-insert-state-bindings t)
+     (setq evil-want-C-u-scroll t)
+     :config
+     (evil-mode))
 #+end_src
+
 ** try
 #+begin_src emacs-lisp
   (use-package try :ensure t)
@@ -191,6 +198,7 @@
     :ensure t)
 
 #+end_src
+
 ** magit
 #+begin_src emacs-lisp
   (use-package magit :ensure t)
@@ -242,6 +250,7 @@
     (treemacs-follow-mode t)
     (treemacs-project-follow-mode t))
 #+end_src
+
 ** company
 #+begin_src emacs-lisp
   (use-package company
@@ -317,8 +326,6 @@
 #+end_src
 
 * LSP
-
-
 #+begin_src emacs-lisp
   (use-package lsp-mode
     :ensure t
