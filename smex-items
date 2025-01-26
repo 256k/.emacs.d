@@ -1,0 +1,19 @@
+
+;; ----- smex-history -----
+(
+ evil-ex
+ fit-frame-to-buffer
+ 256k/new-scratch-tab
+ sort-lines
+ cd
+ 5x5
+ arp
+)
+
+;; ----- smex-data -----
+(
+ (sort-lines . 1)
+ (256k/new-scratch-tab . 1)
+ (fit-frame-to-buffer . 1)
+ (evil-ex . 1)
+)

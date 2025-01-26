@@ -42,6 +42,7 @@
   (menu-bar-mode 1)
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
+  (column-number-mode 1)
   (setq frame-inhibit-implied-resize t) ; disables frame resizing when font resizing happens
   (setq inhibit-startup-screen 1)
   (electric-pair-mode 1)  ;; (){}""<>[] 
@@ -160,10 +161,10 @@
 
 ** rainbow delimiters
 #+begin_src emacs-lisp
-  (use-package rainbow-delimiters
-    :ensure t
-    :hook
-    (prog-mode . rainbow-delimiters-mode))
+  ;;( use-package rainbow-delimiters
+   ;;  :ensure t
+   ;;  :hook
+   ;;  (prog-mode . rainbow-delimiters-mode))
 
 #+end_src
 
@@ -306,6 +307,12 @@
 
   (use-package lua-mode 
     :ensure t)
+
+  (use-package uxntal-mode
+    :ensure t)
+  (add-to-list 'auto-mode-alist '("\\.tal\\'" . uxntal-mode))
+
+
 #+end_src
 
 ** treesit
@@ -332,9 +339,8 @@
     :init
     ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
     (setq lsp-keymap-prefix "C-c l")
-    ;; :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-    ;;        (typescript-ts-mode . lsp-deferred)
-    ;;        (tsx-ts-mode . lsp-deferred))
+    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+           (prog-mode-hook . lsp-deferred))
     :commands lsp)
 
   (use-package lsp-ui

@@ -25,3 +25,11 @@ pros:
 - fast 
 - great LSP integration
 - 
+Jan 15, 2025
+
+list of interesting packages from the tsoding configs:
+- smex (better M-x)
+- move-text (alt-up/down)
+- Paredit ( better smart parens)
+- multiple-cursors
+Jan 13, 2025 

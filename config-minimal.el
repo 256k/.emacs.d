@@ -80,8 +80,6 @@
 
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
-(local-set-key (kbd "RET") (key-binding (kbd "M-j")))
-
 (require 'org-tempo)
 ;; allows the ability to generate #+begin blocks using `<s or q or e...etc
 
@@ -109,10 +107,10 @@
   :bind
   ("C-c g" . golden-ratio-mode))
 
-(use-package rainbow-delimiters
-  :ensure t
-  :hook
-  (prog-mode . rainbow-delimiters-mode))
+;;( use-package rainbow-delimiters
+ ;;  :ensure t
+ ;;  :hook
+ ;;  (prog-mode . rainbow-delimiters-mode))
 
 (use-package evil 
   :ensure t
@@ -203,6 +201,10 @@
 (use-package lua-mode 
   :ensure t)
 
+(use-package uxntal-mode
+  :ensure t)
+(add-to-list 'auto-mode-alist '("\\.tal\\'" . uxntal-mode))
+
 (use-package treesit-auto
   :custom
   (treesit-auto-install 'prompt)
@@ -222,9 +224,8 @@
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
-  ;; :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-  ;;        (typescript-ts-mode . lsp-deferred)
-  ;;        (tsx-ts-mode . lsp-deferred))
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (prog-mode-hook . lsp-deferred))
   :commands lsp)
 
 (use-package lsp-ui
