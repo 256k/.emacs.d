@@ -1,0 +1,39 @@
+20250126
+========
+
+new day new note! woohoo
+
+
+this is another thing
+here that im typing
+
+i don't know if this works
+
+===============================
+
+
+it's 10:00 pm.
+rearranged my room today and made a nice little music corner with the amiga, OT, MPC with a secondary shelf. looks pretty slick ngl.
+talking about MPCs on the dirtywave discord. shared a bunch of videos from diff aritsts.
+started watching some sweely stuff. remembered how good just an MPC and a mixer is (and maybe a bass monosynth actually... siren/minitaur? hmmmmm)
+anyways, im kinda feeling inspired again after a long time. gonna try to make some house/techno music on the MPC again. that was always a workflow that i enjoyed.
+
+goal is to make a 3 to 5 song EP with MPC.
+i can use previously created songs no problemo.
+i can also write new stuff.
+goal is to get started again doing it.
+
+shit i had a name for an album today actually that popped into my head it was a very random name but i forgot.
+
+
+
+NOTE: also idea for dailynotes. create a fucntion that will reload the buffer with incremental or decremental days
+like to go through each day's log sequentially without having to go out and find a diff one
+i dont know if there's a function for that in emacs let me check.
+
+yeah i don't think so lol...
+
+#+begin_src emacs-lisp
+  (find-file "./20250125.org")
+
+#+end_src

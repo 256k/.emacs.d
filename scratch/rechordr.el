@@ -26,8 +26,6 @@
   (substring-no-properties (car (split-string (buffer-string) "\n"))))
 
 
-
-
 ;; testing stuff here:
 (defun my-after-command-action ()
   "Run after every command."

@@ -1,3 +1,24 @@
 20250125
 ========
 
+Hello World.
+
+today was a nice day.
+
+did not do much. i watched some youtube videos about tsoding seetting up his emacs config and some dude's video about ways of writing C code that went above my head since i dont really write much C.
+
+later on i somehow got the motivation and perseverence to sit down and write some elisp functionality to create this log of daily entries.
+
+The goal of it is to be able to have a space where i can document the day's thoughts and ideas and notes. i dont have to worry about where it saves or how it's organzed.
+
+it's very simply laid out under ./dailynotes/[YYYYMMDD].org format
+
+now after i saved i am posed with a question. should i keep this as part of my emacs config or should it be its own separate repo where i can daily sync and fetch to stay in sync?
+
+or should it be more of a  directory / computer? so it can be a single repo but each computer has its own subfolder as to not mix up work notes from personal notes?
+
+things to consider for the next iteration.
+
+#+begin_src emacs-lisp
+(find-file "./20250126.org")
+#+end_src

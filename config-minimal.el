@@ -29,9 +29,11 @@
 (menu-bar-mode 1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(column-number-mode 1)
 (setq frame-inhibit-implied-resize t) ; disables frame resizing when font resizing happens
 (setq inhibit-startup-screen 1)
-(electric-pair-mode 1)  ;; (){}""<>[]
+(electric-pair-mode 1)  ;; (){}""<>[] 
+(setq org-support-shift-select 1) ;; enables marking region with shift + arrows
 
 (defvar big-font-mode nil)
 (defun 256k/toggle-font-size ()
@@ -75,8 +77,9 @@
 
 (defalias 'list-buffers 'consult-buffer)
 
+(setq display-line-numbers-type 0)
 (global-display-line-numbers-mode 1)
-(global-visual-line-mode t) ;; wraps the text in a buffer
+  (global-visual-line-mode t) ;; wraps the text in a buffer
 
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
@@ -99,27 +102,32 @@
    ("C-c e b" . norns-rerun)
 
    :map norns-sc-repl-mode-map
-   ("C-." . norns-sc-stop))
   )
+   ("C-." . norns-sc-stop))
 
-(use-package golden-ratio
-  :ensure
+(setq cursor-type 4) ;; sets cursor to single bar
+
+(use-package multiple-cursors
+  :ensure t
   :bind
-  ("C-c g" . golden-ratio-mode))
+  (( "C-S-c C-S-c" . 'mc/edit-lines)
+   ( "C->" . 'mc/mark-next-like-this)
+   ( "C-<" . 'mc/mark-previous-like-this)
+   ( "C-c C-<" . 'mc/mark-all-like-this)))
 
 ;;( use-package rainbow-delimiters
  ;;  :ensure t
  ;;  :hook
  ;;  (prog-mode . rainbow-delimiters-mode))
 
-(use-package evil 
-  :ensure t
-  :init
-  (setq evil-undo-system 'undo-redo)
-  (setq evil-disable-insert-state-bindings t)
-  (setq evil-want-C-u-scroll t)
-  :config
-  (evil-mode))
+;; (use-package evil 
+;;   :ensure t
+;;   :init
+;;   (setq evil-undo-system 'undo-redo)
+;;   (setq evil-disable-insert-state-bindings t)
+;;   (setq evil-want-C-u-scroll t)
+;;   :config
+;;   (evil-mode))
 
 (use-package try :ensure t)
 
@@ -157,13 +165,13 @@
   (setq vertico-multiform-commands
         '((consult-line buffer))))
 
-(use-package treemacs
-  :ensure t
-:bind
-("C-c b" . treemacs)
-  :config
-  (treemacs-follow-mode t)
-  (treemacs-project-follow-mode t))
+;; (use-package treemacs
+;;   :ensure t
+;; :bind
+;; ("C-c b" . treemacs)
+;;   :config
+;;   (treemacs-follow-mode t)
+;;   (treemacs-project-follow-mode t))
 
 (use-package company
   :ensure t
@@ -196,7 +204,7 @@
 (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
 (use-package forth-mode
-  :ensure t)
+  :ensure t)  
 
 (use-package lua-mode 
   :ensure t)
@@ -204,6 +212,17 @@
 (use-package uxntal-mode
   :ensure t)
 (add-to-list 'auto-mode-alist '("\\.tal\\'" . uxntal-mode))
+
+
+
+(package-vc-install "https://github.com/ahihi/sapf.el")
+(setq sapf-interpreter "~/bin/sapf_v0.1.21/sapf")
+(add-to-list 'auto-mode-alist '("\\.sapf\\'" . sapf-mode))
+(use-package sapf)
+ ;; some key bindings
+  (define-key sapf-mode-map (kbd "M-<return>") #'sapf-run-multiple-lines)
+  (define-key sapf-mode-map (kbd "C-c C-s") #'sapf-start)
+  (define-key sapf-mode-map (kbd "C-c C-q") #'sapf-stop)
 
 (use-package treesit-auto
   :custom

@@ -46,7 +46,7 @@
   (setq frame-inhibit-implied-resize t) ; disables frame resizing when font resizing happens
   (setq inhibit-startup-screen 1)
   (electric-pair-mode 1)  ;; (){}""<>[] 
-
+  (setq org-support-shift-select 1) ;; enables marking region with shift + arrows
 #+end_src
 
 ** toggle large font mode
@@ -110,8 +110,9 @@
 
 ** Display Line Numbers and Truncated Lines
 #+begin_src emacs-lisp
+    (setq display-line-numbers-type 0)
   (global-display-line-numbers-mode 1)
-  (global-visual-line-mode t) ;; wraps the text in a buffer
+    (global-visual-line-mode t) ;; wraps the text in a buffer
 #+end_src
 
 ** Hide DIRED details
@@ -147,17 +148,23 @@
      ("C-c e b" . norns-rerun)
 
      :map norns-sc-repl-mode-map
-     ("C-." . norns-sc-stop))
     )
+     ("C-." . norns-sc-stop))
 #+end_src
 
-** Golden-ratio auto-resizing window manager
+* multiple cursors
 #+begin_src emacs-lisp
-  (use-package golden-ratio
-    :ensure
+  (setq cursor-type 4) ;; sets cursor to single bar
+
+  (use-package multiple-cursors
+    :ensure t
     :bind
-    ("C-c g" . golden-ratio-mode))
+    (( "C-S-c C-S-c" . 'mc/edit-lines)
+     ( "C->" . 'mc/mark-next-like-this)
+     ( "C-<" . 'mc/mark-previous-like-this)
+     ( "C-c C-<" . 'mc/mark-all-like-this)))
 #+end_src
+
 
 ** rainbow delimiters
 #+begin_src emacs-lisp
@@ -170,14 +177,14 @@
 
 ** evil
 #+begin_src emacs-lisp
-   (use-package evil 
-     :ensure t
-     :init
-     (setq evil-undo-system 'undo-redo)
-     (setq evil-disable-insert-state-bindings t)
-     (setq evil-want-C-u-scroll t)
-     :config
-     (evil-mode))
+  ;; (use-package evil 
+  ;;   :ensure t
+  ;;   :init
+  ;;   (setq evil-undo-system 'undo-redo)
+  ;;   (setq evil-disable-insert-state-bindings t)
+  ;;   (setq evil-want-C-u-scroll t)
+  ;;   :config
+  ;;   (evil-mode))
 #+end_src
 
 ** try
@@ -197,7 +204,6 @@
 #+begin_src emacs-lisp
   (use-package consult
     :ensure t)
-
 #+end_src
 
 ** magit
@@ -243,67 +249,67 @@
 
 ** treemacs
 #+begin_src emacs-lisp
-  (use-package treemacs
-    :ensure t
-  :bind
-  ("C-c b" . treemacs)
-    :config
-    (treemacs-follow-mode t)
-    (treemacs-project-follow-mode t))
-#+end_src
+    ;; (use-package treemacs
+  ;;   :ensure t
+  ;; :bind
+  ;; ("C-c b" . treemacs)
+  ;;   :config
+  ;;   (treemacs-follow-mode t)
+  ;;   (treemacs-project-follow-mode t))
+  #+end_src
 
-** company
-#+begin_src emacs-lisp
+  ** company
+  #+begin_src emacs-lisp
   (use-package company
     :ensure t
     :bind ("C-." . company-complete)
     :init
     (setq company-minimum-prefix-length 1)
     (add-hook 'after-init-hook 'global-company-mode))
-#+end_src
+  #+end_src
 
 
-** marginalia
-#+begin_src emacs-lisp
+  ** marginalia
+  #+begin_src emacs-lisp
   (use-package marginalia
     :ensure t
     :config
     (marginalia-mode))
-#+end_src
+  #+end_src
 
-** embark
-#+begin_src emacs-lisp
+  ** embark
+  #+begin_src emacs-lisp
   (use-package embark
     :ensure t
     :after
     (use-package embark-consult
       :ensure t))
-#+end_src
+  #+end_src
 
-** slime
-#+begin_src emacs-lisp
+  ** slime
+  #+begin_src emacs-lisp
   (use-package slime
     :ensure t
     :init
     (setq inferior-lisp-program "sbcl"))
-#+end_src
+  #+end_src
 
-* Languages and linting
-** flycheck eglot
-#+begin_src emacs-lisp
+  * Languages and linting
+  ** flycheck eglot
+  #+begin_src emacs-lisp
   (use-package flycheck-eglot
     :ensure t
     :config
     (global-flycheck-eglot-mode 1))
 
-#+end_src
+  #+end_src
 
-** Language modes
-#+begin_src emacs-lisp
+  ** Language modes
+  #+begin_src emacs-lisp
   (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
   (use-package forth-mode
-    :ensure t)
+    :ensure t)  
 
   (use-package lua-mode 
     :ensure t)
