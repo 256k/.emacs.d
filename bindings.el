@@ -12,3 +12,19 @@
 (keymap-global-set "C-;" 'execute-extended-command) ;; replaces M-x as an easier solution.
 (keymap-global-set "C-," 'revert-buffer)
 (keymap-global-set "C-x C-." '256k/toggle-font-size)
+(keymap-global-set "C-c p f" 'prettier-prettify)
+
+(defun search-word-forward-at-point ()
+  (interactive)
+  (setq current-word (substring-no-properties (word-at-point)))
+  (search-forward current-word))
+
+(defun search-word-backward-at-point ()
+  (interactive)
+  (setq current-word (substring-no-properties (word-at-point)))
+  (search-backward current-word))
+
+
+
+(keymap-global-set "C-*" 'search-word-forward-at-point)
+(keymap-global-set "M-*" 'search-word-backward-at-point)

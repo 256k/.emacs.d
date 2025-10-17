@@ -80,17 +80,17 @@
 
 ** Theme
 #+begin_src emacs-lisp
-    (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
-      (use-package doom-themes
-	:ensure t
-	:config
-	(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-	      doom-themes-enable-italic t) ; if nil, italics is universally disabled
-	(doom-themes-visual-bell-config)
-	(doom-themes-org-config))
-      ;; (load-theme 'doom-one t)
-    (load-theme 'ef-frost t)
+    ;; (use-package doom-themes
+    ;;   :ensure t
+    ;;   :config
+    ;;   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+    ;;         doom-themes-enable-italic t) ; if nil, italics is universally disabled
+    ;;   (doom-themes-visual-bell-config)
+    ;;   (doom-themes-org-config))
+    ;; (load-theme 'doom-one t)
+  (load-theme 'ef-spring t)
 
 #+end_src
 
@@ -110,7 +110,8 @@
 
 ** Display Line Numbers and Truncated Lines
 #+begin_src emacs-lisp
-  (global-display-line-numbers-mode 1)
+  (setq display-line-numbers-type 'relative)
+  (global-display-line-numbers-mode t)
   (global-visual-line-mode t) ;; wraps the text in a buffer
 #+end_src
 
@@ -187,15 +188,14 @@
 
 ** which key
 #+begin_src emacs-lisp
-;; M-x customize-group is a way to find all the variables associated with a package.
-  (use-package which-key
-    :ensure t
-    :config
-    (setq which-key-max-display-columns 2)
-    ;; (setq which-key-min-column-description-width 0.001)
-    (setq which-key-max-description-length 100)
-    (setq which-key-separator ":")
-    (which-key-mode t))
+  ;; M-x customize-group is a way to find all the variables associated with a package.
+    (use-package which-key
+      :ensure t
+      :config
+      (setq which-key-max-display-columns 2)
+      ;; (setq which-key-min-column-description-width 0.001)
+      ;; (setq which-key-separator ":")
+      (which-key-mode t))
 #+end_src
 
 ** consult
@@ -257,6 +257,12 @@
     (treemacs-project-follow-mode t))
 #+end_src
 
+** neotree
+#+begin_src emacs-lisp
+    (use-package neotree
+  :ensure t)
+  (setq neo-window-fixed-size nil)
+#+end_src
 ** company
 #+begin_src emacs-lisp
   (use-package company
@@ -324,7 +330,6 @@
     (global-treesit-auto-mode))
 
   (setq treesit-font-lock-level 4)
-  (fset #'jsonrpc--log-event #'ignore) ;; helps remove laggy typing
   (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.js\\'" . typescript-ts-mode))
@@ -333,14 +338,16 @@
 
 * LSP
 #+begin_src emacs-lisp
+  ;; LSP-mode solution
+
   (use-package lsp-mode
     :ensure t
     :init
     ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
     (setq lsp-keymap-prefix "C-c l")
-    ;; :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-    ;;        (typescript-ts-mode . lsp-deferred)
-    ;;        (tsx-ts-mode . lsp-deferred))
+    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+           (typescript-ts-mode . lsp-deferred)
+           (tsx-ts-mode . lsp-deferred))
     :commands lsp)
 
   (use-package lsp-ui
@@ -348,8 +355,25 @@
     :commands lsp-ui-mode)
   (with-eval-after-load 'lsp-mode
     (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
-
+  (fset #'jsonrpc--log-event #'ignore) ;; helps remove laggy typing
   (use-package consult-lsp
     :ensure t)
+
+
+  ;; ================================================================================
+
+  ;; eglot solution
+
+  ;; (use-package eglot
+  ;;   :ensure t)
+  ;; (add-hook 'prog-mode-hook 'eglot-ensure)
+
+  ;; (fset #'jsonrpc--log-event #'ignore) ;; helps remove laggy typing
+
 #+end_src
 
+** prettier setup
+#+begin_src emacs-lisp
+  (use-package prettier
+            :ensure t)
+#+end_src

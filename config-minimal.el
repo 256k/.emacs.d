@@ -40,10 +40,10 @@
   (interactive)
   (if big-font-mode
       (progn
-        (set-face-attribute 'default nil :height 160)
+        (set-face-attribute 'default nil :height 180)
         (setq big-font-mode nil))
     (progn
-      (set-face-attribute 'default nil :height 240)
+      (set-face-attribute 'default nil :height 220)
       (setq big-font-mode t))))
 
 (setq xref-search-program ;; Prefer ripgrep, then ugrep, and fall back to regular grep.
@@ -58,15 +58,15 @@
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
-  (use-package doom-themes
-    :ensure t
-    :config
-    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-	  doom-themes-enable-italic t) ; if nil, italics is universally disabled
-    (doom-themes-visual-bell-config)
-    (doom-themes-org-config))
+  ;; (use-package doom-themes
+  ;;   :ensure t
+  ;;   :config
+  ;;   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+  ;;         doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  ;;   (doom-themes-visual-bell-config)
+  ;;   (doom-themes-org-config))
   ;; (load-theme 'doom-one t)
-(load-theme 'ef-frost t)
+(load-theme 'ef-spring t)
 
 (use-package spacious-padding
   :ensure t
@@ -76,7 +76,8 @@
 
 (defalias 'list-buffers 'consult-buffer)
 
-(global-display-line-numbers-mode 1)
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode t)
 (global-visual-line-mode t) ;; wraps the text in a buffer
 
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
@@ -124,10 +125,14 @@
 
 (use-package try :ensure t)
 
-(use-package which-key
-  :ensure t
-  :config
-  (which-key-mode t))
+;; M-x customize-group is a way to find all the variables associated with a package.
+  (use-package which-key
+    :ensure t
+    :config
+    (setq which-key-max-display-columns 2)
+    ;; (setq which-key-min-column-description-width 0.001)
+    ;; (setq which-key-separator ":")
+    (which-key-mode t))
 
 (use-package consult
   :ensure t)
@@ -165,6 +170,10 @@
   :config
   (treemacs-follow-mode t)
   (treemacs-project-follow-mode t))
+
+(use-package neotree
+:ensure t)
+(setq neo-window-fixed-size nil)
 
 (use-package company
   :ensure t
@@ -210,20 +219,21 @@
   (global-treesit-auto-mode))
 
 (setq treesit-font-lock-level 4)
-(fset #'jsonrpc--log-event #'ignore) ;; helps remove laggy typing
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . typescript-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))
+
+;; LSP-mode solution
 
 (use-package lsp-mode
   :ensure t
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
-  ;; :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-  ;;        (typescript-ts-mode . lsp-deferred)
-  ;;        (tsx-ts-mode . lsp-deferred))
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (typescript-ts-mode . lsp-deferred)
+         (tsx-ts-mode . lsp-deferred))
   :commands lsp)
 
 (use-package lsp-ui
@@ -231,6 +241,20 @@
   :commands lsp-ui-mode)
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
-
+(fset #'jsonrpc--log-event #'ignore) ;; helps remove laggy typing
 (use-package consult-lsp
   :ensure t)
+
+
+;; ================================================================================
+
+;; eglot solution
+
+;; (use-package eglot
+;;   :ensure t)
+;; (add-hook 'prog-mode-hook 'eglot-ensure)
+
+;; (fset #'jsonrpc--log-event #'ignore) ;; helps remove laggy typing
+
+(use-package prettier
+          :ensure t)
