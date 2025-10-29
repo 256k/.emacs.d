@@ -2,8 +2,7 @@
  (magit-cherry-pick
   ("--ff"))
  (magit-commit
-  ("--all")
-  nil)
+  ("--all"))
  (magit-diff
   ("--no-ext-diff" "--stat"))
  (magit-dispatch nil)

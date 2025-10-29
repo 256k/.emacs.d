@@ -57,23 +57,25 @@
        (t
         'grep)))
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-
-  ;; (use-package doom-themes
-  ;;   :ensure t
-  ;;   :config
-  ;;   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-  ;;         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  ;;   (doom-themes-visual-bell-config)
-  ;;   (doom-themes-org-config))
-  ;; (load-theme 'doom-one t)
-(load-theme 'ef-spring t)
-
-(use-package spacious-padding
+;; (use-package doom-themes
+    ;;   :ensure t
+    ;;   :config
+    ;;   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+    ;;         doom-themes-enable-italic t) ; if nil, italics is universally disabled
+    ;;   (doom-themes-visual-bell-config)
+    ;;   (doom-themes-org-config))
+    ;; (load-theme 'doom-one t)
+  ;; (load-theme 'ef-spring t)
+(use-package anti-zenburn-theme
   :ensure t
   :config
-  (setq spacious-padding-widths '(:internal-border-width 60 :right-divider-width 30 :scroll-bar-width 8))
-        (spacious-padding-mode 1))
+  (load-theme 'anti-zenburn t))
+
+;; (use-package spacious-padding
+;;   :ensure t
+;;   :config
+;;   (setq spacious-padding-widths '(:internal-border-width 60 :right-divider-width 30 :scroll-bar-width 8))
+;;         (spacious-padding-mode 1))
 
 (defalias 'list-buffers 'consult-buffer)
 
@@ -244,12 +246,15 @@
 
 ;; eglot solution
 
+(require 'jsonrpc)
+(require 'eglot)
+
 (use-package eglot
-  :ensure t
-  :hook ('prog-mode-hook 'eglot-ensure)
+  :hook (prog-mode . eglot-ensure)
   :config
-  (fset #'jsonrpc--log-event #'ignore)) ;; helps remove laggy typing
-(setq read-process-output-max (* 1024 1024)) ; 1MB *read note underneath*
+  (fset #'jsonrpc--log-event #'ignore))
+
+(setq read-process-output-max (* 1024 1024))
 
 (use-package prettier
           :ensure t :defer t)

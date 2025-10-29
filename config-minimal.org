@@ -81,27 +81,28 @@
 
 ** Theme
 #+begin_src emacs-lisp
-  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-
-    ;; (use-package doom-themes
-    ;;   :ensure t
-    ;;   :config
-    ;;   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-    ;;         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-    ;;   (doom-themes-visual-bell-config)
-    ;;   (doom-themes-org-config))
-    ;; (load-theme 'doom-one t)
-  (load-theme 'ef-spring t)
-
+      ;; (use-package doom-themes
+      ;;   :ensure t
+      ;;   :config
+      ;;   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+      ;;         doom-themes-enable-italic t) ; if nil, italics is universally disabled
+      ;;   (doom-themes-visual-bell-config)
+      ;;   (doom-themes-org-config))
+      ;; (load-theme 'doom-one t)
+    ;; (load-theme 'ef-spring t)
+  (use-package anti-zenburn-theme
+    :ensure t
+    :config
+    (load-theme 'anti-zenburn t))
 #+end_src
 
 ** padding
 #+begin_src emacs-lisp
-(use-package spacious-padding
-  :ensure t
-  :config
-  (setq spacious-padding-widths '(:internal-border-width 60 :right-divider-width 30 :scroll-bar-width 8))
-        (spacious-padding-mode 1))
+  ;; (use-package spacious-padding
+  ;;   :ensure t
+  ;;   :config
+  ;;   (setq spacious-padding-widths '(:internal-border-width 60 :right-divider-width 30 :scroll-bar-width 8))
+  ;;         (spacious-padding-mode 1))
 #+end_src
 
 ** define aliases
@@ -237,7 +238,7 @@
     (vertico-multiform-mode)
     :config
     (setq vertico-multiform-commands
-          '((consult-buffer grid)
+          '((consult-buffer grid))))
   ;; vertico-multiform-commands lets you set different display modes for different commands.
 #+end_src
 
@@ -353,12 +354,15 @@
 
   ;; eglot solution
 
+  (require 'jsonrpc)
+  (require 'eglot)
+
   (use-package eglot
-    :ensure t
-    :hook ('prog-mode-hook 'eglot-ensure)
+    :hook (prog-mode . eglot-ensure)
     :config
-    (fset #'jsonrpc--log-event #'ignore)) ;; helps remove laggy typing
-  (setq read-process-output-max (* 1024 1024)) ; 1MB *read note underneath*
+    (fset #'jsonrpc--log-event #'ignore))
+
+  (setq read-process-output-max (* 1024 1024))
 
 #+end_src
 
