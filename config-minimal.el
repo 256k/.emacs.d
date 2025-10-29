@@ -33,6 +33,7 @@
 (setq frame-inhibit-implied-resize t) ; disables frame resizing when font resizing happens
 (setq inhibit-startup-screen 1)
 (electric-pair-mode 1)  ;; (){}""<>[]
+(context-menu-mode 1) ;; enables right click mouse menu
 
 (defvar big-font-mode nil)
 (defun 256k/toggle-font-size ()
@@ -76,8 +77,9 @@
 
 (defalias 'list-buffers 'consult-buffer)
 
-(setq display-line-numbers-type 'relative)
-(global-display-line-numbers-mode t)
+(setq display-line-numbers-type t)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
 (global-visual-line-mode t) ;; wraps the text in a buffer
 
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
@@ -104,29 +106,24 @@
    ("C-." . norns-sc-stop))
   )
 
-(use-package golden-ratio
-  :ensure
-  :bind
-  ("C-c g" . golden-ratio-mode))
-
 (use-package rainbow-delimiters
   :ensure t
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
-(use-package evil 
-  :ensure t
-  :init
-  (setq evil-undo-system 'undo-redo)
-  (setq evil-disable-insert-state-bindings t)
-  (setq evil-want-C-u-scroll t)
-  :config
-  (evil-mode))
+;; (use-package evil 
+;;   :ensure t
+;;   :init
+;;   (setq evil-undo-system 'undo-redo)
+;;   (setq evil-disable-insert-state-bindings t)
+;;   (setq evil-want-C-u-scroll t)
+;;   :config
+;;   (evil-mode))
 
-(use-package try :ensure t)
+(use-package try :ensure t :defer t)
 
 ;; M-x customize-group is a way to find all the variables associated with a package.
-  (use-package which-key
+(use-package which-key
     :ensure t
     :config
     (setq which-key-max-display-columns 2)
@@ -161,7 +158,8 @@
   (vertico-multiform-mode)
   :config
   (setq vertico-multiform-commands
-        '((consult-line buffer))))
+        '((consult-buffer grid))))
+;; vertico-multiform-commands lets you set different display modes for different commands.
 
 (use-package treemacs
   :ensure t
@@ -170,10 +168,6 @@
   :config
   (treemacs-follow-mode t)
   (treemacs-project-follow-mode t))
-
-(use-package neotree
-:ensure t)
-(setq neo-window-fixed-size nil)
 
 (use-package company
   :ensure t
@@ -226,35 +220,43 @@
 
 ;; LSP-mode solution
 
-(use-package lsp-mode
-  :ensure t
-  :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l")
-  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (typescript-ts-mode . lsp-deferred)
-         (tsx-ts-mode . lsp-deferred))
-  :commands lsp)
+;; (use-package lsp-mode
+;;   :ensure t
+;;   :init
+;;   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+;;   (setq lsp-keymap-prefix "C-c l")
+;;   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+;;          (typescript-ts-mode . lsp-deferred)
+;;          (tsx-ts-mode . lsp-deferred))
+;;   :commands lsp)
 
-(use-package lsp-ui
-  :ensure t
-  :commands lsp-ui-mode)
-(with-eval-after-load 'lsp-mode
-  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
-(fset #'jsonrpc--log-event #'ignore) ;; helps remove laggy typing
-(use-package consult-lsp
-  :ensure t)
+;; (use-package lsp-ui
+;;   :ensure t
+;;   :commands lsp-ui-mode)
+;; (with-eval-after-load 'lsp-mode
+;;   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
+;; (fset #'jsonrpc--log-event #'ignore) ;; helps remove laggy typing
+;; (use-package consult-lsp
+;;   :ensure t)
 
 
-;; ================================================================================
+;; ;; =========================
 
 ;; eglot solution
 
-;; (use-package eglot
-;;   :ensure t)
-;; (add-hook 'prog-mode-hook 'eglot-ensure)
-
-;; (fset #'jsonrpc--log-event #'ignore) ;; helps remove laggy typing
+(use-package eglot
+  :ensure t
+  :hook ('prog-mode-hook 'eglot-ensure)
+  :config
+  (fset #'jsonrpc--log-event #'ignore)) ;; helps remove laggy typing
+(setq read-process-output-max (* 1024 1024)) ; 1MB *read note underneath*
 
 (use-package prettier
-          :ensure t)
+          :ensure t :defer t)
+
+;; tips from claude
+;; add :defer t to packages that don't run from the start to improve startup
+
+(setq gc-cons-threshold (* 100 1000 1000))
+;; GC when idle for 5 seconds
+(run-with-idle-timer 5 t #'garbage-collect)
