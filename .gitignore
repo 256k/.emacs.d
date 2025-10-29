@@ -11,3 +11,4 @@ elpa/
 *.dat
 ido*
 eln-cache/
+url/
