@@ -120,14 +120,14 @@
  ;;  :hook
  ;;  (prog-mode . rainbow-delimiters-mode))
 
-;; (use-package evil 
-;;   :ensure t
-;;   :init
-;;   (setq evil-undo-system 'undo-redo)
-;;   (setq evil-disable-insert-state-bindings t)
-;;   (setq evil-want-C-u-scroll t)
-;;   :config
-;;   (evil-mode))
+(use-package evil 
+  :ensure t
+  :init
+  (setq evil-undo-system 'undo-redo)
+  (setq evil-disable-insert-state-bindings t)
+  (setq evil-want-C-u-scroll t)
+  :config
+  (add-hook 'prog-mode-hook #'evil-local-mode))
 
 (use-package try :ensure t)
 
@@ -212,17 +212,6 @@
 (use-package uxntal-mode
   :ensure t)
 (add-to-list 'auto-mode-alist '("\\.tal\\'" . uxntal-mode))
-
-
-
-(package-vc-install "https://github.com/ahihi/sapf.el")
-(setq sapf-interpreter "~/bin/sapf_v0.1.21/sapf")
-(add-to-list 'auto-mode-alist '("\\.sapf\\'" . sapf-mode))
-(use-package sapf)
- ;; some key bindings
-  (define-key sapf-mode-map (kbd "M-<return>") #'sapf-run-multiple-lines)
-  (define-key sapf-mode-map (kbd "C-c C-s") #'sapf-start)
-  (define-key sapf-mode-map (kbd "C-c C-q") #'sapf-stop)
 
 (use-package treesit-auto
   :custom

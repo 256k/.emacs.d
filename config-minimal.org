@@ -177,14 +177,14 @@
 
 ** evil
 #+begin_src emacs-lisp
-  ;; (use-package evil 
-  ;;   :ensure t
-  ;;   :init
-  ;;   (setq evil-undo-system 'undo-redo)
-  ;;   (setq evil-disable-insert-state-bindings t)
-  ;;   (setq evil-want-C-u-scroll t)
-  ;;   :config
-  ;;   (evil-mode))
+  (use-package evil 
+    :ensure t
+    :init
+    (setq evil-undo-system 'undo-redo)
+    (setq evil-disable-insert-state-bindings t)
+    (setq evil-want-C-u-scroll t)
+    :config
+    (add-hook 'prog-mode-hook #'evil-local-mode))
 #+end_src
 
 ** try

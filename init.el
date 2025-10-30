@@ -70,3 +70,4 @@
    '(\.elpa/sapf elpa/sapf sapf multiple-cursors uxntal-mode ~/.emacs.d/themes/op1light.el treemacs golden-ratio spacious-padding rainbow-delimiters catppuccin-theme catpuccin-theme workgroups2 ef-themes modus-themes embark which-key vertico try treesit-auto solo-jazz-theme slime org-bullets norns marginalia magit lsp-ui json-mode highlight-indent-guides git-gutter forth-mode flycheck-eglot expand-region exec-path-from-shell evil doom-themes consult-lsp company atom-one-dark-theme acme-theme))
  '(package-vc-selected-packages
    '((sapf :vc-backend Git :url "https://github.com/ahihi/sapf.el"))))
+(put 'narrow-to-region 'disabled nil)
