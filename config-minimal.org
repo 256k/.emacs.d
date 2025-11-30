@@ -310,6 +310,11 @@
     :ensure t)
 #+end_src
 
+** vuejs
+#+begin_src emacs-lisp
+  (add-to-list 'load-path (concat user-emacs-directory "vue-ts-mode"))
+(require 'vue-ts-mode)
+#+end_src
 ** treesit
 #+begin_src emacs-lisp
   (use-package treesit-auto

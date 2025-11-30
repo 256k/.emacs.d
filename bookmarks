@@ -2,7 +2,13 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("webapp-mms"
+(("org-capture-last-stored"
+ (filename . "~/.notes")
+ (front-context-string . "** TODO take out")
+ (rear-context-string)
+ (position . 9)
+ (last-modified 26920 16045 310221 0))
+("webapp-mms"
  (filename . "~/projects/phoenix-mach-component-monorepo/apps/mms/mms-webapp/")
  (front-context-string . "src\n  drwxr-xr-x")
  (rear-context-string . "48 17 Dec 15:35 ")
