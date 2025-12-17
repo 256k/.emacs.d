@@ -2,7 +2,13 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("org-capture-last-stored"
+(("taskapp-vuejs"
+ (filename . "~/projects/personal/tasks-app-syntax-course/src/App.vue")
+ (front-context-string)
+ (rear-context-string . "uto;\n}\n</style>\n")
+ (position . 566)
+ (last-modified 26925 63160 135790 0))
+("org-capture-last-stored"
  (filename . "~/.notes")
  (front-context-string . "** TODO take out")
  (rear-context-string)

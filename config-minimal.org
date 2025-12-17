@@ -91,9 +91,9 @@
       ;; (load-theme 'doom-one t)
     ;; (load-theme 'ef-spring t)
   (use-package anti-zenburn-theme
-    :ensure t
-    :config
-    (load-theme 'anti-zenburn t))
+    :ensure t)
+
+  (load-theme `modus-operandi t)
 #+end_src
 
 ** padding
@@ -329,6 +329,7 @@
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.js\\'" . typescript-ts-mode))
   (add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))
+  (add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-ts-mode))
 #+end_src
 
 * LSP

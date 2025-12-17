@@ -13,6 +13,7 @@
 (keymap-global-set "C-," 'revert-buffer)
 (keymap-global-set "C-x C-." '256k/toggle-font-size)
 (keymap-global-set "C-c p f" 'prettier-prettify)
+(keymap-set dired-mode-map "C-c C-i" 'wdired-change-to-wdired-mode)
 
 (defun search-word-forward-at-point ()
   (interactive)

@@ -78,13 +78,17 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("1ea82e39d89b526e2266786886d1f0d3a3fa36c87480fad59d8fab3b03ef576e"
+     default))
  '(package-selected-packages
    '(acme-theme anti-zenburn-theme atom-one-dark-theme catppuccin-theme
 		company consult-lsp doom-themes doric-themes ef-themes
-		eglot-booster embark evil exec-path-from-shell
-		expand-region flycheck-eglot forth-mode git-gutter
-		golden-ratio highlight-indent-guides json-mode lsp-ui
-		magit marginalia modus-themes neotree norns orderless
+		eglot-booster embark emmet-mode evil
+		exec-path-from-shell expand-region flycheck-eglot
+		forth-mode git-gutter golden-ratio
+		highlight-indent-guides json-mode lsp-ui magit
+		marginalia modus-themes neotree norns orderless
 		org-bullets prettier prettier-rc rainbow-delimiters
 		slime smart-comment solo-jazz-theme spacious-padding
 		treemacs treesit-auto try vertico vue-mode which-key
@@ -95,3 +99,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)

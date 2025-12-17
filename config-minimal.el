@@ -67,9 +67,9 @@
     ;; (load-theme 'doom-one t)
   ;; (load-theme 'ef-spring t)
 (use-package anti-zenburn-theme
-  :ensure t
-  :config
-  (load-theme 'anti-zenburn t))
+  :ensure t)
+
+(load-theme `modus-operandi t)
 
 ;; (use-package spacious-padding
 ;;   :ensure t
@@ -207,6 +207,9 @@
 (use-package lua-mode 
   :ensure t)
 
+(add-to-list 'load-path (concat user-emacs-directory "vue-ts-mode"))
+(require 'vue-ts-mode)
+
 (use-package treesit-auto
   :custom
   (treesit-auto-install 'prompt)
@@ -219,6 +222,7 @@
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . tsx-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . typescript-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.c\\'" . c-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-ts-mode))
 
 ;; LSP-mode solution
 
