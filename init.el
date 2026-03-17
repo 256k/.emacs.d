@@ -78,17 +78,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(acme-theme anti-zenburn-theme atom-one-dark-theme catppuccin-theme
-		company consult-lsp doom-themes doric-themes ef-themes
-		eglot-booster embark evil exec-path-from-shell
-		expand-region flycheck-eglot forth-mode git-gutter
-		golden-ratio highlight-indent-guides json-mode lsp-ui
-		magit marginalia modus-themes neotree norns orderless
-		org-bullets prettier prettier-rc rainbow-delimiters
-		slime smart-comment solo-jazz-theme spacious-padding
-		treemacs treesit-auto try vertico vue-mode which-key
-		workgroups2 zenburn-theme)))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -91,9 +91,11 @@
       ;; (load-theme 'doom-one t)
     ;; (load-theme 'ef-spring t)
   (use-package anti-zenburn-theme
-    :ensure t
-    :config
-    (load-theme 'anti-zenburn t))
+    :ensure t)
+
+
+    ;; (load-theme 'anti-zenburn t)
+  (load-theme 'wombat t)
 #+end_src
 
 ** padding
